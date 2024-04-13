@@ -90,4 +90,42 @@ public class TaskServiceTest {
         taskService.deleteTask("1");
         verify(taskRepository).deleteById("1");
     }
+
+        @Test
+    void testAcceptTask() {
+        when(taskRepository.findById("1")).thenReturn(Optional.of(task));
+        taskService.acceptTask("1");
+        assertEquals("accepted", task.getStatus());
+        verify(taskRepository).update(task);
+    }
+
+    @Test
+    void testSubmitTask() {
+        task.setStatus("accepted");  // Set initial status to accepted to allow submission
+        when(taskRepository.findById("1")).thenReturn(Optional.of(task));
+        taskService.submitTask("1");
+        assertEquals("submitted", task.getStatus());
+        verify(taskRepository).update(task);
+    }
+
+    @Test
+    void testGetTasksByStatus() {
+        when(taskRepository.findAll()).thenReturn(Arrays.asList(task));
+        List<Task> result = taskService.getTasksByStatus("created");
+        assertFalse(result.isEmpty());
+        assertEquals(1, result.size());
+        assertEquals("created", result.get(0).getStatus());
+        verify(taskRepository).findAll();
+    }
+
+    @Test
+    void testPublishTaskWithNonExistentId() {
+        when(taskRepository.findById("non-existent-id")).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            taskService.publishTask("non-existent-id");
+        });
+
+        assertEquals("Task with id non-existent-id not found", exception.getMessage());
+    }
 }
