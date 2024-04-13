@@ -1,12 +1,15 @@
 package com.virtualbank.task;
 
 import com.virtualbank.model.Task;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class TaskService {
-    private TaskRepository taskRepository = new TaskRepository();
+    protected TaskRepository taskRepository = new TaskRepository();
 
     // 创建任务并保存到存储中
     public void createTask(String name, String description, double reward, String startDate, String endDate) {
@@ -76,5 +79,34 @@ public class TaskService {
     // 删除任务
     public void deleteTask(String taskId) {
         taskRepository.deleteById(taskId);
+    }
+
+    // 获取特定状态的任务
+    public List<Task> getTasksByStatus(String status) {
+        return taskRepository.findAll().stream()
+                .filter(task -> status.equals(task.getStatus()))
+                .collect(Collectors.toList());
+    }
+
+    // 儿童用户接受任务
+    public void acceptTask(String taskId) {
+        Task task = getTaskById(taskId);
+        if ("created".equals(task.getStatus()) || "published".equals(task.getStatus())) {
+            task.setStatus("accepted");
+            taskRepository.update(task);
+        } else {
+            throw new IllegalStateException("Task can only be accepted if it is in 'created' or 'published' status.");
+        }
+    }
+
+    // 儿童用户提交任务
+    public void submitTask(String taskId) {
+        Task task = getTaskById(taskId);
+        if ("accepted".equals(task.getStatus())) {
+            task.setStatus("submitted");
+            taskRepository.update(task);
+        } else {
+            throw new IllegalStateException("Task can only be submitted if it is in 'accepted' status.");
+        }
     }
 }
