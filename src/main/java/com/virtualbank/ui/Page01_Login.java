@@ -17,7 +17,7 @@ public class Page01_Login {
         window.setTitle("JoyBank - Login Page");
         window.setResizable(false);
         window.setLayout(null);
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("Resources/LoginBackground.png"); // 添加背景图
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("resources/LoginBackground.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         window.getContentPane().add(backgroundLabel);
@@ -37,14 +37,14 @@ public class Page01_Login {
         // 确认按钮
         confirmButton = new JButton();
         confirmButton.setBounds(530, 410, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("Resources/ConfirmButton.png");
+        ImageIcon confirmButtonIcon = new ImageIcon("resources/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         backgroundLabel.add(confirmButton);
 
         // 注册按钮
         registerButton = new JButton("Register");
         registerButton.setBounds(580, 470, 122, 44);
-        ImageIcon registerButtonIcon = new ImageIcon("Resources/RegisterButton.png");
+        ImageIcon registerButtonIcon = new ImageIcon("resources/RegisterButton.png");
         registerButton.setIcon(registerButtonIcon);
         backgroundLabel.add(registerButton);
 
