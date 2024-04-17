@@ -1,6 +1,8 @@
 package com.virtualbank.task;
 
 import com.virtualbank.model.Task;
+import com.virtualbank.repository.TaskRepository;
+import com.virtualbank.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -91,7 +93,7 @@ public class TaskServiceTest {
         verify(taskRepository).deleteById("1");
     }
 
-        @Test
+    @Test
     void testAcceptTask() {
         when(taskRepository.findById("1")).thenReturn(Optional.of(task));
         taskService.acceptTask("1");
