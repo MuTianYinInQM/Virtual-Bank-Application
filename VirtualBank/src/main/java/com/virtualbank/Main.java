@@ -9,14 +9,16 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            SavingGoalRepository repository = new SavingGoalRepository();
-            SavingGoalService service = new SavingGoalService(repository);
-            SavingGoalUI ui = new SavingGoalUI(service);
-            new SavingGoalController(service, ui);
+        SwingUtilities.invokeLater(
+                () -> {
+                    SavingGoalRepository repository = new SavingGoalRepository();
+                    SavingGoalService service = new SavingGoalService(repository);
+                    SavingGoalUI ui = new SavingGoalUI(service);
+                    new SavingGoalController(service, ui);
 
-            ui.pack();
-            ui.setVisible(true);
-        });
+                    ui.pack();
+                    ui.setVisible(true);
+                }
+        );
     }
 }
