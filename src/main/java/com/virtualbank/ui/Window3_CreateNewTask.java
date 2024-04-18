@@ -75,7 +75,7 @@ public class Window3_CreateNewTask {
         // 选择任务对象/小孩的下拉选择框
         String[] options = {"Tom", "Lisa", "Sam"};
         comboBox = new JComboBox<>(options);
-        comboBox.setBounds(380, 295, 200, 50);
+        comboBox.setBounds(380, 305, 200, 50);
         backgroundLabel.add(comboBox);
 
         // 开始时间输入框
