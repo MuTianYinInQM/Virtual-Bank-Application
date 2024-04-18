@@ -7,6 +7,8 @@ public class Window3_CreateNewTask {
     private JTextField taskName_textField; // 任务名称/标题输入
     private JTextField content_textField; // 任务内容输入
     private JComboBox<String> comboBox; // 任务对象/小孩选择
+    private JTextField start_textField; // 开始时间输入
+    private JTextField due_textField; // 结束时间输入
     private JButton confirmButton; // 确认按钮
 
     public JTextField getMoney_textField() {
@@ -25,6 +27,14 @@ public class Window3_CreateNewTask {
         return comboBox;
     }
 
+    public JTextField getStart_textField() {
+        return start_textField;
+    }
+
+    public JTextField getDue_textField() {
+        return due_textField;
+    }
+
     public JButton getConfirmButton() {
         return confirmButton;
     }
@@ -33,7 +43,7 @@ public class Window3_CreateNewTask {
         // 页面 window
         JFrame window = new JFrame(); // 页面窗口
         final int window_width = 800;
-        final int window_height = 558;
+        final int window_height = 701;
         window.setBounds(0, 0, window_width, window_height);
         window.setResizable(false);
         window.setLayout(null);
@@ -68,9 +78,21 @@ public class Window3_CreateNewTask {
         comboBox.setBounds(380, 295, 200, 50);
         backgroundLabel.add(comboBox);
 
+        // 开始时间输入框
+        start_textField = new JTextField();
+        start_textField.setBounds(380, 360, 200, 50);
+        start_textField.setFont(font);
+        backgroundLabel.add(start_textField);
+
+        // 结束时间输入框
+        due_textField = new JTextField();
+        due_textField.setBounds(380, 430, 200, 50);
+        due_textField.setFont(font);
+        backgroundLabel.add(due_textField);
+
         // 确认按钮
         confirmButton = new JButton();
-        confirmButton.setBounds(310, 460, 200, 55);
+        confirmButton.setBounds(310, 595, 200, 55);
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         backgroundLabel.add(confirmButton);
