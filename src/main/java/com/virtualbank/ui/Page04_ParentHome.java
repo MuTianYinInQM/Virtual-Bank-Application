@@ -35,9 +35,9 @@ public class Page04_ParentHome {
         exitButton.setFont(font);
         backgroundPanel.add(exitButton);
 
-        // 创建新账户的按钮
+        // 创建新任务的按钮
         createTaskButton.setBounds(369, 102, 523, 64);
-        ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
+        ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
         backgroundPanel.add(createTaskButton);
 
