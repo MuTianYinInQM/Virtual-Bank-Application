@@ -36,7 +36,7 @@ public class Page04_ParentHome {
         backgroundPanel.add(exitButton);
 
         // 创建新任务的按钮
-        createTaskButton.setBounds(369, 102, 523, 64);
+        createTaskButton.setBounds(369, 102, 516, 64);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
         backgroundPanel.add(createTaskButton);
@@ -46,7 +46,7 @@ public class Page04_ParentHome {
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
         scrollPanel.setBackground(new Color(0xf8f6ea));
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setBounds(369, 210, 550, 400); // 调整位置和大小
+        scrollPane.setBounds(369, 190, 550, 400); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
