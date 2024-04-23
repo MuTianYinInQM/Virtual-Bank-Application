@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Page04_ParentHome {
+public class Page04_ParentHome extends JFrame{
 
     private JButton exitButton = new JButton("Exit");
     private JButton createTaskButton = new JButton();
@@ -16,18 +18,17 @@ public class Page04_ParentHome {
 
     public Page04_ParentHome() {
         // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 1260;
         final int window_height = 780;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Parent Home Page");
+        setBounds(0, 0, window_width, window_height);
+        setResizable(false);
+        setLayout(null);
+        setTitle("JoyBank - Parent Home Page");
         JPanel backgroundPanel = new JPanel();
         backgroundPanel.setBackground(new Color(0xf8f6ea));
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
-        window.add(backgroundPanel);
+        add(backgroundPanel);
 
         // 返回上一级，LoginPage的按钮Exit
         exitButton.setBounds(20, 20, 100, 50);
@@ -66,8 +67,8 @@ public class Page04_ParentHome {
         scrollPanel.add(terminatedTaskLabel2);
         scrollPanel.add(Box.createVerticalStrut(10));
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
         // Ongoing task
         Parent_OngoingTaskLabel parentOngoingTaskLabel = new Parent_OngoingTaskLabel(6.50,
