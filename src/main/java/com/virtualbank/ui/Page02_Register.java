@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Page02_Register {
+public class Page02_Register extends JFrame{
     private JTextField username_textField = new JTextField();
     private JTextField password_textField = new JTextField();
     private JCheckBox childButton = new JCheckBox();
@@ -35,17 +37,16 @@ public class Page02_Register {
 
     public Page02_Register() {
         // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 1260;
         final int window_height = 780;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Register Page");
+        setBounds(0, 0, window_width, window_height);
+        setResizable(false);
+        setLayout(null);
+        setTitle("JoyBank - Register Page");
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/RegisterPage.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
-        window.getContentPane().add(backgroundLabel);
+        getContentPane().add(backgroundLabel);
 
         // 输入框
         username_textField.setBounds(470, 290, 360, 50);
@@ -78,8 +79,8 @@ public class Page02_Register {
         exitButton.setFont(font);
         backgroundLabel.add(exitButton);
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
     public static void main(String[] args) {
         Page02_Register page02Register = new Page02_Register();
