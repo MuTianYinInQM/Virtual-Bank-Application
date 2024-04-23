@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import java.awt.*;
 import javax.swing.*;
 
-public class Page01_Login {
+public class Page01_Login extends JFrame {
 
     private JTextField username_textField; // 用户名输入框
     private JTextField password_textField;
@@ -25,18 +27,16 @@ public class Page01_Login {
     }
 
     public Page01_Login() {
-        // 页面窗口
-        JFrame window = new JFrame();
         final int window_width = 1260;
         final int window_height = 780;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setTitle("JoyBank - Login Page");
-        window.setResizable(false);
-        window.setLayout(null);
+        setBounds(0, 0, window_width, window_height);
+        setTitle("JoyBank - Login Page");
+        setResizable(false);
+        setLayout(null);
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/LoginBackground.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
-        window.getContentPane().add(backgroundLabel);
+        getContentPane().add(backgroundLabel);
 
         // 输入框
         username_textField = new JTextField();
@@ -64,8 +64,8 @@ public class Page01_Login {
         registerButton.setIcon(registerButtonIcon);
         backgroundLabel.add(registerButton);
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
