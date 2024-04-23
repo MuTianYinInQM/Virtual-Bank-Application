@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Window3_CreateNewTask {
+public class Window3_CreateNewTask extends JFrame {
 
     private JTextField money_textField; // 任务奖励金额输入
     private JTextField taskName_textField; // 任务名称/标题输入
@@ -40,18 +42,16 @@ public class Window3_CreateNewTask {
     }
 
     public Window3_CreateNewTask() {
-        // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 800;
         final int window_height = 701;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Creating a New Task");
+        setBounds(0, 0, window_width, window_height);
+        setResizable(false);
+        setLayout(null);
+        setTitle("JoyBank - Creating a New Task");
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/CreateTaskBackground.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
-        window.getContentPane().add(backgroundLabel);
+        getContentPane().add(backgroundLabel);
 
         // 金额输入框
         money_textField = new JTextField();
@@ -97,8 +97,8 @@ public class Window3_CreateNewTask {
         confirmButton.setIcon(confirmButtonIcon);
         backgroundLabel.add(confirmButton);
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
