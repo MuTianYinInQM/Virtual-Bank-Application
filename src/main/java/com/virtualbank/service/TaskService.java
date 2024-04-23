@@ -109,4 +109,15 @@ public class TaskService {
             throw new IllegalStateException("Task can only be submitted if it is in 'accepted' status.");
         }
     }
+
+    // 儿童用户放弃任务
+    public void giveUpTask(String taskId) {
+        Task task = getTaskById(taskId);
+        if ("accepted".equals(task.getStatus())) {
+            task.setStatus("abandoned");
+            taskRepository.update(task);
+        } else {
+            throw new IllegalStateException("Task can only be abandoned if it is in 'accepted' status.");
+        }
+    }
 }
