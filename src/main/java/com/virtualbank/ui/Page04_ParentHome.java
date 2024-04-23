@@ -1,9 +1,10 @@
 package com.virtualbank.ui;
 
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Page04_ParentHome extends JFrame{
+public class Page04_ParentHome extends JFrame {
 
     private JButton exitButton = new JButton("Exit");
     private JButton createTaskButton = new JButton();
