@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Page03_ChildHome {
+public class Page03_ChildHome extends JFrame {
 
     private JButton exitButton = new JButton("Exit");
     private JButton goalButton = new JButton();
@@ -25,19 +27,17 @@ public class Page03_ChildHome {
     }
 
     public Page03_ChildHome() {
-        // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 1260;
         final int window_height = 780;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Child Home Page");
+        setBounds(0, 0, window_width, window_height);
+        setResizable(false);
+        setLayout(null);
+        setTitle("JoyBank - Child Home Page");
         JPanel backgroundPanel = new JPanel();
         backgroundPanel.setBackground(new Color(0xf8f6ea));
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
-        window.add(backgroundPanel);
+        add(backgroundPanel);
 
         JLabel sticker = new JLabel(new ImageIcon("images/StickerForAccount.png"));
         sticker.setBounds(1060, 550, 200, 200);
@@ -109,8 +109,8 @@ public class Page03_ChildHome {
         scrollPanel.add(savingAccount2);
         scrollPanel.add(Box.createVerticalStrut(10));
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     private class CurrentAccountLabel extends AccountLabel { // 活期账户卡片
