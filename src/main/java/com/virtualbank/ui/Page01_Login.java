@@ -1,3 +1,5 @@
+package com.virtualbank.ui;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -69,6 +71,6 @@ public class Page01_Login {
     }
 
     public static void main(String[] args) {
-       Page01_Login page01Login =  new Page01_Login();
+        Page01_Login page01Login = new Page01_Login();
     }
 }
