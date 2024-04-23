@@ -1,7 +1,9 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Page05_ChildTask {
+public class Page05_ChildTask extends JFrame{
 
     private JButton exitButton = new JButton("Exit");
 
@@ -10,18 +12,16 @@ public class Page05_ChildTask {
     }
 
     public Page05_ChildTask() {
-        // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 1260;
         final int window_height = 780;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Child Task Page");
+        setBounds(0, 0, window_width, window_height);
+        setResizable(false);
+        setLayout(null);
+        setTitle("JoyBank - Child Task Page");
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/TaskBoardBackground.png"); // 添加背景图
         JLabel backgroundPanel = new JLabel(loginBackgroundImageIcon);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
-        window.getContentPane().add(backgroundPanel);
+        getContentPane().add(backgroundPanel);
 
         // 返回上一级，ChildHome Page的按钮Exit
         exitButton.setBounds(20, 20, 100, 50);
@@ -54,8 +54,8 @@ public class Page05_ChildTask {
         scrollPanel.add(terminatedTaskLabel2);
         scrollPanel.add(Box.createVerticalStrut(10));
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
         // Ongoing task
         Child_OngoingTaskLabel parentOngoingTaskLabel = new Child_OngoingTaskLabel(6.50,
