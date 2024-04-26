@@ -1,24 +1,17 @@
 package com.virtualbank;
 
-import com.virtualbank.controller.SavingGoalController;
-import com.virtualbank.repository.SavingGoalRepository;
-import com.virtualbank.service.SavingGoalService;
-import com.virtualbank.ui.SavingGoalUI;
+import com.virtualbank.controller.CreateTaskController;
+import com.virtualbank.controller.ParentHomeController;
+import com.virtualbank.service.TaskService;
+import com.virtualbank.ui.Page04_ParentHome;
+import com.virtualbank.ui.Window3_CreateNewTask;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(
-                () -> {
-                    SavingGoalRepository repository = new SavingGoalRepository();
-                    SavingGoalService service = new SavingGoalService(repository);
-                    SavingGoalUI ui = new SavingGoalUI(service);
-                    new SavingGoalController(service, ui);
-
-                    ui.pack();
-                    ui.setVisible(true);
-                }
-        );
+        Page04_ParentHome parentHomeUI = new Page04_ParentHome();
+        // 创建控制器并将家长首页UI传递给它
+        new ParentHomeController(parentHomeUI);
     }
 }
