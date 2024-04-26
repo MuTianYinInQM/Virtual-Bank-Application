@@ -1,12 +1,19 @@
 package com.virtualbank.ui;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.virtualbank.model.Task;  // 确保有一个Task类
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class Page05_ChildTask extends JFrame{
 
     private JButton exitButton = new JButton("Exit");
-
+    private JPanel backgroundPanel; // 声明 backgroundPanel 字段
+    private ObjectMapper mapper = new ObjectMapper();
     public JButton getExitButton() {
         return exitButton;
     }
@@ -19,9 +26,11 @@ public class Page05_ChildTask extends JFrame{
         setLayout(null);
         setTitle("JoyBank - Child Task Page");
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/TaskBoardBackground.png"); // 添加背景图
-        JLabel backgroundPanel = new JLabel(loginBackgroundImageIcon);
+        backgroundPanel = new JPanel(); // 初始化 backgroundPanel
+        backgroundPanel.setBackground(new Color(0xf8f6ea));
+        backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
-        getContentPane().add(backgroundPanel);
+        add(backgroundPanel);
 
         // 返回上一级，ChildHome Page的按钮Exit
         exitButton.setBounds(20, 20, 100, 50);
@@ -40,51 +49,63 @@ public class Page05_ChildTask extends JFrame{
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         backgroundPanel.add(scrollPane);
 
-        // terminated task 1
-        String description1 = "This is a description of the task, " +
-                "I don't know the max length of it, so"; // 任务panel 描述最长72字节
-        TaskLabel.TerminatedTaskLabel terminatedTaskLabel1 = new TaskLabel.TerminatedTaskLabel(10.00,
-                "04-24", "Lisa", "001", "TaskName", description1);
-        scrollPanel.add(terminatedTaskLabel1);
-        scrollPanel.add(Box.createVerticalStrut(10));
-
-        // Terminated task 2
-        TaskLabel.TerminatedTaskLabel terminatedTaskLabel2 = new TaskLabel.TerminatedTaskLabel(5.00,
-                "03-02", "Lisa", "002", "TaskName2", "description");
-        scrollPanel.add(terminatedTaskLabel2);
-        scrollPanel.add(Box.createVerticalStrut(10));
+        displayTasksFromJsonFile("src/main/resources/tasks.json"); // 从 JSON 文件中读取并显示任务数据
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
 
-        // Ongoing task
-        Child_OngoingTaskLabel parentOngoingTaskLabel = new Child_OngoingTaskLabel(6.50,
-                "03-02", "Lisa", "003", "TaskName3", "description");
-        scrollPanel.add(parentOngoingTaskLabel);
-        scrollPanel.add(Box.createVerticalStrut(10));
+    public void displayTasksFromJsonFile(String jsonFilePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Task> tasks = objectMapper.readValue(new File(jsonFilePath), new TypeReference<List<Task>>() {});
 
-        // Not accepted task
-        Child_NotAcceptedTaskLabel notAcceptedTaskLabel = new Child_NotAcceptedTaskLabel(6.50,
-                "03-02", "Lisa", "004", "TaskName4", "description");
-        scrollPanel.add(notAcceptedTaskLabel);
-        scrollPanel.add(Box.createVerticalStrut(10));
+            Container scrollPanel = null;
+            for (Component component : backgroundPanel.getComponents()) {
+                if (component instanceof JScrollPane) {
+                    scrollPanel = (Container) ((JScrollPane) component).getViewport().getView();
+                    break;
+                }
+            }
 
-        // Finished task
-        TaskLabel.FinishedTaskLabel finishedTaskLabel = new TaskLabel.FinishedTaskLabel(6.50,
-                "03-02", "Lisa", "005", "TaskName5", "description");
-        scrollPanel.add(finishedTaskLabel);
-        scrollPanel.add(Box.createVerticalStrut(10));
+            if (scrollPanel == null) {
+                System.err.println("No JScrollPane found in the content pane.");
+                return;
+            }
 
+            // 清空原有任务
+            scrollPanel.removeAll();
+
+            for (Task task : tasks) {
+                switch (task.getStatus()) {
+                    case "terminated":
+                        scrollPanel.add(new TaskLabel.TerminatedTaskLabel(task.getTaskName(), task.getDescription(), task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate()));
+                        break;
+                    case "ongoing":
+                        scrollPanel.add(new Child_OngoingTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate()));
+                        break;
+                    case "not_accepted":
+                        scrollPanel.add(new Child_NotAcceptedTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate()));
+                        break;
+                    case "finished":
+                        scrollPanel.add(new TaskLabel.FinishedTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate()));
+                        break;
+                }
+                scrollPanel.add(Box.createVerticalStrut(10));
+            }
+
+            scrollPanel.revalidate();
+            scrollPanel.repaint();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public class Child_NotAcceptedTaskLabel extends TaskLabel.NotAcceptedTaskLabel {
-
-        // 孩子的未接受任务的任务板
-        private JButton giveUpButton; // 放弃按钮
-        private JButton acceptButton; // 接受按钮
+        private JButton giveUpButton;
+        private JButton acceptButton;
 
         public JButton getGiveUpButton() {
-
             return giveUpButton;
         }
 
@@ -92,11 +113,10 @@ public class Page05_ChildTask extends JFrame{
             return acceptButton;
         }
 
-        public Child_NotAcceptedTaskLabel(Double prize, String due, String child, String id,
-                                          String taskName, String description) {
-            super(prize, due, child, id, taskName, description);
+        public Child_NotAcceptedTaskLabel(String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
+            super(taskName, description, reward, childName, startDate, dueDate);
             giveUpButton = new JButton("Give Up");
-            giveUpButton.setBounds(315, 90, 80, 40);
+            giveUpButton.setBounds(315, 90, 100, 40);
             this.add(giveUpButton);
             acceptButton = new JButton("Accept");
             acceptButton.setBounds(215, 90, 80, 40);
@@ -105,13 +125,10 @@ public class Page05_ChildTask extends JFrame{
     }
 
     public class Child_OngoingTaskLabel extends TaskLabel.OngoingTaskLabel {
-
-        //孩子已接受的正在进行的任务板
-        private JButton giveUPButton; // 放弃按钮
-        private JButton submitButton; // 提交按钮
+        private JButton giveUPButton;
+        private JButton submitButton;
 
         public JButton getGiveUPButton() {
-
             return giveUPButton;
         }
 
@@ -119,11 +136,10 @@ public class Page05_ChildTask extends JFrame{
             return submitButton;
         }
 
-        public Child_OngoingTaskLabel(Double prize, String due, String child, String id,
-                                      String taskName, String description) {
-            super(prize, due, child, id, taskName, description);
+        public Child_OngoingTaskLabel(String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
+            super(taskName, description, reward, childName, startDate, dueDate);
             giveUPButton = new JButton("Give Up");
-            giveUPButton.setBounds(315, 90, 80, 40);
+            giveUPButton.setBounds(315, 90, 100, 40);
             this.add(giveUPButton);
             submitButton = new JButton("Submit");
             submitButton.setBounds(215, 90, 80, 40);
