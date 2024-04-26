@@ -1,20 +1,28 @@
 package com.virtualbank.model;
 public class Task {
     private String id;               // 任务的唯一标识符
-    private String name;             // 任务名称
+    private String taskName;             // 任务名称
     private String description;      // 任务描述
     private double reward;           // 奖励金额
+
+    private String childName;        // 任务对象/小孩名字
     private String startDate; // 使用字符串表示时间，如 "2024-04-01 10:00"
     private String endDate;   // 同上
     private String status;           // 任务状态，如："created", "published", "retracted"
 
+    // 无参构造函数
+    public Task() {
+
+    }
+
     // 构造函数
-    public Task(String id, String name, String description, double reward,
+    public Task(String id, String taskName, String description, double reward, String childName,
                 String startDate, String endDate, String status) {
         this.id = id;
-        this.name = name;
+        this.taskName = taskName;
         this.description = description;
         this.reward = reward;
+        this.childName = childName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
@@ -29,12 +37,12 @@ public class Task {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
     public String getDescription() {
@@ -53,6 +61,9 @@ public class Task {
         this.reward = reward;
     }
 
+    public String getChildName() { return childName; }
+
+    public void setChildName(String childName) { this.childName = childName; }
     public String getStartDate() {
         return startDate;
     }
@@ -84,9 +95,10 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", taskName='" + taskName + '\'' +
                 ", description='" + description + '\'' +
                 ", reward=" + reward +
+                ", childName='" + childName + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status='" + status + '\'' +
