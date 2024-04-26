@@ -19,7 +19,12 @@ public class ParentHomeController {
     }
 
     private void attachEventHandlers() {
-        parentHomeUI.getCreateTaskButton().addActionListener(e -> showCreateTaskWindow());
+        parentHomeUI.getCreateTaskButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showCreateTaskWindow();
+            }
+        });
     }
 
     private void showCreateTaskWindow() {
@@ -31,4 +36,3 @@ public class ParentHomeController {
         parentHomeUI.setVisible(false);
     }
 }
-
