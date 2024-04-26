@@ -1,6 +1,5 @@
 package com.virtualbank.controller;
 
-import com.virtualbank.model.Task;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.ui.Window3_CreateNewTask;
 
@@ -23,15 +22,15 @@ public class CreateTaskController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 获取用户输入的数据
-                String money = createTaskUI.getMoney_textField().getText().trim();
                 String taskName = createTaskUI.getTaskName_textField().getText().trim();
                 String content = createTaskUI.getContent_textField().getText().trim();
-                String selectedChild = (String) createTaskUI.getComboBox().getSelectedItem();
+                String money = createTaskUI.getMoney_textField().getText().trim();
+                String childName = createTaskUI.getChildName_textField().getText().trim();
                 String startTime = createTaskUI.getStart_textField().getText().trim();
                 String dueTime = createTaskUI.getDue_textField().getText().trim();
 
                 // 验证输入数据的有效性
-                if (taskName.isEmpty() || content.isEmpty() || money.isEmpty() || startTime.isEmpty() || dueTime.isEmpty()) {
+                if (taskName.isEmpty() || content.isEmpty() || money.isEmpty() || childName.isEmpty() || startTime.isEmpty() || dueTime.isEmpty()) {
                     JOptionPane.showMessageDialog(createTaskUI, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -41,18 +40,19 @@ public class CreateTaskController {
                 try {
                     reward = Double.parseDouble(money);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(createTaskUI, "Please enter a valid number for the prize.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(createTaskUI, "Please enter a valid number for the reward amount.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 // 创建新的任务并添加到任务列表
                 try {
-                    taskService.createTask(taskName, content, reward, startTime, dueTime);
+                    taskService.createTask(taskName, content, reward, childName, startTime, dueTime);
                     JOptionPane.showMessageDialog(createTaskUI, "Task created successfully.", "Task Creation", JOptionPane.INFORMATION_MESSAGE);
                     // 清除输入框
-                    createTaskUI.getMoney_textField().setText("");
                     createTaskUI.getTaskName_textField().setText("");
                     createTaskUI.getContent_textField().setText("");
+                    createTaskUI.getMoney_textField().setText("");
+                    createTaskUI.getChildName_textField().setText("");
                     createTaskUI.getStart_textField().setText("");
                     createTaskUI.getDue_textField().setText("");
                 } catch (Exception ex) {
