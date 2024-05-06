@@ -5,6 +5,8 @@ import com.virtualbank.service.TaskService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
@@ -18,7 +20,6 @@ public class Window3_CreateNewTask extends JFrame {
     private JTextField start_textField; // 开始时间输入
     private JTextField due_textField; // 结束时间输入
     private JButton confirmButton; // 确认按钮
-
 
     public JTextField getTaskName_textField() {
         return taskName_textField;
@@ -114,7 +115,7 @@ public class Window3_CreateNewTask extends JFrame {
             }
         });
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
 
