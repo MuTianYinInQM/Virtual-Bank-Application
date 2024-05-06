@@ -16,8 +16,8 @@ public class SavingGoalService {
     }
 
     // 添加新的储蓄目标
-    public SavingGoal addSavingGoal(String childId, String name, double targetAmount) {
-        SavingGoal newGoal = new SavingGoal(UUID.randomUUID().toString(), childId, targetAmount, 0, name);
+    public SavingGoal addSavingGoal(String childName, String goalName, double targetAmount) {
+        SavingGoal newGoal = new SavingGoal(UUID.randomUUID().toString(), childName, targetAmount, 0, goalName);
         savingGoalRepository.save(newGoal);
         return newGoal;
     }
@@ -31,15 +31,15 @@ public class SavingGoalService {
         return existingGoal;
     }
 
-    // 为指定的储蓄目标贡献资金
-    public SavingGoal contributeToGoal(String goalId, double contribution) {
-        SavingGoal goal = savingGoalRepository.findById(goalId)
-                .orElseThrow(() -> new IllegalArgumentException("Saving goal not found with ID: " + goalId));
-        double newCurrentAmount = goal.getCurrentAmount() + contribution;
-        goal.setCurrentAmount(newCurrentAmount);
-        savingGoalRepository.save(goal);
-        return goal;
-    }
+//    // 为指定的储蓄目标贡献资金
+//    public SavingGoal contributeToGoal(String goalId, double contribution) {
+//        SavingGoal goal = savingGoalRepository.findById(goalId)
+//                .orElseThrow(() -> new IllegalArgumentException("Saving goal not found with ID: " + goalId));
+//        double newCurrentAmount = goal.getCurrentAmount() + contribution;
+//        goal.setCurrentAmount(newCurrentAmount);
+//        savingGoalRepository.save(goal);
+//        return goal;
+//    }
 
     // 获取所有的储蓄目标
     public List<SavingGoal> getAllSavingGoals() {
@@ -47,9 +47,9 @@ public class SavingGoalService {
     }
 
     // 获取特定孩子的所有储蓄目标
-    public List<SavingGoal> getSavingGoalsByChildId(String childId) {
+    public List<SavingGoal> getSavingGoalsByChildName(String childName) {
         return savingGoalRepository.findAll().stream()
-                .filter(goal -> goal.getChildId().equals(childId))
+                .filter(goal -> goal.getChildName().equals(childName))
                 .collect(Collectors.toList());
     }
 
