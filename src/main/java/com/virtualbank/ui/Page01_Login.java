@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Page01_Login extends JFrame {
 
     private JTextField username_textField; // 用户名输入框
-    private JTextField password_textField;
+    private JPasswordField password_textField;
     private JButton confirmButton;
     private JButton registerButton;
 
@@ -45,7 +45,7 @@ public class Page01_Login extends JFrame {
         username_textField.setFont(font);
         backgroundLabel.add(username_textField);
 
-        password_textField = new JTextField();
+        password_textField = new JPasswordField();
         password_textField.setBounds(450, 300, 360, 50);
         password_textField.setFont(font);
         backgroundLabel.add(password_textField);
