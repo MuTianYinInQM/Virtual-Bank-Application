@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Page02_Register extends JFrame{
     private JTextField username_textField = new JTextField();
-    private JTextField password_textField = new JTextField();
+    private JPasswordField password_textField = new JPasswordField();
     private JCheckBox childButton = new JCheckBox();
     private JCheckBox parentButton = new JCheckBox();
     private JButton confirmButton = new JButton();
