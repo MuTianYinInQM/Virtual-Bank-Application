@@ -1,4 +1,4 @@
-package joyBank;
+package com.virtualbank.ui;
 
 import java.awt.Font;
 
