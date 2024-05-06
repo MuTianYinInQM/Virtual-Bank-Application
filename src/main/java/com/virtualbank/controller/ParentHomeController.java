@@ -58,12 +58,15 @@ public class ParentHomeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 添加逻辑来显示创建任务窗口
-                if (createTaskWindow == null) {
-                    createTaskWindow = new Window3_CreateNewTask();
-                    createTaskController = new CreateTaskController(taskService, createTaskWindow);
-                }
-                createTaskWindow.setVisible(true);
-                parentHomeUI.setVisible(false);
+                createTaskWindow = new Window3_CreateNewTask();
+                createTaskController = new CreateTaskController(taskService, createTaskWindow);
+                parentHomeUI.dispose();
+                // if (createTaskWindow == null) {
+                //     createTaskWindow = new Window3_CreateNewTask();
+                //     createTaskController = new CreateTaskController(taskService, createTaskWindow);
+                // }
+                // createTaskWindow.setVisible(true);
+                // parentHomeUI.setVisible(false);
             }
         });
     }
