@@ -12,8 +12,8 @@ public class TaskService {
     protected TaskRepository taskRepository = new TaskRepository();
 
     // 创建任务并保存到存储中
-    public void createTask(String name, String description, double reward, String startDate, String endDate) {
-        Task newTask = new Task(UUID.randomUUID().toString(), name, description, reward, startDate, endDate, "created");
+    public void createTask(String taskName, String description, double reward, String childName, String startDate, String endDate) {
+        Task newTask = new Task(UUID.randomUUID().toString(), taskName, description, reward, childName, startDate, endDate, "not_accepted");
         taskRepository.add(newTask);
     }
 
@@ -61,13 +61,14 @@ public class TaskService {
     }
 
     // 更新任务信息
-    public void updateTask(String taskId, String name, String description, double reward, String startDate, String endDate) {
+    public void updateTask(String taskId, String taskName, String description, double reward, String childName, String startDate, String endDate) {
         Optional<Task> taskOptional = taskRepository.findById(taskId);
         if (taskOptional.isPresent()) {
             Task task = taskOptional.get();
-            task.setName(name);
+            task.setTaskName(taskName);
             task.setDescription(description);
             task.setReward(reward);
+            task.setChildName(childName);
             task.setStartDate(startDate);
             task.setEndDate(endDate);
             taskRepository.update(task);
@@ -91,33 +92,45 @@ public class TaskService {
     // 儿童用户接受任务
     public void acceptTask(String taskId) {
         Task task = getTaskById(taskId);
-        if ("created".equals(task.getStatus()) || "published".equals(task.getStatus())) {
-            task.setStatus("accepted");
+        if ("not_accepted".equals(task.getStatus()) || "published".equals(task.getStatus())) {
+            task.setStatus("ongoing");
             taskRepository.update(task);
         } else {
-            throw new IllegalStateException("Task can only be accepted if it is in 'created' or 'published' status.");
+            throw new IllegalStateException("Task can only be accepted if it is in 'not_accepted' status.");
         }
     }
 
     // 儿童用户提交任务
     public void submitTask(String taskId) {
         Task task = getTaskById(taskId);
-        if ("accepted".equals(task.getStatus())) {
-            task.setStatus("submitted");
+        if ("ongoing".equals(task.getStatus())) {
+            task.setStatus("finished");
             taskRepository.update(task);
         } else {
-            throw new IllegalStateException("Task can only be submitted if it is in 'accepted' status.");
+            throw new IllegalStateException("Task can only be submitted if it is in 'ongoing' status.");
         }
     }
 
     // 儿童用户放弃任务
     public void giveUpTask(String taskId) {
         Task task = getTaskById(taskId);
-        if ("accepted".equals(task.getStatus())) {
-            task.setStatus("abandoned");
+        if ("ongoing".equals(task.getStatus()) || "not_accepted".equals(task.getStatus())) {
+            task.setStatus("terminated");
             taskRepository.update(task);
         } else {
-            throw new IllegalStateException("Task can only be abandoned if it is in 'accepted' status.");
+            throw new IllegalStateException("Task can only be abandoned if it is in 'ongoing' or 'not_accepted' status.");
+        }
+    }
+
+    //家长用户终止任务
+    public void terminateTask(String taskId){
+        Task task = getTaskById(taskId);
+        if ("ongoing".equals(task.getStatus()) || "not_accepted".equals(task.getStatus())) {
+            task.setStatus("terminated");
+            taskRepository.update(task);
+        } else {
+            throw new IllegalStateException("Task can only be terminated if it is in 'ongoing' or 'not_accepted' status.");
         }
     }
 }
+
