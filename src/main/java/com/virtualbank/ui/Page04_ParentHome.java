@@ -123,8 +123,8 @@ public class Page04_ParentHome extends JFrame {
             return terminateButton;
         }
 
-        public Parent_NotAcceptedTaskLabel(String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
-            super(taskName, description, reward, childName, startDate, dueDate);
+        public Parent_NotAcceptedTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
+            super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton("Terminate");
             terminateButton.setBounds(300, 90, 100, 40);
             this.add(terminateButton);
@@ -139,8 +139,8 @@ public class Page04_ParentHome extends JFrame {
             return terminateButton;
         }
 
-        public Parent_OngoingTaskLabel(String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
-            super(taskName, description, reward, childName, startDate, dueDate);
+        public Parent_OngoingTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
+            super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton("Terminate");
             terminateButton.setBounds(300, 90, 100, 40);
             this.add(terminateButton);
