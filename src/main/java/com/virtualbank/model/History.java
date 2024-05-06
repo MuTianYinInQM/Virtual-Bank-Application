@@ -12,15 +12,15 @@ import com.virtualbank.model.account.Account;
 public class History {
     private String accountID;
     private Account account; // 添加一个成员变量来存储Account对象
-    private List<Map<String, Object>> transactions;
+    public List<Map<String, Object>> transactions; // 为了单元测试改为public
     private File file;
-    private ObjectMapper mapper;
+    public ObjectMapper mapper; // 为了单元测试改为public
 
     public History(Account account) {
         this.account = account; // 保存传入的Account对象
         this.accountID = account.getUuid().toString();
         // 文件路径，将其放在resource/historys目录下
-        Path path = Paths.get("resources/historys", accountID + "_history.json");
+        Path path = Paths.get("src/main/resources/historys", accountID + "_history.json");
         this.file = path.toFile();
         ensureDirectoryExists(path.getParent()); // 确保目录存在
         this.transactions = new ArrayList<>();
