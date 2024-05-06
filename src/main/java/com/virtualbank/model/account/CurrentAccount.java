@@ -19,6 +19,12 @@ public class CurrentAccount extends Account {
         this.lastSettlementDate = createDateTime;  // Assume last settlement is at creation time
     }
 
+    @Override
+    public boolean checkDepositChangeability() {
+        // 活期账户一直可以取钱
+        return true;
+    }
+
     public LocalDateTime getLastSettlementDate() {
         return lastSettlementDate;
     }
@@ -27,7 +33,8 @@ public class CurrentAccount extends Account {
         return interestRatePerDay;
     }
 
-    public void updateInterest() {
+    public double updateInterest() {
+        double currentBalance = this.balance;
         LocalDateTime now = LocalDateTime.now();
         // Calculate the real time difference using Duration
         Duration duration = Duration.between(lastSettlementDate, now);
@@ -44,6 +51,7 @@ public class CurrentAccount extends Account {
             // Update last settlement date by adding the calculated days
             lastSettlementDate = lastSettlementDate.plusSeconds((long) ((days * 24 * 60 * 60) / timeLapseCoefficient));
         }
+        return balance - currentBalance;
     }
 
     @Override

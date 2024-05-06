@@ -81,6 +81,14 @@ public abstract class Account implements Serializable {
         this.balance += amount;
     }
 
+    // 得到每个函数的是否可以存取钱
+    public abstract boolean checkDepositChangeability();
+
+    // 仅仅检查账户的钱是不是够多 需要配合上面的 checkDepositChangeability 使用
+    public boolean checkDepositSufficiency(double amount) {
+        return balance >= amount;
+    }
+
     public void withdraw(double amount) {
         if (amount > balance) {
             throw new IllegalArgumentException("Insufficient funds");
@@ -92,7 +100,8 @@ public abstract class Account implements Serializable {
     }
 
     // Abstract method to update interest must be implemented by subclasses
-    public abstract void updateInterest();
+    // 返回 增加的利息的金额
+    public abstract double updateInterest();
 
     @Override
     public String toString() {

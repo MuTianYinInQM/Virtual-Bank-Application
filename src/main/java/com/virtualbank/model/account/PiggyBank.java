@@ -9,8 +9,15 @@ public class PiggyBank extends Account {
     }
 
     @Override
-    public void updateInterest() {
+    public boolean checkDepositChangeability() {
+        // 存钱罐一直可以取钱
+        return true;
+    }
+
+    @Override
+    public double updateInterest() {
         // 存钱罐不计算利息，因此这个方法不执行任何操作
+        return 0;
     }
 
     // toSting 用父类Account的

@@ -5,13 +5,14 @@
 ### 成员变量
 
 1. **accountID** (`String`): 该成员变量存储与此历史记录关联的账户的UUID字符串。它用于标识历史记录文件和确保交易记录与正确的账户关联。
-
 2. **account** (`Account`): 该成员变量持有`Account`类型的对象引用，这是传递给构造函数的账户对象。通过此对象可以访问账户的详细信息，如账户名称、余额等。
 
+   1. accountID 并没有必要,因为 account里面包含accountID
 3. **transactions** (`List<Map<String, Object>>`): 存储所有交易记录的列表。每个交易记录是一个映射，包含了交易的各种详细属性，如交易类型、金额、日期等。
+    1. String 是具体属性的名字：type，isCredit 等
+    2. Object 是具体的值
 
 4. **file** (`File`): 该成员变量表示存储交易记录的文件。文件名基于账户的UUID生成，以确保每个账户的历史记录独立存储。
-
 5. **mapper** (`ObjectMapper`): Jackson库的`ObjectMapper`实例，用于JSON数据的序列化和反序列化。此对象负责将`transactions`列表读写到文件系统。
 
 ### 构造方法

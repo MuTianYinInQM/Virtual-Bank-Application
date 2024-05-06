@@ -54,12 +54,22 @@ public class SavingAccount extends Account {
     }
 
     @Override
-    public void updateInterest() {
+    public boolean checkDepositChangeability() {
+        // 返回是否到期 到期就可以取钱了
+        return isMatured;
+    }
+
+    @Override
+    public double updateInterest() {
         // 检查账户是否已经到期并相应更新
         if (checkMaturity() && !isMatured) {
+            double currentBalance = this.balance;
             this.balance = calculateMaturityAmount(balance, interestRate, termPeriod);
             this.isMatured = true;
+            return currentBalance - this.balance;
         }
+        // 没有任何更新
+        return 0;
     }
 
 
