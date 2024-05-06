@@ -1,39 +1,35 @@
 package com.virtualbank.model;
 
 public class SavingGoal {
-    private String id;             // 唯一标识符
-    private String childId;        // 孩子的账户ID
+    private String goalId;             // 唯一标识符
+    private String childName;        // 孩子的账户ID
     private double targetAmount;   // 目标存款金额
     private double currentAmount;  // 当前存款金额
-    private String name;           // 存款目标的名称
+    private String goalName;           // 存款目标的名称
 
     public SavingGoal() {
     }
 
     // 带所有属性的构造函数
-    public SavingGoal(String id, String childId, double targetAmount, double currentAmount, String name) {
-        this.id = id;
-        this.childId = childId;
+    public SavingGoal(String goalId, String childName, double targetAmount, double currentAmount, String goalName) {
+        this.goalId = goalId;
+        this.childName = childName;
         this.targetAmount = targetAmount;
         this.currentAmount = currentAmount;
-        this.name = name;
+        this.goalName = goalName;
     }
 
     // Getter 和 Setter 方法
-    public String getId() {
-        return id;
+    public String getGoalId() {
+        return goalId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setGoalId(String goalId) {
+        this.goalId = goalId;
     }
 
-    public String getChildId() {
-        return childId;
-    }
-
-    public void setChildId(String childId) {
-        this.childId = childId;
+    public String getChildName() {
+        return childName;
     }
 
     public double getTargetAmount() {
@@ -52,23 +48,23 @@ public class SavingGoal {
         this.currentAmount = currentAmount;
     }
 
-    public String getName() {
-        return name;
+    public String getGoalName() {
+        return goalName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGoalName(String goalName) {
+        this.goalName = goalName;
     }
 
     // toString方法用于打印和调试
     @Override
     public String toString() {
         return "SavingGoal{" +
-                "id='" + id + '\'' +
-                ", childId='" + childId + '\'' +
+                "goalId='" + goalId + '\'' +
+                ", childName='" + childName + '\'' +
                 ", targetAmount=" + targetAmount +
                 ", currentAmount=" + currentAmount +
-                ", name='" + name + '\'' +
+                ", goalName='" + goalName + '\'' +
                 '}';
     }
 }
