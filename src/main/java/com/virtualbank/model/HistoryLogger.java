@@ -1,4 +1,71 @@
 package com.virtualbank.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 public class HistoryLogger {
+    private static final String DIRECTORY_PATH = "src/main/resources/historys";
+    private ObjectMapper mapper;
+
+    public HistoryLogger() {
+        this.mapper = new ObjectMapper();
+        ensureDirectoryExists(Paths.get(DIRECTORY_PATH));
+    }
+
+    // 确保目录存在
+    private void ensureDirectoryExists(Path path) {
+        try {
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create directory for history files: " + path, e);
+        }
+    }
+
+    public void recordOperation(OperationType operationType, UUID id, double amount, String description) {
+        Path filePath = Paths.get(DIRECTORY_PATH, id + "_history.json");
+        File file = filePath.toFile();
+        List<Map<String, Object>> transactions = new ArrayList<>();
+
+        // 加载现有的交易记录，如果有的话
+        if (file.exists()) {
+            try {
+                transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>() {
+                });
+            } catch (IOException e) {
+                System.err.println("Error reading history file: " + e.getMessage());
+            }
+        }
+
+        // 创建新的交易记录
+        Map<String, Object> transaction = new HashMap<>();
+        transaction.put("type", operationType.getName());
+        transaction.put("amount", amount);
+        transaction.put("uuid", id.toString());
+        transaction.put("date", LocalDateTime.now().toString());
+        transaction.put("description", description);
+
+        // 将新交易添加到交易列表
+        transactions.add(transaction);
+
+        // 写入文件
+        try {
+            mapper.writeValue(file, transactions);
+        } catch (IOException e) {
+            System.err.println("Error writing to history file: " + e.getMessage());
+        }
+    }
 }
