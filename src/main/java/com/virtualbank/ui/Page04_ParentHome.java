@@ -14,6 +14,7 @@ public class Page04_ParentHome extends JFrame {
     private JButton exitButton = new JButton("Exit");
     private JButton createTaskButton = new JButton();
     private JPanel backgroundPanel; // 声明 backgroundPanel 字段
+    private JScrollPane scrollPane; 
 
     public JButton getExitButton() {
         return exitButton;
@@ -52,7 +53,7 @@ public class Page04_ParentHome extends JFrame {
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
         scrollPanel.setBackground(new Color(0xf8f6ea));
-        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane = new JScrollPane(scrollPanel);
         scrollPane.setBounds(369, 190, 550, 400); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -88,16 +89,16 @@ public class Page04_ParentHome extends JFrame {
 
             for (Task task : tasks) {
                 if ("terminated".equals(task.getStatus())) {
-                    TaskLabel.TerminatedTaskLabel terminatedTaskLabel = new TaskLabel.TerminatedTaskLabel(task.getTaskName(), task.getDescription(), task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
+                    TaskLabel.TerminatedTaskLabel terminatedTaskLabel = new TaskLabel.TerminatedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(), task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(terminatedTaskLabel);
                 } else if ("ongoing".equals(task.getStatus())) {
-                    Parent_OngoingTaskLabel ongoingTaskLabel = new Parent_OngoingTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
+                    Parent_OngoingTaskLabel ongoingTaskLabel = new Parent_OngoingTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(ongoingTaskLabel);
                 } else if ("not_accepted".equals(task.getStatus())) {
-                    Parent_NotAcceptedTaskLabel notAcceptedTaskLabel = new Parent_NotAcceptedTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
+                    Parent_NotAcceptedTaskLabel notAcceptedTaskLabel = new Parent_NotAcceptedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(notAcceptedTaskLabel);
                 } else if ("finished".equals(task.getStatus())) {
-                    TaskLabel.FinishedTaskLabel finishedTaskLabel = new TaskLabel.FinishedTaskLabel(task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
+                    TaskLabel.FinishedTaskLabel finishedTaskLabel = new TaskLabel.FinishedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(finishedTaskLabel);
                 }
                 scrollPanel.add(Box.createVerticalStrut(10));
@@ -108,6 +109,10 @@ public class Page04_ParentHome extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
     }
 
     public class Parent_NotAcceptedTaskLabel extends TaskLabel.NotAcceptedTaskLabel {
