@@ -1,7 +1,12 @@
 package com.virtualbank.ui;
 
+import com.virtualbank.controller.ParentHomeController;
+import com.virtualbank.service.TaskService;
+
 import javax.swing.*;
 import java.awt.*;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
 public class Window3_CreateNewTask extends JFrame {
 
@@ -99,6 +104,15 @@ public class Window3_CreateNewTask extends JFrame {
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         backgroundLabel.add(confirmButton);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                // 页面2关闭时重新加载页面1
+                Page04_ParentHome parentHomeUI = new Page04_ParentHome();
+                TaskService taskService = new TaskService();
+                new ParentHomeController(taskService, parentHomeUI);
+            }
+        });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
