@@ -12,9 +12,9 @@ import com.virtualbank.model.account.Account;
 public class History {
     private String accountID;
     private Account account; // 添加一个成员变量来存储Account对象
-    public List<Map<String, Object>> transactions; // 为了单元测试改为public
+    private List<Map<String, Object>> transactions;
     private File file;
-    public ObjectMapper mapper; // 为了单元测试改为public
+    private ObjectMapper mapper;
 
     public History(Account account) {
         this.account = account; // 保存传入的Account对象
