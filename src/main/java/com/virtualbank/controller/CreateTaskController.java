@@ -17,6 +17,25 @@ public class CreateTaskController {
         attachEventHandlers();
     }
 
+    public boolean checkTime(String str) { // 检查输入是否符合规范
+        if (str.length() == 8) {
+            if (Character.isDigit(str.charAt(0))
+                    && Character.isDigit(str.charAt(1))
+                    && str.charAt(2) == '-'
+                    && Character.isDigit(str.charAt(3))
+                    && Character.isDigit(str.charAt(4))
+                    && str.charAt(5) == '-'
+                    && Character.isDigit(str.charAt(6))
+                    && Character.isDigit(str.charAt(7))) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     private void attachEventHandlers() {
         createTaskUI.getConfirmButton().addActionListener(new ActionListener() {
             @Override
@@ -32,6 +51,38 @@ public class CreateTaskController {
                 // 验证输入数据的有效性
                 if (taskName.isEmpty() || content.isEmpty() || money.isEmpty() || childName.isEmpty() || startTime.isEmpty() || dueTime.isEmpty()) {
                     JOptionPane.showMessageDialog(createTaskUI, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (taskName.length() > 14) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Task Name\" should be no longer than 14 characters in length.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (content.length() > 60) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Task Content\" should be no longer than 60 characters in length.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                try { // 判断reward/money是否可以转换为浮点数形式
+                    double number = Double.parseDouble(money);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Reward Amount\" should be in this format: xx.xx", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (childName.length() > 8) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Child Name\" should be no longer than 8 characters in length.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (!checkTime(startTime)) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Start Date\" should be in this format: DD-MM-YY.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (!checkTime(dueTime)) {
+                    JOptionPane.showMessageDialog(createTaskUI, "\"Due Date\" should be in this format: DD-MM-YY.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
