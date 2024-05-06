@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class SavingGoalRepository {
 
-    private final File file = new File("savingGoals.json"); // JSON文件的路径
+    private final File file = new File("src/main/resources/savingGoals.json"); // JSON文件的路径
     private final ObjectMapper objectMapper = new ObjectMapper(); // 用于JSON的序列化和反序列化
 
     // 获取所有SavingGoal对象
@@ -30,29 +30,39 @@ public class SavingGoalRepository {
     }
 
     // 根据ID查找SavingGoal对象
-    public Optional<SavingGoal> findById(String id) {
-        return findAll().stream()
-                .filter(goal -> goal.getId().equals(id))
+    public Optional<SavingGoal> findById(String goalId) {
+        Optional<SavingGoal> result = findAll().stream()
+                .filter(goal -> goal.getGoalId().equals(goalId))
                 .findFirst();
+        System.out.println("findById - Found: " + result.isPresent());  // 打印是否找到目标
+        return result;
     }
 
     // 保存或更新SavingGoal对象
     public void save(SavingGoal goal) {
         List<SavingGoal> goals = findAll();
-        Optional<SavingGoal> existingGoal = findById(goal.getId());
-        if (existingGoal.isPresent()) {
-            int index = goals.indexOf(existingGoal.get());
-            goals.set(index, goal); // 更新操作
-        } else {
-            goals.add(goal); // 新增操作
+        int index = -1;  // 初始化索引为-1
+        for (int i = 0; i < goals.size(); i++) {
+            if (goals.get(i).getGoalId().equals(goal.getGoalId())) {
+                index = i;  // 找到匹配的目标索引
+                break;
+            }
         }
-        saveToFile(goals);
+
+        if (index != -1) {
+            goals.set(index, goal);  // 如果找到了，更新该目标
+            System.out.println("Updated goal: " + goal);
+        } else {
+            goals.add(goal);  // 如果未找到，视为新目标添加
+            System.out.println("Added new goal: " + goal);
+        }
+        saveToFile(goals);  // 保存修改后的目标列表到文件
     }
 
     // 根据ID删除SavingGoal对象
-    public void deleteById(String id) {
+    public void deleteById(String goalId) {
         List<SavingGoal> goals = findAll();
-        goals.removeIf(goal -> goal.getId().equals(id));
+        goals.removeIf(goal -> goal.getGoalId().equals(goalId));
         saveToFile(goals);
     }
 
