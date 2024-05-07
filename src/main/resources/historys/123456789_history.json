@@ -18,5 +18,35 @@
     "description": "ATM Withdrawal",
     "accountUUID": "123456789",
     "accountName": "Main Account"
+  },
+  {
+    "type": "withdrawal",
+    "isCredit": true,
+    "amount": 100.00,
+    "date": "2024-05-05",
+    "time": "10:00",
+    "description": "ATM Withdrawal",
+    "accountUUID": "123456789",
+    "accountName": "Main Account"
+  },
+  {
+    "type": "withdrawal",
+    "isCredit": false,
+    "amount": 10.00,
+    "date": "2024-05-05",
+    "time": "10:00",
+    "description": "ATM Withdrawal",
+    "accountUUID": "123456789",
+    "accountName": "Main Account"
+  },
+  {
+    "type": "withdrawal",
+    "isCredit": false,
+    "amount": 90.00,
+    "date": "2024-05-05",
+    "time": "10:00",
+    "description": "ATM Withdrawal",
+    "accountUUID": "123456789",
+    "accountName": "Main Account"
   }
 ]

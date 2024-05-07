@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.virtualbank.controller.HistoryController;
 
 public class HistoryPage {
     private JFrame window;
@@ -58,6 +59,20 @@ public class HistoryPage {
         window.add(scrollPane);
     }
 
+
+    public JButton getExitButton() {
+        return exitButton;
+    }
+
+    public JScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void closeWindow() {
+        window.dispose();
+    }
+
+
     private void loadHistory() {
         // 修改文件路径以使用accountID
         String filePath = "src/main/resources/historys/" + accountID + "_history.json";
@@ -75,8 +90,9 @@ public class HistoryPage {
     }
 
     private void addHistoryLabel(Map<String, Object> transaction) {
-        boolean isCredit = (boolean) transaction.get("isCredit");
+
         double amount = (double) transaction.get("amount");
+        boolean isCredit = (amount > 0) ? true : false;
         String time = (String) transaction.get("time");
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
@@ -87,7 +103,8 @@ public class HistoryPage {
     }
 
     public static void main(String[] args) {
-        // Example usage, the accountID should be passed here
-        new HistoryPage("123456789");
+        HistoryPage historyPage = new HistoryPage("123456789");  // 假设账户ID已给出
+        new HistoryController(historyPage);
+
     }
 }

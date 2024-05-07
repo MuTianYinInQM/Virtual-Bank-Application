@@ -1,8 +1,8 @@
 package com.virtualbank.model;
 
 import com.virtualbank.model.account.*; // all account
-import com.virtualbank.model.HistoryLogger;
 import com.virtualbank.model.OperationType;
+import com.virtualbank.model.History;
 
 import java.io.Serializable;
 import java.time.Period;
@@ -10,14 +10,14 @@ import java.util.*;
 
 public class AccountManager implements Serializable {
     private Map<UUID, Account> accounts;
-    private HistoryLogger logger;
+    private History logger;
 
     public AccountManager() {
         // 创建存钱罐账户
         Account piggyBank = new PiggyBank("Piggy Bank", 0);
         this.accounts = new HashMap<>();
         this.accounts.put(piggyBank.getUuid(), piggyBank);
-        this.logger = new HistoryLogger(); // 假设 History 类可接受 Account 参数
+        this.logger = new History(); // 假设 History 类可接受 Account 参数
     }
 
     private void checkAccountExistenceChangeability(Account account) {

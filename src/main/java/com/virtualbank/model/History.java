@@ -1,75 +1,73 @@
 package com.virtualbank.model;
 
-import java.io.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*; // Map List ...
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.virtualbank.model.account.Account;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class History {
-    private String accountID;
-    private Account account; // 添加一个成员变量来存储Account对象
-    private List<Map<String, Object>> transactions;
-    private File file;
+    private static final String DIRECTORY_PATH = "src/main/resources/historys";
     private ObjectMapper mapper;
 
-    public History(Account account) {
-        this.account = account; // 保存传入的Account对象
-        this.accountID = account.getUuid().toString();
-        // 文件路径，将其放在resource/historys目录下
-        Path path = Paths.get("src/main/resources/historys", accountID + "_history.json");
-        this.file = path.toFile();
-        ensureDirectoryExists(path.getParent()); // 确保目录存在
-        this.transactions = new ArrayList<>();
+    public History() {
         this.mapper = new ObjectMapper();
-        loadTransactions();
+        ensureDirectoryExists(Paths.get(DIRECTORY_PATH));
     }
 
     // 确保存储目录存在
     private void ensureDirectoryExists(Path path) {
-        if (!Files.exists(path)) {
-            try {
+        try {
+            if (!Files.exists(path)) {
                 Files.createDirectories(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Failed to create directory for history files.", e);
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create directory for history files: " + path, e);
         }
     }
 
-    private void loadTransactions() {
+    public void recordOperation(OperationType operationType, UUID id, double amount, String description) {
+        Path filePath = Paths.get(DIRECTORY_PATH, id + "_history.json");
+        File file = filePath.toFile();
+        List<Map<String, Object>> transactions = new ArrayList<>();
+
+        // 加载现有的交易记录，如果有的话
         if (file.exists()) {
             try {
-                transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>(){});
+                transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>() {
+                });
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error reading history file: " + e.getMessage());
             }
         }
-    }
 
-    public void recordTransaction(String type, boolean isCredit, double amount, String description) {
+        // 创建新的交易记录
         Map<String, Object> transaction = new HashMap<>();
-        transaction.put("type", type);
-        transaction.put("isCredit", isCredit);
+        transaction.put("type", operationType.getName());
         transaction.put("amount", amount);
-        transaction.put("date", java.time.LocalDate.now().toString());
-        transaction.put("time", java.time.LocalTime.now().toString());
+        transaction.put("uuid", id.toString());
+        transaction.put("time", LocalTime.now().toString());
+        transaction.put("date", LocalDate.now().toString());
         transaction.put("description", description);
-        transaction.put("accountUUID", accountID);
-        transaction.put("accountName", account.getAccountName());
 
-        transactions.add(0, transaction);  // 将新交易添加到列表的最前面
-        saveTransactions();
-    }
+        // 将新交易添加到交易列表
+        transactions.add(transaction);
 
-    private void saveTransactions() {
+        // 写入文件
         try {
             mapper.writeValue(file, transactions);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error writing to history file: " + e.getMessage());
         }
     }
 }
