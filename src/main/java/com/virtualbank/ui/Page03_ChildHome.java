@@ -1,7 +1,12 @@
 package com.virtualbank.ui;
 
+import com.virtualbank.model.AccountManager;
+import com.virtualbank.model.account.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.time.Period;
+import java.util.UUID;
 
 public class Page03_ChildHome extends JFrame {
 
@@ -9,6 +14,8 @@ public class Page03_ChildHome extends JFrame {
     private JButton goalButton = new JButton();
     private JButton taskButton = new JButton();
     private JButton createAccountButton = new JButton();
+    private JPanel scrollPanel; // 将滚动面板声明为类的成员变量
+    private JLabel goalButtonLabel; // 处理目标和总金额的
 
     public JButton getExitButton() {
         return exitButton;
@@ -25,6 +32,7 @@ public class Page03_ChildHome extends JFrame {
     public JButton getCreateAccountButton() {
         return createAccountButton;
     }
+
 
     public Page03_ChildHome() {
         final int window_width = 1260;
@@ -54,15 +62,17 @@ public class Page03_ChildHome extends JFrame {
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
         // 目标及其完成进度
-        Double currentAmount = 25.00; // 当前进度
+        // TODO 现在这部分还不能变化 目标不归我管 怎么处理
+        Double currentAmount = 2544.00; // 当前进度
         Double goal = 500.00; // 目标
         String goalText = String.format("%.2f/%.2f", currentAmount, goal);
-        JLabel goalButtonLabel = new JLabel(goalText);
-        goalButtonLabel.setBounds(42, 20, 220, 109);
-        goalButtonLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel initialGoalButtonLabel = new JLabel(goalText);
+        initialGoalButtonLabel.setBounds(42, 20, 220, 109);
+        initialGoalButtonLabel.setHorizontalAlignment(SwingConstants.CENTER);
         goalButton.setLayout(null);
-        goalButton.add(goalButtonLabel);
+        goalButton.add(initialGoalButtonLabel);
         backgroundPanel.add(goalButton);
+        this.goalButtonLabel = initialGoalButtonLabel;
 
         // 进入孩子任务页面的Task按钮
         taskButton.setBounds(672, 80, 220, 110);
@@ -77,40 +87,64 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.add(createAccountButton);
 
         // 创建带滚动条的区域
-        JPanel scrollPanel = new JPanel();
-        scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-        scrollPanel.setBackground(new Color(0xf8f6ea));
-        JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        JPanel initialScrollPanel = new JPanel();
+        initialScrollPanel.setLayout(new BoxLayout(initialScrollPanel, BoxLayout.Y_AXIS));
+        initialScrollPanel.setBackground(new Color(0xf8f6ea));
+        JScrollPane scrollPane = new JScrollPane(initialScrollPanel);
         scrollPane.setBounds(369, 280, 550, 400); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         backgroundPanel.add(scrollPane);
 
-        // 向滚动区域中添加多个显示的块
-        // 存钱罐
-        PiggyBankLabel piggyBank = new PiggyBankLabel("001", 24.36);
-        scrollPanel.add(piggyBank);
-        scrollPanel.add(Box.createVerticalStrut(10));
-        // 活期账户1
-        CurrentAccountLabel currentAccount1 = new CurrentAccountLabel("002", 20.00);
-        scrollPanel.add(currentAccount1);
-        scrollPanel.add(Box.createVerticalStrut(10));
-        // 定期账户1
-        SavingAccountLabel savingAccount1 = new SavingAccountLabel("003", 100.00);
-        scrollPanel.add(savingAccount1);
-        scrollPanel.add(Box.createVerticalStrut(10));
-        // 活期账户2
-        CurrentAccountLabel currentAccount2 = new CurrentAccountLabel("004", 16.88);
-        scrollPanel.add(currentAccount2);
-        scrollPanel.add(Box.createVerticalStrut(10));
-        // 定期账户2
-        SavingAccountLabel savingAccount2 = new SavingAccountLabel("005", 150.00);
-        scrollPanel.add(savingAccount2);
-        scrollPanel.add(Box.createVerticalStrut(10));
+        this.scrollPanel = initialScrollPanel;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+    }
+
+
+    // 动态更新账户信息的方法
+    public void updateAccounts(AccountManager accountManager) {
+        //重新绘制总金额
+        Double totalBalance = accountManager.getTotalBalance();
+        // TODO goal 应该可以更改 相信后人的智慧
+        final double goal = 500;
+        String goalText = String.format("%.2f/%.2f", totalBalance, goal);
+        goalButtonLabel.setText(goalText);
+        goalButtonLabel.repaint(); // 重新绘制文本
+
+        //重新绘制所有的银行卡
+        scrollPanel.removeAll(); // 清空当前显示的所有账户信息
+
+        for (Account account : accountManager.getAccounts().values()) {
+            AccountLabel label;
+            if (account instanceof CurrentAccount) {
+                label = new CurrentAccountLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else if (account instanceof PiggyBank) {
+                label = new PiggyBankLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else if (account instanceof SavingAccount) {
+                label = new SavingAccountLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else {
+                // 处理未知类型的账户
+                continue;
+            }
+            scrollPanel.add(label);
+            scrollPanel.add(Box.createVerticalStrut(10)); // 添加间隔
+        }
+
+        scrollPanel.revalidate();
+        scrollPanel.repaint();
     }
 
     private class CurrentAccountLabel extends AccountLabel { // 活期账户卡片
@@ -170,13 +204,26 @@ public class Page03_ChildHome extends JFrame {
             typeLabel.setFont(nameFont);
             this.add(typeLabel);
             // 进入账户的按钮 Enter
+            // TODO 这个应该怎么回调？
             enterButton = new JButton("Enter");
             enterButton.setBounds(425, 55, 80, 40);
             this.add(enterButton);
         }
     }
 
+    // 测试该页面的代码
     public static void main(String[] args) {
         Page03_ChildHome page03ChildHome = new Page03_ChildHome();
+
+        AccountManager accountManager = new AccountManager();
+        accountManager.prize(accountManager.getPiggyUuid(), 100, "Initial money added to Piggy Bank");
+        UUID currentAccountId = accountManager.addCurrentAccount("CurrentAccount", 0.01, 24);
+        UUID savingAccountId = accountManager.addSavingAccount("SavingAccount",
+                50, 0.05, 24, Period.ofYears(1));
+        accountManager.save(currentAccountId, 1000, "Initial deposit to Current Account");
+
+        page03ChildHome.updateAccounts(accountManager);
     }
+
+
 }
