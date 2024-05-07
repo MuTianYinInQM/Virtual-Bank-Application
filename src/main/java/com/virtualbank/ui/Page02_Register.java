@@ -15,7 +15,7 @@ public class Page02_Register extends JFrame{
         return username_textField;
     }
 
-    public JTextField getPassword_textField() {
+    public JPasswordField getPassword_textField() {
         return password_textField;
     }
 

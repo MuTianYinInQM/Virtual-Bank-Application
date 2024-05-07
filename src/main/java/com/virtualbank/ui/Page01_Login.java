@@ -14,7 +14,7 @@ public class Page01_Login extends JFrame {
         return username_textField;
     }
 
-    public JTextField getPassword_textField() {
+    public JPasswordField getPassword_textField() {
         return password_textField;
     }
 
