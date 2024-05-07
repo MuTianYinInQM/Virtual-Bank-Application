@@ -4,20 +4,45 @@ import com.virtualbank.model.account.*; // all account
 import com.virtualbank.model.OperationType;
 import com.virtualbank.model.History;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+
 import java.io.Serializable;
 import java.time.Period;
 import java.util.*;
 
 public class AccountManager implements Serializable {
     private Map<UUID, Account> accounts;
+    private UUID piggyUuid;
     private History logger;
+    private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 
     public AccountManager() {
         // 创建存钱罐账户
         Account piggyBank = new PiggyBank("Piggy Bank", 0);
+        this.piggyUuid = piggyBank.getUuid();
         this.accounts = new HashMap<>();
         this.accounts.put(piggyBank.getUuid(), piggyBank);
         this.logger = new History(); // 假设 History 类可接受 Account 参数
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
+
+
+    public Map<UUID, Account> getAccounts() {
+        return accounts;
+    }
+
+    public UUID getPiggyUuid() {
+        return piggyUuid;
     }
 
     private void checkAccountExistenceChangeability(Account account) {
@@ -45,6 +70,7 @@ public class AccountManager implements Serializable {
     // 后面不同函数的名称只是调用这个抽象函数 (通过传入不同的OperationType)
     private void withdrawWithType(OperationType operationType, UUID id, double amount, String description) {
         Account account = accounts.get(id);
+        double oldBalance = account.getBalance();
 
         checkAccountExistenceChangeability(account);
         checkAmountPositive(amount);
@@ -56,10 +82,14 @@ public class AccountManager implements Serializable {
         account.withdraw(amount);
 
         logger.recordOperation(operationType, id, amount, description);
+
+        // notify balance have changed
+        pcs.firePropertyChange("balance", oldBalance, account.getBalance());
     }
 
     private void depositWithType(OperationType operationType, UUID id, double amount, String description) {
         Account account = accounts.get(id);
+        double oldBalance = account.getBalance();
 
         checkAccountExistenceChangeability(account);
         checkAmountPositive(amount);
@@ -67,6 +97,9 @@ public class AccountManager implements Serializable {
         account.deposit(amount);
 
         logger.recordOperation(operationType, id, amount, description);
+
+        // notify balance have changed
+        pcs.firePropertyChange("balance", oldBalance, account.getBalance());
     }
 
 
@@ -108,39 +141,26 @@ public class AccountManager implements Serializable {
         }
     }
 
-    // TODO 应该需要可以指派利率 时间 流逝系数的方式 (更上层应该做选择)
-    public UUID addCurrentAccount(String type, String name, Period termPeriod) {
-        Account account;
-
-        switch (type) {
-            case "Current":
-                // 创建活期账户实例
-                account = new CurrentAccount(name, 0, 0.01, 24); // 假定活期利率为1%，时间流逝系数为24
-                break;
-            case "Saving":
-                // 创建定期账户实例
-                account = new SavingAccount(name, 0, 0.05, 365, termPeriod); // 定期利率为5%，时间流逝系数为365
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported account type: " + type);
-        }
-
-        accounts.put(account.getUuid(), account);
-        return account.getUuid();
-    }
 
     public UUID addCurrentAccount(String accountName, double interestRate, double timeLapseCoefficient) {
         Account account;
         account = new CurrentAccount(accountName, 0, interestRate, timeLapseCoefficient);
         accounts.put(account.getUuid(), account);
+        pcs.firePropertyChange("current_accounts", null, account);
         return account.getUuid();
     }
 
-
-    public UUID addSavingAccount(String accountName, double interestRate, double timeLapseCoefficient, Period termPeriod) {
+    // TODO 这个需要在开始的时候就指明金额的数量
+    public UUID addSavingAccount(String accountName, double initialBalance,
+                                 double interestRate, double timeLapseCoefficient, Period termPeriod) {
+        // 要求先从存钱罐账户里面拿出来 initialBalance 这么多的钱
+        // 然后检查是否可行后在执行
         Account account;
-        account = new SavingAccount(accountName, 0, interestRate, timeLapseCoefficient, termPeriod);
+        account = new SavingAccount(accountName, initialBalance, interestRate, timeLapseCoefficient, termPeriod);
+        withdrawWithType(OperationType.TRANSFER_FROM, piggyUuid, initialBalance,
+                "transfer to a Saving Account with uuid is account.getUuid()");
         accounts.put(account.getUuid(), account);
+        pcs.firePropertyChange("saving_accounts", null, account);
         return account.getUuid();
     }
 
@@ -164,7 +184,19 @@ public class AccountManager implements Serializable {
 
         // 移除账户
         accounts.remove(uuid);
+
+        // notify
+        pcs.firePropertyChange("accounts", account, null);
     }
+
+    public double getTotalBalance() {
+        double totalBalance = 0.0;
+        for (Account account : accounts.values()) {
+            totalBalance += account.getBalance();
+        }
+        return totalBalance;
+    }
+
 
 
 }
