@@ -1,6 +1,7 @@
 package com.virtualbank.controller;
 
 import com.virtualbank.ui.HistoryPage;
+import com.virtualbank.model.History;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,4 +48,5 @@ public class HistoryController {
         // 这里可以实现当用户滚动到底部时加载更多历史记录的功能
         // 目前这个方法是空的，可以根据需要实现具体功能
     }
+
 }

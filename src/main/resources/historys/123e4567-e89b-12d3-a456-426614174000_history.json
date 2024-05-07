@@ -15,7 +15,7 @@
     "amount": 100.00,
     "date": "2024-05-05",
     "time": "10:00",
-    "description": "ATM Withdrawal",
+    "description": "ATM Withdrawal and test",
     "accountUUID": "123456789",
     "accountName": "Main Account"
   },

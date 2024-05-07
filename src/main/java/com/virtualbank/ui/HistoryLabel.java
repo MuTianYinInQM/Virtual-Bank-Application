@@ -47,7 +47,7 @@ public class HistoryLabel extends JLabel{
 		this.add(this.sumLabel);
 		
 		// 交易时刻
-		this.timeLabel.setBounds(155, 15, 120, 30);
+		this.timeLabel.setBounds(175, 15, 120, 30);
 		this.timeLabel.setFont(plainLabelFont);
 		this.timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.timeLabel.setText(time);
@@ -56,7 +56,7 @@ public class HistoryLabel extends JLabel{
 		this.add(this.timeLabel);
 
 		// 交易日期
-		this.dateLabel.setBounds(155, 45, 120, 30);
+		this.dateLabel.setBounds(160, 45, 150, 30);
 		this.dateLabel.setFont(plainLabelFont);
 		this.dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.dateLabel.setText(date);
@@ -65,7 +65,7 @@ public class HistoryLabel extends JLabel{
 		this.add(this.dateLabel);
 
 		// 交易类型
-		this.typeLabel.setBounds(285, 10, 120, 70);
+		this.typeLabel.setBounds(320, 10, 120, 70);
 		this.typeLabel.setFont(plainLabelFont);
 		this.typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.typeLabel.setText(type);
@@ -74,7 +74,7 @@ public class HistoryLabel extends JLabel{
 		this.add(this.typeLabel);
 
 		// 描述（暂时无法自动换行）
-		this.descLabel.setBounds(415, 10, 190, 70);
+		this.descLabel.setBounds(455, 10, 190, 70);
 		this.descLabel.setFont(plainLabelFont);
 		this.descLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		this.descLabel.setVerticalAlignment(SwingConstants.CENTER);
