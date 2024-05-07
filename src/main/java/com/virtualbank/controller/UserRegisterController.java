@@ -19,9 +19,10 @@ public class UserRegisterController {
     public UserRegisterController(Page02_Register registerPage, UserService userService, Page01_Login loginPage) {
         this.registerPage = registerPage;
         this.userService = userService;
-        this.loginPage = this.loginPage; // 保存登录页面的引用
+        this.loginPage = loginPage; // 保存登录页面的引用
         attachActionListeners();
     }
+
 
     private void attachActionListeners() {
         registerPage.getConfirmButton().addActionListener(new ActionListener() {
@@ -60,15 +61,17 @@ public class UserRegisterController {
         }
     }
 
+
     private void showLoginPage() {
         registerPage.dispose();  // 关闭注册窗口
         if (loginPage != null) {
-            loginPage.setVisible(true); // 如果登录页面已经存在，只需使其可见
+            loginPage.setVisible(true); // 使登录页面可见
         } else {
-            loginPage = new Page01_Login(); // 如果不存在，创建新的登录页面
+            loginPage = new Page01_Login(); // 创建新的登录页面
             loginPage.setVisible(true);
         }
     }
+
 
     private void closeRegisterPage() {
         registerPage.dispose();

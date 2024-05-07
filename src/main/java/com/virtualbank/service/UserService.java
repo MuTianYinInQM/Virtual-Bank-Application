@@ -3,17 +3,16 @@ package com.virtualbank.service;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.user.ChildUser;
 import com.virtualbank.model.user.ParentUser;
-import com.virtualbank.repository.UserRepository;
 import com.virtualbank.model.user.User;
+import com.virtualbank.repository.UserRepository;
 import com.virtualbank.repository.AccountManagerSerializer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserService {
     private UserRepository userRepository = new UserRepository();
 
+    // 注册用户方法
     public boolean registerUser(String username, String password, boolean isParent) {
         try {
             if (!userRepository.existsByUsername(username)) {
@@ -21,8 +20,9 @@ public class UserService {
                 if (isParent) {
                     user = new ParentUser(username, password);
                 } else {
-                    AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
                     user = new ChildUser(username, password);
+                    AccountManager accountManager = new AccountManager();  // 创建新的 AccountManager
+                    AccountManagerSerializer.serializeAccountManager(accountManager, username);  // 序列化新的 AccountManager
                 }
                 userRepository.save(user);
                 return true;
@@ -33,39 +33,32 @@ public class UserService {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
     }
 
-    //登录是框架
     // 用户登录方法
     public String loginUser(String username, String password) {
         try {
-            List<User> users = userRepository.findAll();
-            boolean userFound = false;
-            for (User user : users) {
-                if (user.getUsername().equals(username)) {
-                    userFound = true;
-                    if (user.getPassword().equals(password)) {
-                        if (user instanceof ParentUser) {
-                            return "Parent Page"; // 家长账号登录成功，返回家长页面
-                        } else if (user instanceof ChildUser) {
-                            return "Child Page"; // 孩子账号登录成功，返回孩子页面
+            for (User user : userRepository.findAll()) {
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    if (user instanceof ParentUser) {
+                        return "Parent Page";
+                    } else if (user instanceof ChildUser) {
+                        try {
+                            AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
+                            // 可以在这里处理或检查 accountManager，如需要
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return "Failed to load account manager";
                         }
-                    } else {
-                        return "Password Incorrect"; // 密码不正确
+                        return "Child Page";
                     }
                 }
             }
-            if (!userFound) {
-                return "Username does not exist"; // 账号不存在
-            }
+            return "Username or password incorrect";
         } catch (IOException e) {
             e.printStackTrace();
-            return "Login Failed"; // 登录失败，返回失败信息
+            return "Login Failed";
         }
-        return "Login Failed"; // 登录失败，返回失败信息
     }
 }
-
