@@ -1,6 +1,8 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 
-public class Window1_ChooseAccountType {
+public class Window1_ChooseAccountType extends JFrame {
 
     private JCheckBox currentAccountButton = new JCheckBox();
     private JCheckBox savingAccountButton = new JCheckBox();
@@ -53,5 +55,6 @@ public class Window1_ChooseAccountType {
 
     public static void main(String[] args) {
         Window1_ChooseAccountType chooseAccountTypeWindow = new Window1_ChooseAccountType();
+        chooseAccountTypeWindow.setVisible(false);
     }
 }

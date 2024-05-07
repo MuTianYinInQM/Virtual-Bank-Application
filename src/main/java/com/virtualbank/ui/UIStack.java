@@ -32,6 +32,18 @@ public class UIStack {
         stack.push(view);
     }
 
+    // pop出来顶部的那个显示着的
+    // 然后push一个
+    public void swapWindows(ToggleVisibility view) {
+        if (!stack.isEmpty()) {
+            ToggleVisibility topView = stack.pop();
+            topView.toggleVisibility();
+
+            view.setVisibility(true);
+            stack.push(view);
+        }
+    }
+
     public void pop() {
         if (!stack.isEmpty()) {
             ToggleVisibility topView = stack.pop();
@@ -44,6 +56,10 @@ public class UIStack {
                     stack.peek().toggleVisibility();
                 }
             }
+        }
+        // 如果栈里面没有东西了 就停止运行
+        if (stack.isEmpty()) {
+            System.exit(0);
         }
     }
 }

@@ -1,3 +1,5 @@
+package com.virtualbank.ui;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -56,6 +58,17 @@ public class Window2_CreateSavingAccount {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
     }
+
+    public double getEnteredAmount() {
+        try {
+            return Double.parseDouble(money_textField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid amount format", "Error", JOptionPane.ERROR_MESSAGE);
+            return 0; // 返回0或其他适当的错误值
+        }
+    }
+
+
 
     public static void main(String[] args) {
         Window2_CreateSavingAccount window2CreateSavingAccount = new Window2_CreateSavingAccount();

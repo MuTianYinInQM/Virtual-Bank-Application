@@ -3,6 +3,8 @@ package com.virtualbank.controller;
 import com.virtualbank.interfaces.ToggleVisibility;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.ui.Page03_ChildHome;
+import com.virtualbank.ui.UIStack;
+import com.virtualbank.ui.Window1_ChooseAccountType;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -12,19 +14,30 @@ import java.util.UUID;
 public class AccountManagerController implements PropertyChangeListener, ToggleVisibility {
     private Page03_ChildHome page;
     private AccountManager accountManager;
+    private UIStack uiStack;
 
-    public AccountManagerController(Page03_ChildHome page, AccountManager accountManager) {
+    public AccountManagerController(Page03_ChildHome page, AccountManager accountManager, UIStack uiStack) {
         this.page = page;
         this.accountManager = accountManager;
         this.accountManager.addPropertyChangeListener(this); // 监听AccountManager的变化
+        this.uiStack = uiStack;
         initPage();
     }
 
     private void initPage() {
         // 设置按钮监听器
-        // TODO exit 应该最后是退回上一级目录里面 即 栈的pop
-        page.getExitButton().addActionListener(e -> System.exit(0));
-        // TODO 其他监听器 和 每一个account跳转的监听器
+        // 退回上一级目录
+        page.getExitButton().addActionListener(e -> uiStack.pop());
+
+        // 创建下一个目录
+        page.getCreateAccountButton().addActionListener(
+                e -> {
+                    Window1_ChooseAccountType chooseAccountTypeWindow = new Window1_ChooseAccountType();
+                    AccountTypeChooseController accountTypeChooseController =
+                            new AccountTypeChooseController(chooseAccountTypeWindow, accountManager, this.uiStack);
+                    uiStack.pushWindows(accountTypeChooseController);
+                }
+        );
 
         updatePage();
     }
@@ -64,6 +77,8 @@ public class AccountManagerController implements PropertyChangeListener, ToggleV
     }
 
     public static void main(String[] args) {
+        UIStack uis = new UIStack();
+
         Page03_ChildHome page = new Page03_ChildHome();
 
         AccountManager accountManager = new AccountManager();
@@ -74,7 +89,8 @@ public class AccountManagerController implements PropertyChangeListener, ToggleV
                 50, 0.05, 24, Period.ofYears(1));
         accountManager.save(currentAccountId, 1000, "Initial deposit to Current Account");
 
-        AccountManagerController controller = new AccountManagerController(page, accountManager);
+        AccountManagerController controller = new AccountManagerController(page, accountManager, uis);
+        uis.pushPage(controller);
         controller.updatePage();
     }
 }
