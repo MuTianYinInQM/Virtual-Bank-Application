@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class History {
+// 这个是记录账户信息的组件
+// 负责持久化 历史记录 (History Logger)
+public class History implements Serializable {
     private static final String DIRECTORY_PATH = "src/main/resources/historys";
     private ObjectMapper mapper;
 

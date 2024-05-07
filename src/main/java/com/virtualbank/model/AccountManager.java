@@ -10,14 +10,24 @@ import java.util.*;
 
 public class AccountManager implements Serializable {
     private Map<UUID, Account> accounts;
+    private UUID piggyUuid;
     private History logger;
 
     public AccountManager() {
         // 创建存钱罐账户
         Account piggyBank = new PiggyBank("Piggy Bank", 0);
+        this.piggyUuid = piggyBank.getUuid();
         this.accounts = new HashMap<>();
         this.accounts.put(piggyBank.getUuid(), piggyBank);
         this.logger = new History(); // 假设 History 类可接受 Account 参数
+    }
+
+    public Map<UUID, Account> getAccounts() {
+        return accounts;
+    }
+
+    public UUID getPiggyUuid() {
+        return piggyUuid;
     }
 
     private void checkAccountExistenceChangeability(Account account) {
@@ -108,26 +118,6 @@ public class AccountManager implements Serializable {
         }
     }
 
-    // TODO 应该需要可以指派利率 时间 流逝系数的方式 (更上层应该做选择)
-    public UUID addCurrentAccount(String type, String name, Period termPeriod) {
-        Account account;
-
-        switch (type) {
-            case "Current":
-                // 创建活期账户实例
-                account = new CurrentAccount(name, 0, 0.01, 24); // 假定活期利率为1%，时间流逝系数为24
-                break;
-            case "Saving":
-                // 创建定期账户实例
-                account = new SavingAccount(name, 0, 0.05, 365, termPeriod); // 定期利率为5%，时间流逝系数为365
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported account type: " + type);
-        }
-
-        accounts.put(account.getUuid(), account);
-        return account.getUuid();
-    }
 
     public UUID addCurrentAccount(String accountName, double interestRate, double timeLapseCoefficient) {
         Account account;
@@ -136,10 +126,15 @@ public class AccountManager implements Serializable {
         return account.getUuid();
     }
 
-
-    public UUID addSavingAccount(String accountName, double interestRate, double timeLapseCoefficient, Period termPeriod) {
+    // TODO 这个需要在开始的时候就指明金额的数量
+    public UUID addSavingAccount(String accountName, double initialBalance,
+                                 double interestRate, double timeLapseCoefficient, Period termPeriod) {
+        // 要求先从存钱罐账户里面拿出来 initialBalance 这么多的钱
+        // 然后检查是否可行后在执行
         Account account;
-        account = new SavingAccount(accountName, 0, interestRate, timeLapseCoefficient, termPeriod);
+        account = new SavingAccount(accountName, initialBalance, interestRate, timeLapseCoefficient, termPeriod);
+        depositWithType(OperationType.TRANSFER_FROM, piggyUuid, initialBalance,
+                "transfer to a Saving Account with uuid is account.getUuid()");
         accounts.put(account.getUuid(), account);
         return account.getUuid();
     }
