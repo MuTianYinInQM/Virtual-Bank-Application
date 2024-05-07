@@ -5,6 +5,7 @@ import com.virtualbank.model.user.ChildUser;
 import com.virtualbank.model.user.ParentUser;
 import com.virtualbank.repository.UserRepository;
 import com.virtualbank.model.user.User;
+import com.virtualbank.repository.AccountManagerSerializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class UserService {
                 if (isParent) {
                     user = new ParentUser(username, password);
                 } else {
-                    AccountManager accountManager = new AccountManager(); // 创建新的AccountManager
-                    user = new ChildUser(username, password, accountManager);
+                    AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
+                    user = new ChildUser(username, password);
                 }
                 userRepository.save(user);
                 return true;
@@ -32,6 +33,8 @@ public class UserService {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
