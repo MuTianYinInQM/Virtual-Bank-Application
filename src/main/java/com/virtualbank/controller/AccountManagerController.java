@@ -1,6 +1,6 @@
 package com.virtualbank.controller;
 
-import com.virtualbank.interfaces.ToggleVisibility;
+import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.ui.Page03_ChildHome;
 import com.virtualbank.ui.UIStack;
@@ -11,7 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.time.Period;
 import java.util.UUID;
 
-public class AccountManagerController implements PropertyChangeListener, ToggleVisibility {
+public class AccountManagerController implements PropertyChangeListener, Page {
     private Page03_ChildHome page;
     private AccountManager accountManager;
     private UIStack uiStack;
@@ -74,6 +74,11 @@ public class AccountManagerController implements PropertyChangeListener, ToggleV
     @Override
     public boolean getVisibility() {
         return this.page.isVisible();
+    }
+
+    @Override
+    public void dispose() {
+        this.page.dispose();
     }
 
     public static void main(String[] args) {

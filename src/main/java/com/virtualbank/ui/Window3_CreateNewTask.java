@@ -11,8 +11,6 @@ import java.awt.event.WindowEvent;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
 public class Window3_CreateNewTask extends JFrame {
-
-
     private JTextField taskName_textField; // 任务名称/标题输入
     private JTextField content_textField; // 任务内容输入
     private JTextField money_textField; // 任务奖励金额输入

@@ -1,18 +1,18 @@
 package com.virtualbank.ui;
 
-import com.virtualbank.interfaces.ToggleVisibility;
+import com.virtualbank.interfaces.Page;
 
 import java.util.Stack;
 
 public class UIStack {
-    private Stack<ToggleVisibility> stack;
+    private Stack<Page> stack;
 
     public UIStack() {
         this.stack = new Stack<>();
     }
 
 
-    public void pushPage(ToggleVisibility view) {
+    public void pushPage(Page view) {
         // 需要确保 view是可见的
         // 理论上这个可以删除
         view.setVisibility(true);
@@ -25,7 +25,7 @@ public class UIStack {
 
     // 添加一个可见的小窗 不改变底下物体的可见性
     // pop 时候由于下面已经可见 因此就不翻转了
-    public void pushWindows(ToggleVisibility view) {
+    public void pushWindows(Page view) {
         // 需要确保 view是可见的
         // 理论上这个可以删除
         view.setVisibility(true);
@@ -34,9 +34,9 @@ public class UIStack {
 
     // pop出来顶部的那个显示着的
     // 然后push一个
-    public void swapWindows(ToggleVisibility view) {
+    public void swapWindows(Page view) {
         if (!stack.isEmpty()) {
-            ToggleVisibility topView = stack.pop();
+            Page topView = stack.pop();
             topView.toggleVisibility();
 
             view.setVisibility(true);
@@ -46,7 +46,7 @@ public class UIStack {
 
     public void pop() {
         if (!stack.isEmpty()) {
-            ToggleVisibility topView = stack.pop();
+            Page topView = stack.pop();
             // The top view is supposed to be visible, so we make it invisible upon removal
             topView.toggleVisibility(); // Make the top view invisible
 

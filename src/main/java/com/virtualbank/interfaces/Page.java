@@ -1,6 +1,6 @@
 package com.virtualbank.interfaces;
 
-public interface ToggleVisibility {
+public interface Page {
     /**
      * Toggles the visibility of the current page.
      * If the page is currently visible, it will be made invisible.
@@ -11,4 +11,6 @@ public interface ToggleVisibility {
     void setVisibility(boolean visibility);
 
     boolean getVisibility();
+
+    void dispose();
 }

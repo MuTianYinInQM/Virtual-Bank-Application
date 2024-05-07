@@ -1,6 +1,6 @@
 package com.virtualbank.controller;
 
-import com.virtualbank.interfaces.ToggleVisibility;
+import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.ui.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AccountTypeChooseController implements ToggleVisibility {
+public class AccountTypeChooseController implements Page {
 
     private Window1_ChooseAccountType page;
     // 虽然这个在这里没用，但是AccountManager要传递给下一个页面使用，这里仅仅是过了一遍手
@@ -61,5 +61,10 @@ public class AccountTypeChooseController implements ToggleVisibility {
     @Override
     public boolean getVisibility() {
         return this.page.isVisible();
+    }
+
+    @Override
+    public void dispose() {
+        this.page.dispose();
     }
 }
