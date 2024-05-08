@@ -1,1 +1,0 @@
-[{"date":"2024-05-07","amount":100.0,"description":"initial money","time":"13:52:42.432323800","type":"奖励","uuid":"f924d648-6b9a-4f74-b6fd-b6cd7e0fd903"},{"date":"2024-05-07","amount":50.0,"description":"transfer to a Saving Account with uuid is account.getUuid()","time":"13:52:42.492315100","type":"转账","uuid":"f924d648-6b9a-4f74-b6fd-b6cd7e0fd903"}]
