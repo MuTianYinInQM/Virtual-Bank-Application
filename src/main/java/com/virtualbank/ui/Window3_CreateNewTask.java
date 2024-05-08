@@ -58,7 +58,7 @@ public class Window3_CreateNewTask extends JFrame {
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/CreateTaskBackground.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
-        getContentPane().add(backgroundLabel)
+        getContentPane().add(backgroundLabel);
 
         // 输入框边框
         Border border = BorderFactory.createLineBorder(new Color(0x3d6de1), 2);
