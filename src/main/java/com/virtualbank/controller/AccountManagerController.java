@@ -2,10 +2,16 @@ package com.virtualbank.controller;
 
 import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
+import com.virtualbank.model.account.Account;
+import com.virtualbank.model.account.CurrentAccount;
+import com.virtualbank.model.account.PiggyBank;
+import com.virtualbank.model.account.SavingAccount;
 import com.virtualbank.ui.Page03_ChildHome;
 import com.virtualbank.ui.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
+import com.virtualbank.ui.Page07_Account;
 
+import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.Period;
@@ -24,6 +30,11 @@ public class AccountManagerController implements PropertyChangeListener, Page {
         initPage();
     }
 
+    private void updatePage() {
+        updateAccounts(accountManager);
+    }
+
+
     private void initPage() {
         // 设置按钮监听器
         // 退回上一级目录
@@ -39,12 +50,11 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                 }
         );
 
+        //点击 enter 进入一个Account的界面
+        // 在刷新页面的时候一并添加了Account的Listener
         updatePage();
     }
 
-    private void updatePage() {
-        page.updateAccounts(accountManager);
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -59,6 +69,50 @@ public class AccountManagerController implements PropertyChangeListener, Page {
 
         // TODO 至少现在所有的处理都是一样的 重新渲染一遍
         updatePage();
+    }
+
+    // 动态更新账户信息的方法
+    public void updateAccounts(AccountManager accountManager) {
+        page.totalBalanceUpdate(accountManager.getTotalBalance());
+
+        //重新绘制所有的银行卡
+        page.getScrollPanel().removeAll(); // 清空当前显示的所有账户信息
+
+        for (Account account : accountManager.getAccounts().values()) {
+            Page03_ChildHome.AccountLabel label;
+            if (account instanceof CurrentAccount) {
+                label = new Page03_ChildHome.CurrentAccountLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else if (account instanceof PiggyBank) {
+                label = new Page03_ChildHome.PiggyBankLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else if (account instanceof SavingAccount) {
+                label = new Page03_ChildHome.SavingAccountLabel(
+                        account.getUuid().toString(),
+                        account.getBalance()
+                );
+            } else {
+                // 处理未知类型的账户
+                continue;
+            }
+            label.getEnterButton().addActionListener(e -> openAccountDetails(account));
+
+            page.getScrollPanel().add(label);
+            page.getScrollPanel().add(Box.createVerticalStrut(10)); // 添加间隔
+        }
+
+        page.getScrollPanel().revalidate();
+        page.getScrollPanel().repaint();
+    }
+
+    private void openAccountDetails(Account account) {
+        Page07_Account page07Account = new Page07_Account(account);
+        AccountController accountController = new AccountController(page07Account, accountManager, uiStack);
+        uiStack.pushWindows(accountController);
     }
 
     @Override
