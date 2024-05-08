@@ -5,6 +5,7 @@ import com.virtualbank.parameters.Interest;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.border.Border;
 import java.time.Period;
 
 import javax.swing.*;
@@ -42,10 +43,12 @@ public class Window2_CreateSavingAccount extends JFrame {
         this.getContentPane().add(backgroundLabel);
 
         // 金额输入框
+        Border border = BorderFactory.createLineBorder(new Color(0x3d6de1), 2);
         money_textField = new JTextField();
         money_textField.setBounds(380, 120, 200, 50);
         Font font = new Font(money_textField.getFont().getName(), Font.PLAIN, 20);
         money_textField.setFont(font);
+        money_textField.setBorder(border);
         backgroundLabel.add(money_textField);
 
         // 初始化下拉选择框
