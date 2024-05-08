@@ -142,6 +142,7 @@ public class AccountManager implements Serializable {
     }
 
 
+    // 创建新的卡的时候没有转账记录
     public UUID addCurrentAccount(String accountName, double interestRate, double timeLapseCoefficient) {
         Account account;
         account = new CurrentAccount(accountName, 0, interestRate, timeLapseCoefficient);
@@ -159,6 +160,8 @@ public class AccountManager implements Serializable {
         withdrawWithType(OperationType.TRANSFER_FROM, piggyUuid, initialBalance,
                 "transfer to a Saving Account with uuid is account.getUuid()");
         accounts.put(account.getUuid(), account);
+        logger.recordOperation(OperationType.INITIAL_SAVE, account.getUuid(), initialBalance,
+                "create saving account");
         pcs.firePropertyChange("saving_accounts", null, account);
         return account.getUuid();
     }
@@ -195,7 +198,6 @@ public class AccountManager implements Serializable {
         }
         return totalBalance;
     }
-
 
 
 }

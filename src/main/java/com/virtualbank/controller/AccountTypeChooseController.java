@@ -5,6 +5,7 @@ import com.virtualbank.model.AccountManager;
 import com.virtualbank.ui.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
 import com.virtualbank.parameters.Interest;
+import com.virtualbank.ui.Window2_CreateSavingAccount;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,15 +34,19 @@ public class AccountTypeChooseController implements Page {
 
                 if (currentAccountButton.isSelected()) {
                     // 直接添加一个空的活期账户 不需要再进一步跳转了
-                    accountManager.addCurrentAccount("no name", Interest.currentInterest, 24);
+                    accountManager.addCurrentAccount("no name",
+                            Interest.currentInterest, Interest.timeLapseCoefficient);
                     uiStack.pop();
 
                 } else if (savingAccountButton.isSelected()) {
-                    // TODO
-
+                    Window2_CreateSavingAccount window2CreateSavingAccount = new Window2_CreateSavingAccount();
+                    CreateSavingAccountController createSavingAccountController =
+                            new CreateSavingAccountController(window2CreateSavingAccount, accountManager, uiStack);
+                    uiStack.swapWindows(createSavingAccountController);
                 } else {
                     // 如果没有选择任何账户类型，则不执行任何操作
-                    JOptionPane.showMessageDialog(page.getConfirmButton().getTopLevelAncestor(), "Please select an account type.");
+                    JOptionPane.showMessageDialog(page.getConfirmButton().getTopLevelAncestor(),
+                            "Please select an account type.");
                 }
             }
         });

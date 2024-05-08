@@ -37,7 +37,7 @@ public class UIStack {
     public void swapWindows(Page view) {
         if (!stack.isEmpty()) {
             Page topView = stack.pop();
-            topView.toggleVisibility();
+            topView.dispose();
 
             view.setVisibility(true);
             stack.push(view);

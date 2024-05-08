@@ -15,4 +15,6 @@ public class Interest {
             new Pair<>(0.04, Period.ofYears(3)),
             new Pair<>(0.05, Period.ofYears(5))
     );
+
+    public static final double timeLapseCoefficient = 1;
 }
