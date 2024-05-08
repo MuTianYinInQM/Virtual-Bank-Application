@@ -41,12 +41,14 @@ public class Page04_ParentHome extends JFrame {
         exitButton.setBounds(20, 20, 100, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
+        exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 创建新任务的按钮
         createTaskButton.setBounds(369, 102, 516, 64);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
+        createTaskButton.setBorder(null);
         backgroundPanel.add(createTaskButton);
 
         // 创建带滚动条的区域
@@ -127,6 +129,7 @@ public class Page04_ParentHome extends JFrame {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton("Terminate");
             terminateButton.setBounds(300, 90, 100, 40);
+            terminateButton.setBorder(null);
             this.add(terminateButton);
         }
     }
@@ -143,6 +146,7 @@ public class Page04_ParentHome extends JFrame {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton("Terminate");
             terminateButton.setBounds(300, 90, 100, 40);
+            terminateButton.setBorder(null);
             this.add(terminateButton);
         }
     }

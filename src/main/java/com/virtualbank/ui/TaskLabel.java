@@ -74,6 +74,7 @@ public class TaskLabel extends JLabel {
         // 删除按钮
         deleteButton = new JButton("Delete");
         deleteButton.setBounds(400, 90, 105, 40);
+        deleteButton.setBorder(null);
         this.add(deleteButton);
     }
 

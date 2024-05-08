@@ -76,11 +76,13 @@ public class Page02_Register extends JFrame{
         confirmButton.setBounds(530, 470, 200, 55);
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
+        confirmButton.setBorder(null);
         backgroundLabel.add(confirmButton);
 
         // 返回上一级，LoginPage的按钮Exit
         exitButton.setBounds(20, 20, 100, 50);
         exitButton.setFont(font);
+        exitButton.setBorder(null);
         backgroundLabel.add(exitButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

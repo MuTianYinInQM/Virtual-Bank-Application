@@ -58,6 +58,7 @@ public class Page03_ChildHome extends JFrame {
         exitButton.setBounds(20, 20, 100, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
+        exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 进入孩子目标页面的Goal按钮
@@ -74,6 +75,7 @@ public class Page03_ChildHome extends JFrame {
         initialGoalButtonLabel.setHorizontalAlignment(SwingConstants.CENTER);
         goalButton.setLayout(null);
         goalButton.add(initialGoalButtonLabel);
+        goalButton.setBorder(null);
         backgroundPanel.add(goalButton);
         this.goalButtonLabel = initialGoalButtonLabel;
 
@@ -81,12 +83,14 @@ public class Page03_ChildHome extends JFrame {
         taskButton.setBounds(672, 80, 220, 110);
         ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
         taskButton.setIcon(taskButtonIcon);
+        taskButton.setBorder(null);
         backgroundPanel.add(taskButton);
 
         // 创建新账户的按钮
         createAccountButton.setBounds(369, 200, 523, 64);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
         createAccountButton.setIcon(createAccountButtonIcon);
+        createAccountButton.setBorder(null);
         backgroundPanel.add(createAccountButton);
 
         // 创建带滚动条的区域
@@ -177,6 +181,7 @@ public class Page03_ChildHome extends JFrame {
             // TODO 这个应该怎么回调？
             enterButton = new JButton("Enter");
             enterButton.setBounds(425, 55, 80, 40);
+            enterButton.setBorder(null);
             this.add(enterButton);
         }
     }

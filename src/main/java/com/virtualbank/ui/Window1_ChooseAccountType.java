@@ -46,6 +46,7 @@ public class Window1_ChooseAccountType extends JFrame {
         confirmButton.setBounds(280, 400, 200, 55);
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
+        confirmButton.setBorder(null);
         backgroundLabel.add(confirmButton);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

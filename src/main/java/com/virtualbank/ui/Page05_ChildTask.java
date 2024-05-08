@@ -39,6 +39,7 @@ public class Page05_ChildTask extends JFrame{
         exitButton.setBounds(20, 20, 100, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
+        exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 创建带滚动条的区域
@@ -125,9 +126,11 @@ public class Page05_ChildTask extends JFrame{
             super(id, taskName, description, reward, childName, startDate, dueDate);
             giveUpButton = new JButton("Give Up");
             giveUpButton.setBounds(315, 90, 100, 40);
+            giveUpButton.setBorder(null);
             this.add(giveUpButton);
             acceptButton = new JButton("Accept");
             acceptButton.setBounds(215, 90, 80, 40);
+            acceptButton.setBorder(null);
             this.add(acceptButton);
         }
     }
@@ -148,9 +151,11 @@ public class Page05_ChildTask extends JFrame{
             super(id, taskName, description, reward, childName, startDate, dueDate);
             giveUPButton = new JButton("Give Up");
             giveUPButton.setBounds(315, 90, 100, 40);
+            giveUPButton.setBorder(null);
             this.add(giveUPButton);
             submitButton = new JButton("Submit");
             submitButton.setBounds(215, 90, 80, 40);
+            submitButton.setBorder(null);
             this.add(submitButton);
         }
     }
