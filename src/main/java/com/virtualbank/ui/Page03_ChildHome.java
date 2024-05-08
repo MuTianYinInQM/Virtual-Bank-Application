@@ -65,9 +65,20 @@ public class Page03_ChildHome extends JFrame {
         goalButton.setBounds(371, 80, 238, 113);
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
+
+        // 目标及其完成进度
+        // TODO 现在这部分还不能变化 目标不归我管 怎么处理
+        Double currentAmount = 2544.00; // 当前进度
+        Double goal = 500.00; // 目标
+        String goalText = String.format("%.2f/%.2f", currentAmount, goal);
+        JLabel initialGoalButtonLabel = new JLabel(goalText);
+        initialGoalButtonLabel.setBounds(42, 20, 220, 109);
+        initialGoalButtonLabel.setHorizontalAlignment(SwingConstants.CENTER);
         goalButton.setLayout(null);
+        goalButton.add(initialGoalButtonLabel);
         goalButton.setBorder(null);
         backgroundPanel.add(goalButton);
+        this.goalButtonLabel = initialGoalButtonLabel;
 
         // 进入孩子任务页面的Task按钮
         taskButton.setBounds(672, 80, 238, 113);
