@@ -18,8 +18,10 @@ public class UserService {
             if (!userRepository.existsByUsername(username)) {
                 User user;
                 if (isParent) {
+                    // 创建家长用户
                     user = new ParentUser(username, password);
                 } else {
+                    // 创建孩子用户并为其创建 AccountManager
                     user = new ChildUser(username, password);
                     AccountManager accountManager = new AccountManager();  // 创建新的 AccountManager
                     AccountManagerSerializer.serializeAccountManager(accountManager, username);  // 序列化新的 AccountManager
@@ -42,7 +44,7 @@ public class UserService {
             for (User user : userRepository.findAll()) {
                 if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                     if (user instanceof ParentUser) {
-                        return "Parent Page";
+                        return "Parent Page"; // 家长账号登录成功，返回家长页面
                     } else if (user instanceof ChildUser) {
                         try {
                             AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
@@ -51,7 +53,7 @@ public class UserService {
                             e.printStackTrace();
                             return "Failed to load account manager";
                         }
-                        return "Child Page";
+                        return "Child Page"; // 孩子账号登录成功，返回孩子页面
                     }
                 }
             }
