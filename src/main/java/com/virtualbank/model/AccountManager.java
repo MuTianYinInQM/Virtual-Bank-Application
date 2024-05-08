@@ -150,7 +150,6 @@ public class AccountManager implements Serializable {
         return account.getUuid();
     }
 
-    // TODO 这个需要在开始的时候就指明金额的数量
     public UUID addSavingAccount(String accountName, double initialBalance,
                                  double interestRate, double timeLapseCoefficient, Period termPeriod) {
         // 要求先从存钱罐账户里面拿出来 initialBalance 这么多的钱

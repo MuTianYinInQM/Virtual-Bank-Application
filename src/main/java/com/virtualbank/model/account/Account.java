@@ -73,7 +73,6 @@ public abstract class Account implements Serializable {
     }
 
     // Standard methods for deposit and withdrawal
-    // TODO 可能需要加上logger 和setter 或者解耦 让 Account Manager 再封装一层干这个事情
     public void deposit(double amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Deposit amount must be positive");

@@ -4,7 +4,7 @@ import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.ui.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
-import com.virtualbank.parameters.Intrest;
+import com.virtualbank.parameters.Interest;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class AccountTypeChooseController implements Page {
 
                 if (currentAccountButton.isSelected()) {
                     // 直接添加一个空的活期账户 不需要再进一步跳转了
-                    accountManager.addCurrentAccount("no name", Intrest.currentInterest, 24);
+                    accountManager.addCurrentAccount("no name", Interest.currentInterest, 24);
                     uiStack.pop();
 
                 } else if (savingAccountButton.isSelected()) {

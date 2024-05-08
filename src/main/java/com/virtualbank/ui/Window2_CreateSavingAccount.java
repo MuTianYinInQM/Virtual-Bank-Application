@@ -1,9 +1,16 @@
 package com.virtualbank.ui;
 
+import com.virtualbank.model.Pair;
+import com.virtualbank.parameters.Interest;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.time.Period;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Window2_CreateSavingAccount {
+public class Window2_CreateSavingAccount extends JFrame {
 
     private JTextField money_textField; // 金额输入框
     private JComboBox<String> comboBox; // 定期利率期限选项
@@ -23,17 +30,16 @@ public class Window2_CreateSavingAccount {
 
     public Window2_CreateSavingAccount() {
         // 页面 window
-        JFrame window = new JFrame(); // 页面窗口
         final int window_width = 800;
         final int window_height = 504;
-        window.setBounds(0, 0, window_width, window_height);
-        window.setResizable(false);
-        window.setLayout(null);
-        window.setTitle("JoyBank - Creating a New Saving Account");
+        this.setBounds(0, 0, window_width, window_height);
+        this.setResizable(false);
+        this.setLayout(null);
+        this.setTitle("JoyBank - Creating a New Saving Account");
         ImageIcon loginBackgroundImageIcon = new ImageIcon("images/CreateSavingAccount.png"); // 添加背景图
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
-        window.getContentPane().add(backgroundLabel);
+        this.getContentPane().add(backgroundLabel);
 
         // 金额输入框
         money_textField = new JTextField();
@@ -42,9 +48,11 @@ public class Window2_CreateSavingAccount {
         money_textField.setFont(font);
         backgroundLabel.add(money_textField);
 
-        // 选择定期时间和利率的下拉选择框
-        String[] options = {"2%/day for 7 days", "选项2", "选项3", "选项4"};
-        comboBox = new JComboBox<>(options);
+        // 初始化下拉选择框
+        comboBox = new JComboBox<>();
+        for (Pair<Double, Period> option : Interest.savingInterest) {
+            comboBox.addItem(formatOption(option));
+        }
         comboBox.setBounds(380, 190, 200, 50);
         backgroundLabel.add(comboBox);
 
@@ -55,8 +63,8 @@ public class Window2_CreateSavingAccount {
         confirmButton.setIcon(confirmButtonIcon);
         backgroundLabel.add(confirmButton);
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 
     public double getEnteredAmount() {
@@ -68,7 +76,21 @@ public class Window2_CreateSavingAccount {
         }
     }
 
+    private String formatOption(Pair<Double, Period> option) {
+        double rate = option.getKey() * 100; // 将利率转换为百分比形式
+        Period period = option.getValue();
+        long years = period.getYears(); // 获取年份
+        // 格式化字符串，显示利率和总年数
+        return String.format("%.1f%% per year, in total %d years", rate, years);
+    }
 
+    public Pair<Double, Period> getSelectedInterestOption() {
+        int selectedIndex = comboBox.getSelectedIndex();
+        if (selectedIndex >= 0) {
+            return Interest.savingInterest.get(selectedIndex);
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         Window2_CreateSavingAccount window2CreateSavingAccount = new Window2_CreateSavingAccount();
