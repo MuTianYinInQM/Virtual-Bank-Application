@@ -2,6 +2,7 @@ package com.virtualbank.ui;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class Page01_Login extends JFrame {
 
@@ -39,15 +40,18 @@ public class Page01_Login extends JFrame {
         getContentPane().add(backgroundLabel);
 
         // 输入框
+        Border border = BorderFactory.createLineBorder(new Color(0x3d6de1), 2);
         username_textField = new JTextField();
         username_textField.setBounds(450, 220, 360, 50);
         Font font = new Font(username_textField.getFont().getName(), Font.PLAIN, 20); // 创建一个新字体对象，设置大小为20
         username_textField.setFont(font);
+        username_textField.setBorder(border);
         backgroundLabel.add(username_textField);
 
         password_textField = new JPasswordField();
         password_textField.setBounds(450, 300, 360, 50);
         password_textField.setFont(font);
+        password_textField.setBorder(border);
         backgroundLabel.add(password_textField);
 
         // 确认按钮
