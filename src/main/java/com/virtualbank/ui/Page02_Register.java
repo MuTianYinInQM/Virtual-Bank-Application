@@ -10,7 +10,7 @@ public class Page02_Register extends JFrame{
     private JCheckBox childButton = new JCheckBox();
     private JCheckBox parentButton = new JCheckBox();
     private JButton confirmButton = new JButton();
-    private JButton exitButton = new JButton("Exit");
+    private JButton exitButton = new JButton();
 
     public JTextField getUsername_textField() {
         return username_textField;
@@ -51,20 +51,20 @@ public class Page02_Register extends JFrame{
 
         // 输入框
         Border border = BorderFactory.createLineBorder(new Color(0x3d6de1), 2);
-        username_textField.setBounds(480, 290, 350, 50);
+        username_textField.setBounds(676, 245, 420, 50);
         Font font = new Font(username_textField.getFont().getName(), Font.PLAIN, 20); // 创建一个新字体对象，设置大小为20
         username_textField.setFont(font);
         username_textField.setBorder(border);
         backgroundLabel.add(username_textField);
 
-        password_textField.setBounds(480, 370, 350, 50);
+        password_textField.setBounds(676, 390, 420, 50);
         password_textField.setBorder(border);
         password_textField.setFont(font);
         backgroundLabel.add(password_textField);
 
         // 选择父母或孩子的按钮
-        childButton.setBounds(505, 250, 40, 40);
-        parentButton.setBounds(740, 250, 40, 40);
+        childButton.setBounds(92, 280, 40, 40);
+        parentButton.setBounds(92, 450, 40, 40);
         // 创建一个按钮组
         ButtonGroup group = new ButtonGroup();
         group.add(childButton);
@@ -73,15 +73,17 @@ public class Page02_Register extends JFrame{
         backgroundLabel.add(parentButton);
 
         // 确认按钮
-        confirmButton.setBounds(530, 470, 200, 55);
+        confirmButton.setBounds(530, 510, 200, 55);
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         backgroundLabel.add(confirmButton);
 
         // 返回上一级，LoginPage的按钮Exit
-        exitButton.setBounds(20, 20, 100, 50);
+        exitButton.setBounds(20, 20, 114, 50);
         exitButton.setFont(font);
+        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         backgroundLabel.add(exitButton);
 
