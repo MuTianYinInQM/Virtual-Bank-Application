@@ -2,7 +2,7 @@ package com.virtualbank.controller;
 
 import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
-import com.virtualbank.ui.UIStack;
+import com.virtualbank.model.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
 import com.virtualbank.parameters.Interest;
 import com.virtualbank.ui.Window2_CreateSavingAccount;
@@ -42,7 +42,7 @@ public class AccountTypeChooseController implements Page {
                     Window2_CreateSavingAccount window2CreateSavingAccount = new Window2_CreateSavingAccount();
                     CreateSavingAccountController createSavingAccountController =
                             new CreateSavingAccountController(window2CreateSavingAccount, accountManager, uiStack);
-                    uiStack.swapWindows(createSavingAccountController);
+                    uiStack.swapWindow(createSavingAccountController);
                 } else {
                     // 如果没有选择任何账户类型，则不执行任何操作
                     JOptionPane.showMessageDialog(page.getConfirmButton().getTopLevelAncestor(),

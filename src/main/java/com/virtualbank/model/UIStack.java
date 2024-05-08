@@ -1,4 +1,4 @@
-package com.virtualbank.ui;
+package com.virtualbank.model;
 
 import com.virtualbank.interfaces.Page;
 
@@ -25,7 +25,7 @@ public class UIStack {
 
     // 添加一个可见的小窗 不改变底下物体的可见性
     // pop 时候由于下面已经可见 因此就不翻转了
-    public void pushWindows(Page view) {
+    public void pushWindow(Page view) {
         // 需要确保 view是可见的
         // 理论上这个可以删除
         view.setVisibility(true);
@@ -34,7 +34,7 @@ public class UIStack {
 
     // pop出来顶部的那个显示着的
     // 然后push一个
-    public void swapWindows(Page view) {
+    public void swapWindow(Page view) {
         if (!stack.isEmpty()) {
             Page topView = stack.pop();
             topView.dispose();

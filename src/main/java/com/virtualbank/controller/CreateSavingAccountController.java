@@ -4,8 +4,7 @@ import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.Pair;
 import com.virtualbank.parameters.Interest;
-import com.virtualbank.ui.UIStack;
-import com.virtualbank.ui.Window1_ChooseAccountType;
+import com.virtualbank.model.UIStack;
 import com.virtualbank.ui.Window2_CreateSavingAccount;
 
 import javax.swing.*;

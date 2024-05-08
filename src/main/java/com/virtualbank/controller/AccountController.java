@@ -2,10 +2,8 @@ package com.virtualbank.controller;
 
 import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
-import com.virtualbank.parameters.Interest;
 import com.virtualbank.ui.Page07_Account;
-import com.virtualbank.ui.UIStack;
-import com.virtualbank.ui.Window2_CreateSavingAccount;
+import com.virtualbank.model.UIStack;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

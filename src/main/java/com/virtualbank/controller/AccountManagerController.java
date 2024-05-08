@@ -7,7 +7,7 @@ import com.virtualbank.model.account.CurrentAccount;
 import com.virtualbank.model.account.PiggyBank;
 import com.virtualbank.model.account.SavingAccount;
 import com.virtualbank.ui.Page03_ChildHome;
-import com.virtualbank.ui.UIStack;
+import com.virtualbank.model.UIStack;
 import com.virtualbank.ui.Window1_ChooseAccountType;
 import com.virtualbank.ui.Page07_Account;
 
@@ -46,7 +46,7 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                     Window1_ChooseAccountType chooseAccountTypeWindow = new Window1_ChooseAccountType();
                     AccountTypeChooseController accountTypeChooseController =
                             new AccountTypeChooseController(chooseAccountTypeWindow, accountManager, this.uiStack);
-                    uiStack.pushWindows(accountTypeChooseController);
+                    uiStack.pushWindow(accountTypeChooseController);
                 }
         );
 
@@ -112,7 +112,7 @@ public class AccountManagerController implements PropertyChangeListener, Page {
     private void openAccountDetails(Account account) {
         Page07_Account page07Account = new Page07_Account(account);
         AccountController accountController = new AccountController(page07Account, accountManager, uiStack);
-        uiStack.pushWindows(accountController);
+        uiStack.pushWindow(accountController);
     }
 
     @Override
