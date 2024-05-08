@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class Page03_ChildHome extends JFrame {
 
-    private JButton exitButton = new JButton("Exit");
+    private JButton exitButton = new JButton();
     private JButton goalButton = new JButton();
     private JButton taskButton = new JButton();
     private JButton createAccountButton = new JButton();
@@ -55,39 +55,29 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.add(sticker);
 
         // 返回上一级，LoginPage的按钮Exit
-        exitButton.setBounds(20, 20, 100, 50);
-        Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
-        exitButton.setFont(font);
+        exitButton.setBounds(20, 20, 134, 50);
+        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 进入孩子目标页面的Goal按钮
-        goalButton.setBounds(371, 80, 220, 109);
+        goalButton.setBounds(371, 80, 238, 113);
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
-        // 目标及其完成进度
-        // TODO 现在这部分还不能变化 目标不归我管 怎么处理
-        Double currentAmount = 2544.00; // 当前进度
-        Double goal = 500.00; // 目标
-        String goalText = String.format("%.2f/%.2f", currentAmount, goal);
-        JLabel initialGoalButtonLabel = new JLabel(goalText);
-        initialGoalButtonLabel.setBounds(42, 20, 220, 109);
-        initialGoalButtonLabel.setHorizontalAlignment(SwingConstants.CENTER);
         goalButton.setLayout(null);
-        goalButton.add(initialGoalButtonLabel);
         goalButton.setBorder(null);
         backgroundPanel.add(goalButton);
-        this.goalButtonLabel = initialGoalButtonLabel;
 
         // 进入孩子任务页面的Task按钮
-        taskButton.setBounds(672, 80, 220, 110);
+        taskButton.setBounds(672, 80, 238, 113);
         ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
         taskButton.setIcon(taskButtonIcon);
         taskButton.setBorder(null);
         backgroundPanel.add(taskButton);
 
         // 创建新账户的按钮
-        createAccountButton.setBounds(369, 200, 523, 64);
+        createAccountButton.setBounds(369, 200, 525, 100);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
         createAccountButton.setIcon(createAccountButtonIcon);
         createAccountButton.setBorder(null);
@@ -96,7 +86,7 @@ public class Page03_ChildHome extends JFrame {
         // 创建带滚动条的区域
         JPanel initialScrollPanel = new JPanel();
         initialScrollPanel.setLayout(new BoxLayout(initialScrollPanel, BoxLayout.Y_AXIS));
-        initialScrollPanel.setBackground(new Color(0xf8f6ea));
+        initialScrollPanel.setBackground(new Color(0xfcfcf7));
         JScrollPane scrollPane = new JScrollPane(initialScrollPanel);
         scrollPane.setBounds(369, 280, 550, 400); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
@@ -157,7 +147,7 @@ public class Page03_ChildHome extends JFrame {
         }
 
         public AccountLabel(String ID, Double money, String type) {
-            this.setSize(523, 106);
+            this.setSize(523, 117);
             Font font = new Font(this.getFont().getName(), Font.PLAIN, 22);
             // 账户ID
             JLabel idLabel = new JLabel("ID:" + ID);
@@ -179,12 +169,23 @@ public class Page03_ChildHome extends JFrame {
             this.add(typeLabel);
             // 进入账户的按钮 Enter
             // TODO 这个应该怎么回调？
-            enterButton = new JButton("Enter");
-            enterButton.setBounds(425, 55, 80, 40);
+            enterButton = new JButton();
+            enterButton.setBounds(415, 40, 95, 60);
+            ImageIcon enterButtonIcon = new ImageIcon("images/EnterButtonImage.png");
+            enterButton.setIcon(enterButtonIcon);
             enterButton.setBorder(null);
             this.add(enterButton);
         }
     }
 
-
+    public static void main(String[] args) {
+        Page03_ChildHome page03ChildHome = new Page03_ChildHome();
+        SavingAccountLabel savingAccountLabel = new SavingAccountLabel("001",12.5);
+        CurrentAccountLabel currentAccountLabel = new CurrentAccountLabel("002", 12.9);
+        PiggyBankLabel piggyBankLabel = new PiggyBankLabel("000",533.33);
+        page03ChildHome.scrollPanel.add(savingAccountLabel);
+        page03ChildHome.scrollPanel.add(currentAccountLabel);
+        page03ChildHome.scrollPanel.add(piggyBankLabel);
+        page03ChildHome.repaint();
+    }
 }
