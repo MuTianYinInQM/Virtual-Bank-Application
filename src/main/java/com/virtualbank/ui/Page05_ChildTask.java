@@ -42,6 +42,8 @@ public class Page05_ChildTask extends JFrame{
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
+        exitButton.setContentAreaFilled(false); // 不填充内容区
+        exitButton.setBorderPainted(false);
         backgroundPanel.add(exitButton);
 
         // 创建带滚动条的区域
@@ -135,6 +137,8 @@ public class Page05_ChildTask extends JFrame{
             ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
             giveUpButton.setIcon(giveupButtonImage);
             giveUpButton.setBorder(null);
+            giveUpButton.setContentAreaFilled(false); // 不填充内容区
+            giveUpButton.setBorderPainted(false);
             this.add(giveUpButton);
 
             acceptButton = new JButton();
@@ -143,6 +147,8 @@ public class Page05_ChildTask extends JFrame{
             acceptButton.setIcon(acceptButtonImage);
             acceptButton.setOpaque(false);
             acceptButton.setBorder(null);
+            acceptButton.setContentAreaFilled(false); // 不填充内容区
+            acceptButton.setBorderPainted(false);
             this.add(acceptButton);
         }
     }
@@ -166,6 +172,8 @@ public class Page05_ChildTask extends JFrame{
             ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
             giveUPButton.setIcon(giveupButtonImage);
             giveUPButton.setBorder(null);
+            giveUPButton.setContentAreaFilled(false); // 不填充内容区
+            giveUPButton.setBorderPainted(false);
             this.add(giveUPButton);
 
             submitButton = new JButton();
@@ -173,6 +181,8 @@ public class Page05_ChildTask extends JFrame{
             ImageIcon submitButtonImage = new ImageIcon("images/SubmitButtonImage.png");
             submitButton.setIcon(submitButtonImage);
             submitButton.setBorder(null);
+            submitButton.setContentAreaFilled(false); // 不填充内容区
+            submitButton.setBorderPainted(false);
             this.add(submitButton);
         }
     }

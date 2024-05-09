@@ -78,6 +78,8 @@ public class TaskLabel extends JLabel {
         ImageIcon deleteButtonImage = new ImageIcon("images/DeleteButtonImage.png");
         deleteButton.setIcon(deleteButtonImage);
         deleteButton.setBorder(null);
+        deleteButton .setContentAreaFilled(false); // 不填充内容区
+        deleteButton.setBorderPainted(false);
         this.add(deleteButton);
     }
 
