@@ -65,6 +65,8 @@ public class Window2_CreateSavingAccount extends JFrame {
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
+        confirmButton.setBorderPainted(false);
         backgroundLabel.add(confirmButton);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
