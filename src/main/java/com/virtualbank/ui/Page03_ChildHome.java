@@ -62,7 +62,7 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.add(exitButton);
 
         // 进入孩子目标页面的Goal按钮
-        goalButton.setBounds(40, 150, 238, 113);
+        goalButton.setBounds(34, 150, 238, 113);
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
 
@@ -81,7 +81,7 @@ public class Page03_ChildHome extends JFrame {
         this.goalButtonLabel = initialGoalButtonLabel;
 
         // 进入孩子任务页面的Task按钮
-        taskButton.setBounds(306, 150, 238, 113);
+        taskButton.setBounds(320, 150, 238, 113);
         ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
         taskButton.setIcon(taskButtonIcon);
         taskButton.setBorder(null);
