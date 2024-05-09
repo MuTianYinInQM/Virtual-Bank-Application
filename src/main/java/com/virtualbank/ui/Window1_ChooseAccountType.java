@@ -37,6 +37,10 @@ public class Window1_ChooseAccountType extends JFrame {
         // 设置复选框和按钮
         currentAccountButton.setBounds(175, 340, 60, 60);
         savingAccountButton.setBounds(560, 340, 60, 60);
+        currentAccountButton.setContentAreaFilled(false);
+        currentAccountButton.setBorderPainted(false);
+        savingAccountButton.setContentAreaFilled(false);
+        savingAccountButton.setBorderPainted(false);
         ButtonGroup group = new ButtonGroup();
         group.add(currentAccountButton);
         group.add(savingAccountButton);
@@ -47,6 +51,8 @@ public class Window1_ChooseAccountType extends JFrame {
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
+        confirmButton.setBorderPainted(false);
         backgroundLabel.add(confirmButton);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,5 +60,6 @@ public class Window1_ChooseAccountType extends JFrame {
 
     public static void main(String[] args) {
         Window1_ChooseAccountType chooseAccountTypeWindow = new Window1_ChooseAccountType();
+        chooseAccountTypeWindow.setVisible(true);
     }
 }
