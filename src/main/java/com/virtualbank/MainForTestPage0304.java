@@ -23,7 +23,7 @@ public class MainForTestPage0304 {
 //        import com.virtualbank.service.TaskService;
 //        import com.virtualbank.ui.Page05_ChildTask;
 //
-//public class Main {
+//public class MainForTestPage0304 {
 //    public static void main(String[] args) {
 //        Page05_ChildTask childTaskUI = new Page05_ChildTask();
 //        TaskService taskService = new TaskService();  // 确保 TaskService 正确初始化，可能需要数据库或任务存储的配置

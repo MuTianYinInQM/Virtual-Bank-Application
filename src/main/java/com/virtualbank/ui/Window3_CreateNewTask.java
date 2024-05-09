@@ -65,7 +65,7 @@ public class Window3_CreateNewTask extends JFrame {
 
         // 任务名称/标题输入框
         taskName_textField = new JTextField();
-        taskName_textField.setBounds(380, 120, 200, 50);
+        taskName_textField.setBounds(330, 108, 200, 45);
         Font font = new Font(taskName_textField.getFont().getName(), Font.PLAIN, 20);
         taskName_textField.setFont(font);
         taskName_textField.setBorder(border);
@@ -73,35 +73,35 @@ public class Window3_CreateNewTask extends JFrame {
 
         // 任务内容输入框
         content_textField = new JTextField();
-        content_textField.setBounds(380, 180, 200, 50);
+        content_textField.setBounds(330, 168, 330, 45);
         content_textField.setFont(font);
         content_textField.setBorder(border);
         backgroundLabel.add(content_textField);
 
         // 金额输入框
         money_textField = new JTextField();
-        money_textField.setBounds(380, 240, 200, 50);
+        money_textField.setBounds(330, 235, 200, 45);
         money_textField.setFont(font);
         money_textField.setBorder(border);
         backgroundLabel.add(money_textField);
 
         // 任务对象/小孩输入框
         childName_textField = new JTextField();
-        childName_textField.setBounds(380, 305, 200, 50);
+        childName_textField.setBounds(330, 295, 200, 45);
         childName_textField.setFont(font);
         childName_textField.setBorder(border);
         backgroundLabel.add(childName_textField);
 
          // 开始时间输入框
         start_textField = new JTextField();
-        start_textField.setBounds(380, 367, 200, 50);
+        start_textField.setBounds(330, 352, 200, 45);
         start_textField.setFont(font);
         start_textField.setBorder(border);
         backgroundLabel.add(start_textField);
 
         // 结束时间输入框
         due_textField = new JTextField();
-        due_textField.setBounds(380, 430, 200, 50);
+        due_textField.setBounds(330, 412, 200, 45);
         due_textField.setFont(font);
         due_textField.setBorder(border);
         backgroundLabel.add(due_textField);
