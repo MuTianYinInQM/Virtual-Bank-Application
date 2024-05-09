@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Page04_ParentHome extends JFrame {
 
-    private JButton exitButton = new JButton("Exit");
+    private JButton exitButton = new JButton();
     private JButton createTaskButton = new JButton();
     private JPanel backgroundPanel; // 声明 backgroundPanel 字段
     private JScrollPane scrollPane; 
@@ -31,21 +31,26 @@ public class Page04_ParentHome extends JFrame {
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Parent Home Page");
+//        ImageIcon background = new ImageIcon("images/ParentHomePage.png");
+//        JLabel backgroundLabel = new JLabel(background);
+//        backgroundLabel.setBounds(0, 0, window_width, window_height);
         backgroundPanel = new JPanel(); // 初始化 backgroundPanel
-        backgroundPanel.setBackground(new Color(0xf8f6ea));
+//        backgroundPanel.add(backgroundLabel);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
         add(backgroundPanel);
 
         // 返回上一级，LoginPage的按钮Exit
-        exitButton.setBounds(20, 20, 100, 50);
+        exitButton.setBounds(20, 20, 134, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
+        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 创建新任务的按钮
-        createTaskButton.setBounds(369, 102, 516, 64);
+        createTaskButton.setBounds(30, 135, 516, 98);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
         createTaskButton.setBorder(null);
@@ -54,9 +59,9 @@ public class Page04_ParentHome extends JFrame {
         // 创建带滚动条的区域
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-        scrollPanel.setBackground(new Color(0xf8f6ea));
+        scrollPanel.setBackground(new Color(0xfcfcf7));
         scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setBounds(369, 190, 550, 400); // 调整位置和大小
+        scrollPane.setBounds(660, 190, 550, 540); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -111,6 +116,10 @@ public class Page04_ParentHome extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ImageIcon background = new ImageIcon("images/ParentHomePage.png");
+        JLabel backgroundLabel = new JLabel(background);
+        backgroundLabel.setBounds(0, 0, 1260, 780);
+        backgroundPanel.add(backgroundLabel);
     }
 
     public JScrollPane getScrollPane() {
