@@ -44,11 +44,15 @@ public class Page03_ChildHome extends JFrame {
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Child Home Page");
-        JPanel backgroundPanel = new JPanel();
-        backgroundPanel.setBackground(new Color(0xf8f6ea));
-        backgroundPanel.setLayout(null);
+        ImageIcon background = new ImageIcon("images/ChildHomePage.png");
+        JLabel backgroundPanel = new JLabel(background);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
-        add(backgroundPanel);
+        getContentPane().add(backgroundPanel);
+//        JPanel backgroundPanel = new JPanel();
+//        backgroundPanel.setBackground(new Color(0xf8f6ea));
+//        backgroundPanel.setLayout(null);
+//        backgroundPanel.setBounds(0, 0, window_width, window_height);
+//        add(backgroundPanel);
 
         // 返回上一级，LoginPage的按钮Exit
         exitButton.setBounds(20, 20, 134, 50);
@@ -58,7 +62,7 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.add(exitButton);
 
         // 进入孩子目标页面的Goal按钮
-        goalButton.setBounds(371, 80, 238, 113);
+        goalButton.setBounds(40, 150, 238, 113);
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
 
@@ -77,14 +81,14 @@ public class Page03_ChildHome extends JFrame {
         this.goalButtonLabel = initialGoalButtonLabel;
 
         // 进入孩子任务页面的Task按钮
-        taskButton.setBounds(672, 80, 238, 113);
+        taskButton.setBounds(306, 150, 238, 113);
         ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
         taskButton.setIcon(taskButtonIcon);
         taskButton.setBorder(null);
         backgroundPanel.add(taskButton);
 
         // 创建新账户的按钮
-        createAccountButton.setBounds(369, 200, 525, 100);
+        createAccountButton.setBounds(34, 300, 525, 100);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
         createAccountButton.setIcon(createAccountButtonIcon);
         createAccountButton.setBorder(null);
@@ -95,7 +99,7 @@ public class Page03_ChildHome extends JFrame {
         initialScrollPanel.setLayout(new BoxLayout(initialScrollPanel, BoxLayout.Y_AXIS));
         initialScrollPanel.setBackground(new Color(0xfcfcf7));
         JScrollPane scrollPane = new JScrollPane(initialScrollPanel);
-        scrollPane.setBounds(369, 280, 550, 400); // 调整位置和大小
+        scrollPane.setBounds(655, 230, 550, 480); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -190,9 +194,12 @@ public class Page03_ChildHome extends JFrame {
         SavingAccountLabel savingAccountLabel = new SavingAccountLabel("001",12.5);
         CurrentAccountLabel currentAccountLabel = new CurrentAccountLabel("002", 12.9);
         PiggyBankLabel piggyBankLabel = new PiggyBankLabel("000",533.33);
+        SavingAccountLabel savingAccountLabel1 = new SavingAccountLabel("009",1.0);
         page03ChildHome.scrollPanel.add(savingAccountLabel);
         page03ChildHome.scrollPanel.add(currentAccountLabel);
         page03ChildHome.scrollPanel.add(piggyBankLabel);
+        page03ChildHome.scrollPanel.add(savingAccountLabel1);
+        page03ChildHome.scrollPanel.add(new CurrentAccountLabel("008", 121.9));
         page03ChildHome.repaint();
     }
 }
