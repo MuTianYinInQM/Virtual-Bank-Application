@@ -47,12 +47,12 @@ public class Window1_ChooseAccountType extends JFrame {
         backgroundLabel.add(currentAccountButton);
         backgroundLabel.add(savingAccountButton);
 
-        confirmButton.setBounds(280, 400, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
+        confirmButton.setBounds(320, 400, 140, 55);
+        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
-        confirmButton.setBorderPainted(false);
+//        confirmButton.setBorderPainted(false);
         backgroundLabel.add(confirmButton);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

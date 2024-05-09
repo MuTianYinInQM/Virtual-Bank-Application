@@ -62,7 +62,7 @@ public class Window2_CreateSavingAccount extends JFrame {
         // 确认按钮
         confirmButton = new JButton();
         confirmButton.setBounds(290, 410, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
+        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
