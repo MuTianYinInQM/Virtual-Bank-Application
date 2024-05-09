@@ -1,11 +1,9 @@
 package com.virtualbank.ui;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import com.virtualbank.DataUpdateListener;
+import com.virtualbank.interfaces.DataUpdateListener;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
 import com.virtualbank.repository.SavingGoalRepository;

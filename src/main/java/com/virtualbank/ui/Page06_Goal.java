@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.virtualbank.DataUpdateListener;
+import com.virtualbank.interfaces.DataUpdateListener;
 import com.virtualbank.controller.SavingGoalController;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
