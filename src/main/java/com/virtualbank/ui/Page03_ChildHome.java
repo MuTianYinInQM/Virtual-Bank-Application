@@ -50,10 +50,6 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.setBounds(0, 0, window_width, window_height);
         add(backgroundPanel);
 
-        JLabel sticker = new JLabel(new ImageIcon("images/StickerForAccount.png"));
-        sticker.setBounds(1060, 550, 200, 200);
-        backgroundPanel.add(sticker);
-
         // 返回上一级，LoginPage的按钮Exit
         exitButton.setBounds(20, 20, 134, 50);
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
