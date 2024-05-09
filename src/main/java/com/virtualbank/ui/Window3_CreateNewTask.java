@@ -112,6 +112,8 @@ public class Window3_CreateNewTask extends JFrame {
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
+        confirmButton.setBorderPainted(false);
         backgroundLabel.add(confirmButton);
 
         addWindowListener(new WindowAdapter() {
