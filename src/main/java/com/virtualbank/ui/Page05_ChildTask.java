@@ -42,8 +42,7 @@ public class Page05_ChildTask extends JFrame{
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
-        exitButton.setContentAreaFilled(false); // 不填充内容区
-        exitButton.setBorderPainted(false);
+        exitButton.setContentAreaFilled(false);
         backgroundPanel.add(exitButton);
 
         // 创建带滚动条的区域
