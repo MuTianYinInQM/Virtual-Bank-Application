@@ -136,8 +136,10 @@ public class Page04_ParentHome extends JFrame {
 
         public Parent_NotAcceptedTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
-            terminateButton = new JButton("Terminate");
-            terminateButton.setBounds(300, 90, 100, 40);
+            terminateButton = new JButton();
+            terminateButton.setBounds(290, 90, 100, 40);
+            ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
+            terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
             this.add(terminateButton);
         }

@@ -21,7 +21,8 @@ public class TaskLabel extends JLabel {
         this.taskId = taskId;
         Font font = new Font("Arial", Font.PLAIN, 16);
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(523, 133)); // 设置标签的首选大小
+        this.setBorder(null);
+        this.setPreferredSize(new Dimension(523, 138)); // 设置标签的首选大小
 
         // 设置任务名
         JLabel nameLabel = new JLabel(taskName);
@@ -72,8 +73,10 @@ public class TaskLabel extends JLabel {
         this.add(childLabel);
 
         // 删除按钮
-        deleteButton = new JButton("Delete");
-        deleteButton.setBounds(400, 90, 105, 40);
+        deleteButton = new JButton();
+        deleteButton.setBounds(390, 90, 120, 40);
+        ImageIcon deleteButtonImage = new ImageIcon("images/DeleteButtonImage.png");
+        deleteButton.setIcon(deleteButtonImage);
         deleteButton.setBorder(null);
         this.add(deleteButton);
     }
