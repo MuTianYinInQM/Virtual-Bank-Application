@@ -141,6 +141,9 @@ public class Page04_ParentHome extends JFrame {
             ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
             terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
+            terminateButton.setContentAreaFilled(false); // 不填充内容区
+            terminateButton.setBorderPainted(false); // 不绘制边框
+            terminateButton.setBackground(new Color(0, 0, 0, 0)); // 设置背景颜色为透明
             this.add(terminateButton);
         }
     }
