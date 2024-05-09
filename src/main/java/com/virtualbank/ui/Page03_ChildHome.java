@@ -55,10 +55,12 @@ public class Page03_ChildHome extends JFrame {
 //        add(backgroundPanel);
 
         // 返回上一级，LoginPage的按钮Exit
-        exitButton.setBounds(20, 20, 134, 50);
+        exitButton.setBounds(22, 28, 134, 50);
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
+        exitButton.setContentAreaFilled(false);
+        exitButton.setBorderPainted(false);
         backgroundPanel.add(exitButton);
 
         // 进入孩子目标页面的Goal按钮
@@ -184,6 +186,8 @@ public class Page03_ChildHome extends JFrame {
             enterButton.setBounds(415, 40, 95, 60);
             ImageIcon enterButtonIcon = new ImageIcon("images/EnterButtonImage.png");
             enterButton.setIcon(enterButtonIcon);
+            enterButton.setContentAreaFilled(false);
+            enterButton.setBorderPainted(false);
             enterButton.setBorder(null);
             this.add(enterButton);
         }
