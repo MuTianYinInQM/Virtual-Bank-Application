@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Page05_ChildTask extends JFrame{
 
-    private JButton exitButton = new JButton("Exit");
+    private JButton exitButton = new JButton();
     private JPanel backgroundPanel; // 声明 backgroundPanel 字段
     private JScrollPane scrollPane; // 定义成员变量
     public JButton getExitButton() {
@@ -36,19 +36,21 @@ public class Page05_ChildTask extends JFrame{
 
 
         // 返回上一级，ChildHome Page的按钮Exit
-        exitButton.setBounds(20, 20, 100, 50);
+        exitButton.setBounds(20, 20, 134, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
+        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         backgroundPanel.add(exitButton);
 
         // 创建带滚动条的区域
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
-        scrollPanel.setBackground(new Color(0xf8f6ea));
+        scrollPanel.setBackground(new Color(0xfcfcf7));
 
         scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setBounds(369, 200, 550, 400); // 调整位置和大小
+        scrollPane.setBounds(670, 200, 550, 520); // 调整位置和大小
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -104,6 +106,10 @@ public class Page05_ChildTask extends JFrame{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ImageIcon background = new ImageIcon("images/ChildTaskPage.png");
+        JLabel backgroundLabel = new JLabel(background);
+        backgroundLabel.setBounds(0, 0, 1260, 780);
+        backgroundPanel.add(backgroundLabel);
     }
 
     public JScrollPane getScrollPane() {
@@ -124,12 +130,18 @@ public class Page05_ChildTask extends JFrame{
 
         public Child_NotAcceptedTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
-            giveUpButton = new JButton("Give Up");
-            giveUpButton.setBounds(315, 90, 100, 40);
+            giveUpButton = new JButton();
+            giveUpButton.setBounds(290, 90, 110, 40);
+            ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
+            giveUpButton.setIcon(giveupButtonImage);
             giveUpButton.setBorder(null);
             this.add(giveUpButton);
-            acceptButton = new JButton("Accept");
-            acceptButton.setBounds(215, 90, 80, 40);
+
+            acceptButton = new JButton();
+            acceptButton.setBounds(185, 90, 110, 40);
+            ImageIcon acceptButtonImage = new ImageIcon("images/AcceptButtonImage.png");
+            acceptButton.setIcon(acceptButtonImage);
+            acceptButton.setOpaque(false);
             acceptButton.setBorder(null);
             this.add(acceptButton);
         }
@@ -149,12 +161,17 @@ public class Page05_ChildTask extends JFrame{
 
         public Child_OngoingTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
-            giveUPButton = new JButton("Give Up");
-            giveUPButton.setBounds(315, 90, 100, 40);
+            giveUPButton = new JButton();
+            giveUPButton.setBounds(290, 90, 110, 40);
+            ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
+            giveUPButton.setIcon(giveupButtonImage);
             giveUPButton.setBorder(null);
             this.add(giveUPButton);
-            submitButton = new JButton("Submit");
-            submitButton.setBounds(215, 90, 80, 40);
+
+            submitButton = new JButton();
+            submitButton.setBounds(185, 90, 110, 40);
+            ImageIcon submitButtonImage = new ImageIcon("images/SubmitButtonImage.png");
+            submitButton.setIcon(submitButtonImage);
             submitButton.setBorder(null);
             this.add(submitButton);
         }
