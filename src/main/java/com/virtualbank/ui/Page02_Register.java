@@ -65,6 +65,10 @@ public class Page02_Register extends JFrame{
         // 选择父母或孩子的按钮
         childButton.setBounds(92, 280, 40, 40);
         parentButton.setBounds(92, 450, 40, 40);
+        childButton.setContentAreaFilled(false);
+        childButton.setBorderPainted(false);
+        parentButton.setContentAreaFilled(false);
+        parentButton.setBorderPainted(false);
         // 创建一个按钮组
         ButtonGroup group = new ButtonGroup();
         group.add(childButton);
@@ -77,6 +81,8 @@ public class Page02_Register extends JFrame{
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
+        confirmButton.setBorderPainted(false);
         backgroundLabel.add(confirmButton);
 
         // 返回上一级，LoginPage的按钮Exit
@@ -85,6 +91,8 @@ public class Page02_Register extends JFrame{
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
+        exitButton.setContentAreaFilled(false);
+        exitButton.setBorderPainted(false);
         backgroundLabel.add(exitButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
