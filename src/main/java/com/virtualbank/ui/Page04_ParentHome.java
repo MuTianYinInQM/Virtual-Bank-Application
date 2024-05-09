@@ -48,7 +48,7 @@ public class Page04_ParentHome extends JFrame {
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         exitButton.setContentAreaFilled(false);
-        exitButton.setBorderPainted(false);
+//        exitButton.setBorderPainted(false);
         backgroundPanel.add(exitButton);
 
         // 创建新任务的按钮
