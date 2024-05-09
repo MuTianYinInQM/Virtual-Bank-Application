@@ -72,6 +72,7 @@ public class Page01_Login extends JFrame {
         ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
         backgroundLabel.add(confirmButton);
 
         // 注册按钮
@@ -80,6 +81,8 @@ public class Page01_Login extends JFrame {
         ImageIcon registerButtonIcon = new ImageIcon("images/RegisterButton.png");
         registerButton.setIcon(registerButtonIcon);
         registerButton.setBorder(null);
+        registerButton.setContentAreaFilled(false);
+        registerButton.setBorderPainted(false);
         backgroundLabel.add(registerButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
