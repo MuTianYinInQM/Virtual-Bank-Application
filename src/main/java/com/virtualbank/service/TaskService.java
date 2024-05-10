@@ -101,7 +101,7 @@ public class TaskService {
     }
 
     // 儿童用户提交任务
-    public void submitTask(String taskId) {
+    public Task submitTask(String taskId) {
         Task task = getTaskById(taskId);
         if ("ongoing".equals(task.getStatus())) {
             task.setStatus("finished");
@@ -109,6 +109,7 @@ public class TaskService {
         } else {
             throw new IllegalStateException("Task can only be submitted if it is in 'ongoing' status.");
         }
+        return task;
     }
 
     // 儿童用户放弃任务

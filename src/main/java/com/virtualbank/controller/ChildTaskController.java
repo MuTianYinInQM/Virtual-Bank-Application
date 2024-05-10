@@ -1,5 +1,6 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.Task;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.ui.Page05_ChildTask;
@@ -10,15 +11,18 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ChildTaskController {
     private TaskService taskService;
     private Page05_ChildTask childTaskUI;
     private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // 映射TaskLabel到任务ID
+    private AccountManager accountManager;
 
-    public ChildTaskController(TaskService taskService, Page05_ChildTask childTaskUI) {
+    public ChildTaskController(TaskService taskService, Page05_ChildTask childTaskUI, AccountManager accountManager) {
         this.taskService = taskService;
         this.childTaskUI = childTaskUI;
+        this.accountManager = accountManager;
         initializeTaskMap(); // 在构造函数中初始化映射
         attachEventHandlers();
     }
@@ -57,8 +61,9 @@ public class ChildTaskController {
 
     private void submitTask(String taskId) {
         try {
-            taskService.submitTask(taskId);
+            Task task = taskService.submitTask(taskId);
             JOptionPane.showMessageDialog(childTaskUI, "Task submitted successfully.");
+            accountManager.prize(accountManager.getPiggyUuid(), task.getReward(), "Task prize for " + task.getTaskName());
             refreshTasks();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(childTaskUI, "Failed to submit task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
