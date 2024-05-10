@@ -107,7 +107,7 @@ public class Page04_ParentHome extends JFrame {
                     Parent_NotAcceptedTaskLabel notAcceptedTaskLabel = new Parent_NotAcceptedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(notAcceptedTaskLabel);
                 } else if ("finished".equals(task.getStatus())) {
-                    TaskLabel.FinishedTaskLabel finishedTaskLabel = new TaskLabel.FinishedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
+                    TaskLabel.FinishedTaskLabel finishedTaskLabel = new Parent_FinishedTaskLabel(task.getId(), task.getTaskName(), task.getDescription(),task.getReward(), task.getChildName(), task.getStartDate(), task.getEndDate());
                     scrollPanel.add(finishedTaskLabel);
                 }
                 scrollPanel.add(Box.createVerticalStrut(10));
@@ -126,6 +126,26 @@ public class Page04_ParentHome extends JFrame {
 
     public JScrollPane getScrollPane() {
         return scrollPane;
+    }
+
+    public class Parent_FinishedTaskLabel extends TaskLabel.FinishedTaskLabel {
+
+        private JButton confirmButton;
+
+        public JButton getConfirmButton() { return confirmButton; }
+
+        public Parent_FinishedTaskLabel(String id, String taskName, String description, double reward, String childName, String startDate, String dueDate) {
+            super(id, taskName, description, reward, childName, startDate, dueDate);
+            confirmButton = new JButton();
+            confirmButton.setBounds(290, 90, 100, 40);
+            ImageIcon confirmButtonImage = new ImageIcon("images/confirm3.png");
+            confirmButton.setIcon(confirmButtonImage);
+            confirmButton.setBorder(null);
+            confirmButton.setContentAreaFilled(false);
+            confirmButton.setBorderPainted(false);
+            this.add(confirmButton);
+
+        }
     }
 
     public class Parent_NotAcceptedTaskLabel extends TaskLabel.NotAcceptedTaskLabel {

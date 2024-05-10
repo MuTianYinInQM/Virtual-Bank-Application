@@ -133,5 +133,15 @@ public class TaskService {
             throw new IllegalStateException("Task can only be terminated if it is in 'ongoing' or 'not_accepted' status.");
         }
     }
+
+    public void confirmTask(String taskId){
+        Task task = getTaskById(taskId);
+        if ("finished".equals(task.getStatus())) {
+            task.setStatus("Confirmed");
+            taskRepository.update(task);
+        } else {
+            throw new IllegalStateException("Task can only be confirmed if it is in 'finished' status.");
+        }
+    }
 }
 

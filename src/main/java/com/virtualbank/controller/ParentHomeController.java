@@ -52,6 +52,10 @@ public class ParentHomeController {
                 Page04_ParentHome.Parent_NotAcceptedTaskLabel notAcceptedLabel = (Page04_ParentHome.Parent_NotAcceptedTaskLabel) comp;
                 notAcceptedLabel.getTerminateButton().addActionListener(e -> terminateTask(taskId));
             }
+            if (comp instanceof Page04_ParentHome.Parent_FinishedTaskLabel) {
+                Page04_ParentHome.Parent_FinishedTaskLabel finishedTaskLabel = (Page04_ParentHome.Parent_FinishedTaskLabel) comp;
+                finishedTaskLabel.getConfirmButton().addActionListener(e -> confirmTask(taskId));
+            }
         });
 
         parentHomeUI.getCreateTaskButton().addActionListener(new ActionListener() {
@@ -83,6 +87,16 @@ public class ParentHomeController {
             refreshTasks();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(parentHomeUI, "Failed to terminate task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void confirmTask(String taskId){
+        try {
+            taskService.confirmTask(taskId);
+            JOptionPane.showMessageDialog(parentHomeUI, "Task confirmed successfully.");
+            refreshTasks();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(parentHomeUI, "Failed to confirm task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -139,44 +153,14 @@ public class ParentHomeController {
                     notAcceptedLabel.getTerminateButton().removeActionListener(listener);
                 }
             }
+
+            if (comp instanceof Page04_ParentHome.Parent_FinishedTaskLabel) {
+                Page04_ParentHome.Parent_FinishedTaskLabel finishedTaskLabel = (Page04_ParentHome.Parent_FinishedTaskLabel) comp;
+                ActionListener[] confirmListeners = finishedTaskLabel.getConfirmButton().getActionListeners();
+                for (ActionListener listener : confirmListeners) {
+                    finishedTaskLabel.getConfirmButton().removeActionListener(listener);
+                }
+            }
         }
     }
 }
-//package com.virtualbank.controller;
-//
-//import com.virtualbank.service.TaskService;
-//import com.virtualbank.ui.Page04_ParentHome;
-//import com.virtualbank.ui.Window3_CreateNewTask;
-//
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//public class ParentHomeController {
-//    private Page04_ParentHome parentHomeUI;
-//    private Window3_CreateNewTask createTaskWindow;
-//    private CreateTaskController createTaskController; // 持久化控制器
-//    private TaskService taskService = new TaskService();
-//
-//    public ParentHomeController(Page04_ParentHome parentHomeUI) {
-//        this.parentHomeUI = parentHomeUI;
-//        attachEventHandlers();
-//    }
-//
-//    private void attachEventHandlers() {
-//        parentHomeUI.getCreateTaskButton().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                showCreateTaskWindow();
-//            }
-//        });
-//    }
-//
-//    private void showCreateTaskWindow() {
-//        if (createTaskWindow == null) {
-//            createTaskWindow = new Window3_CreateNewTask();
-//            createTaskController = new CreateTaskController(taskService, createTaskWindow);
-//        }
-//        createTaskWindow.setVisible(true);
-//        parentHomeUI.setVisible(false);
-//    }
-//}
