@@ -18,7 +18,7 @@ public class Window07_Transfer {
 	private JTextField sumField;
 	private JButton okButton;
 	
-	public Window07_Transfer() {
+	public Window07_Transfer(){
 		super();
 		this.window = new JFrame();
 		this.transferLabel = new JLabel();

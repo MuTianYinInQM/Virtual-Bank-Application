@@ -11,6 +11,8 @@ public class Page07_Account extends JFrame {
     private JButton exitButton;
     private JButton deleteButton;
 
+
+
     public Page07_Account(Account account) {
         this.currentAccount = account;
         initializeUI(account);
