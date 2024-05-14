@@ -10,7 +10,10 @@ public class Page07_Account extends JFrame {
     private Account currentAccount;
     private JButton exitButton;
     private JButton deleteButton;
-
+    private JButton consumeButton;
+    private JButton transferButton;
+    private JButton saveButton;
+    private JButton historyButton;
 
 
     public Page07_Account(Account account) {

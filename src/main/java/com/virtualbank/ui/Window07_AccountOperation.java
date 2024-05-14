@@ -1,8 +1,10 @@
 package com.virtualbank.ui;
 
 import com.virtualbank.model.AccountOperationType;
+import com.virtualbank.model.account.Account;
 
 import java.awt.Font;
+import java.util.UUID;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,13 +17,25 @@ public class Window07_AccountOperation extends JFrame {
     private JTextField amountBox;
     private JTextField descriptionBox;
     private JButton confirmButton;
+    private AccountOperationType operationType;
+
+    private Account account;
 
     public JButton getConfirmButton() {
         return confirmButton;
     }
 
-    public Window07_AccountOperation(AccountOperationType type) {
-        super();
+    public AccountOperationType getOperationType() {
+        return operationType;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public Window07_AccountOperation(Account account, AccountOperationType type) {
+        this.account = account;
+        this.operationType = type;
         this.amountBox = new JTextField();
         this.descriptionBox = new JTextField();
         this.confirmButton = new JButton();
@@ -33,11 +47,11 @@ public class Window07_AccountOperation extends JFrame {
         this.setLayout(null);
 
         String title = null;
-        if (type == AccountOperationType.TRANSFER) {
+        if (operationType == AccountOperationType.TRANSFER) {
             title = "JoyBank - Transfer to PiggyBank";
-        } else if (type == AccountOperationType.CONSUME) {
+        } else if (operationType == AccountOperationType.CONSUME) {
             title = "JoyBank - Consume from PiggyBank";
-        } else if (type == AccountOperationType.SAVE) {
+        } else if (operationType == AccountOperationType.SAVE) {
             title = "JoyBank - Save into PiggyBank";
         }
         this.setTitle(title);
@@ -52,11 +66,11 @@ public class Window07_AccountOperation extends JFrame {
 
         // amountBox
         String labelText = null;
-        if (type == AccountOperationType.TRANSFER) {
+        if (operationType == AccountOperationType.TRANSFER) {
             labelText = "Transfer Amount";
-        } else if (type == AccountOperationType.CONSUME) {
+        } else if (operationType == AccountOperationType.CONSUME) {
             labelText = "CONSUME Amount";
-        } else if (type == AccountOperationType.SAVE) {
+        } else if (operationType == AccountOperationType.SAVE) {
             labelText = "SAVE Amount";
         }
         JLabel transferLabel = new JLabel(labelText);
@@ -94,7 +108,7 @@ public class Window07_AccountOperation extends JFrame {
         this.setVisible(true);
     }
 
-    public double getTransferAmountFieldValue() {
+    public double getAmount() {
         String text = this.amountBox.getText();
         if (text.matches("\\d+(\\.\\d+)?")) {
             return Double.parseDouble(text);
@@ -103,11 +117,11 @@ public class Window07_AccountOperation extends JFrame {
         }
     }
 
-    public String getDescriptionBoxText() {
+    public String getDescription() {
         return this.descriptionBox.getText();
     }
 
     public static void main(String[] args) {
-        Window07_AccountOperation transfer = new Window07_AccountOperation(AccountOperationType.SAVE);
+        Window07_AccountOperation transfer = new Window07_AccountOperation(null, AccountOperationType.SAVE);
     }
 }
