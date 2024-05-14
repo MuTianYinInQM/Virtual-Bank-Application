@@ -1,10 +1,10 @@
 package com.virtualbank.model;
 
-public enum OperationType {
+public enum AccountOperationType {
     CONSUME("消费", "花钱，只能从存钱罐里面花钱，相当于钱凭空的消失了，从虚拟的软件转入外部的现实世界中"),
     SAVE("存款", "存钱，只能将钱存到存钱罐中，相当于钱凭空的增加了，从外部的现实世界中转入虚拟的软件"),
     INITIAL_SAVE("创建存款账户的初始金额", "创建存款账户的初始金额，默认是从存钱罐中取出的"),
-    //    TRANSFER("转账", "两个UUID的卡之间的转账，需要检测是否合规"), // 只针对单个卡
+    TRANSFER("转账", "两个UUID的卡之间的转账，需要检测是否合规"),
     TRANSFER_FROM("转账", "两个UUID的卡之间的转账，需要检测是否合规，from 是提供钱的那一方"),
     TRANSFER_TO("转账", "两个UUID的卡之间的转账，需要检测是否合规,to 是接收钱的那一方"),
 
@@ -14,7 +14,7 @@ public enum OperationType {
     private final String description;
     private final String name;
 
-    OperationType(String name, String description) {
+    AccountOperationType(String name, String description) {
         this.name = name;
         this.description = description;
     }

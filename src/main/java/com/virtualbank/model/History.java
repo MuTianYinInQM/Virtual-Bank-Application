@@ -39,7 +39,7 @@ public class History implements Serializable {
         }
     }
 
-    public void recordOperation(OperationType operationType, UUID id, double amount, String description) {
+    public void recordOperation(AccountOperationType accountOperationType, UUID id, double amount, String description) {
         Path filePath = Paths.get(DIRECTORY_PATH, id + "_history.json");
         File file = filePath.toFile();
         List<Map<String, Object>> transactions = new ArrayList<>();
@@ -56,7 +56,7 @@ public class History implements Serializable {
 
         // 创建新的交易记录
         Map<String, Object> transaction = new HashMap<>();
-        transaction.put("type", operationType.getName());
+        transaction.put("type", accountOperationType.getName());
         transaction.put("amount", amount);
         transaction.put("uuid", id.toString());
         transaction.put("time", LocalTime.now().toString());

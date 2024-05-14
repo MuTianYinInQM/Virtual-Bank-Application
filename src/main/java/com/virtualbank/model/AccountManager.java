@@ -1,8 +1,6 @@
 package com.virtualbank.model;
 
 import com.virtualbank.model.account.*; // all account
-import com.virtualbank.model.OperationType;
-import com.virtualbank.model.History;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -68,7 +66,7 @@ public class AccountManager implements Serializable {
     // 以下是所有账户的功能 都可以拆分成一个账户的取钱和一个账户的存钱的组合
     // 所以我们先写一个抽象的存钱和取钱的方式
     // 后面不同函数的名称只是调用这个抽象函数 (通过传入不同的OperationType)
-    private void withdrawWithType(OperationType operationType, UUID id, double amount, String description) {
+    private void withdrawWithType(AccountOperationType accountOperationType, UUID id, double amount, String description) {
         Account account = accounts.get(id);
         double oldBalance = account.getBalance();
 
@@ -81,13 +79,13 @@ public class AccountManager implements Serializable {
 
         account.withdraw(amount);
 
-        logger.recordOperation(operationType, id, amount, description);
+        logger.recordOperation(accountOperationType, id, amount, description);
 
         // notify balance have changed
         pcs.firePropertyChange("balance", oldBalance, account.getBalance());
     }
 
-    private void depositWithType(OperationType operationType, UUID id, double amount, String description) {
+    private void depositWithType(AccountOperationType accountOperationType, UUID id, double amount, String description) {
         Account account = accounts.get(id);
         double oldBalance = account.getBalance();
 
@@ -96,7 +94,7 @@ public class AccountManager implements Serializable {
 
         account.deposit(amount);
 
-        logger.recordOperation(operationType, id, amount, description);
+        logger.recordOperation(accountOperationType, id, amount, description);
 
         // notify balance have changed
         pcs.firePropertyChange("balance", oldBalance, account.getBalance());
@@ -110,26 +108,26 @@ public class AccountManager implements Serializable {
             throw new IllegalArgumentException("Cannot transfer to the same account.");
         }
 
-        withdrawWithType(OperationType.TRANSFER_FROM, from, amount, description);
-        depositWithType(OperationType.TRANSFER_TO, to, amount, description);
+        withdrawWithType(AccountOperationType.TRANSFER_FROM, from, amount, description);
+        depositWithType(AccountOperationType.TRANSFER_TO, to, amount, description);
 
     }
 
 
     // 存钱
     public void save(UUID to, double amount, String description) {
-        depositWithType(OperationType.SAVE, to, amount, description);
+        depositWithType(AccountOperationType.SAVE, to, amount, description);
     }
 
 
     // 取钱
     public void consume(UUID from, double amount, String description) {
-        withdrawWithType(OperationType.CONSUME, from, amount, description);
+        withdrawWithType(AccountOperationType.CONSUME, from, amount, description);
     }
 
     // 奖励钱 prize
     public void prize(UUID to, double amount, String description) {
-        depositWithType(OperationType.PRIZE, to, amount, description);
+        depositWithType(AccountOperationType.PRIZE, to, amount, description);
     }
 
 
@@ -137,7 +135,7 @@ public class AccountManager implements Serializable {
     public void updateAllInterests() {
         for (Account account : accounts.values()) {
             double interestAmount = account.updateInterest();
-            logger.recordOperation(OperationType.INTEREST, account.getUuid(), interestAmount, "auto calculated");
+            logger.recordOperation(AccountOperationType.INTEREST, account.getUuid(), interestAmount, "auto calculated");
         }
     }
 
@@ -157,10 +155,10 @@ public class AccountManager implements Serializable {
         // 然后检查是否可行后在执行
         Account account;
         account = new SavingAccount(accountName, initialBalance, interestRate, timeLapseCoefficient, termPeriod);
-        withdrawWithType(OperationType.TRANSFER_FROM, piggyUuid, initialBalance,
+        withdrawWithType(AccountOperationType.TRANSFER_FROM, piggyUuid, initialBalance,
                 "transfer to a Saving Account with uuid is account.getUuid()");
         accounts.put(account.getUuid(), account);
-        logger.recordOperation(OperationType.INITIAL_SAVE, account.getUuid(), initialBalance,
+        logger.recordOperation(AccountOperationType.INITIAL_SAVE, account.getUuid(), initialBalance,
                 "create saving account");
         pcs.firePropertyChange("saving_accounts", null, account);
         return account.getUuid();
