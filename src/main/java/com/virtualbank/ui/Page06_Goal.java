@@ -88,7 +88,7 @@ public class Page06_Goal implements DataUpdateListener {
 		scrollPane.setOpaque(true);
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setBounds(100, 100, 1000, 360); // 设置滚动面板的位置和大小
-		scrollPane.getViewport().setBackground(new Color(53, 145, 175)); // 使用RGB颜色代码
+		scrollPane.getViewport().setBackground(new Color(225, 225, 175)); // 使用RGB颜色代码
 		scrollPane.setBackground(new Color(240, 240, 240));		createButton.setBounds(580, 620, 100, 50); // 设置创建按钮的位置和大小
 
 		window.add(scrollPane);
@@ -105,7 +105,7 @@ public class Page06_Goal implements DataUpdateListener {
 			goalPanel.setOpaque(false);
 
 			// 使用HTML设置不同颜色
-			String labelText = String.format(
+			String labelText = String.format (
 					"<html><font color='blue'>%s</font>: <font color='green'>$</font><font color='green'>%.2f</font> / <font color='red'>$</font><font color='red'>%.2f</font></html>",
 					goal.getGoalName(), goal.getCurrentAmount(), goal.getTargetAmount());
 			JLabel goalLabel = new JLabel(labelText);
