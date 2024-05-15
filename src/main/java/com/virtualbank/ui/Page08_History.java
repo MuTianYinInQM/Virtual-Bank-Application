@@ -123,7 +123,9 @@ public class Page08_History extends JFrame{
         String time = (String) transaction.get("time");
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
-        String isCredit = (type == "转账") ? "-" : "+";   // 这里有待更新
+        System.out.println("type:"+type);
+        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";   // 这里有待更新
+        System.out.println("isCredit:"+isCredit);
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");
 
