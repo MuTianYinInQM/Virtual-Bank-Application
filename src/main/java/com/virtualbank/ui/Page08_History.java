@@ -120,15 +120,15 @@ public class Page08_History extends JFrame{
 
         double amount = (double) transaction.get("amount");
 //        boolean isCredit = (amount > 0) ? true : false;
-        String isCredit = (amount > 0) ? "+" : "-";
         String time = (String) transaction.get("time");
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
+        String isCredit = (type == "转账") ? "-" : "+";   // 这里有待更新
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");
 
         // 下面将信息填入card中
-        TransactionCard transactionCard = new TransactionCard(cardIcon, isCredit + amount, type, date, description);
+        TransactionCard transactionCard = new TransactionCard(cardIcon, isCredit + amount, type, date, time, description);
 
         historyPanel.add(transactionCard);
         historyPanel.add(Box.createVerticalStrut(10));
@@ -140,11 +140,12 @@ public class Page08_History extends JFrame{
         private static final int ARC_HEIGHT = 10;
         private static final Color Background_Color = new Color(0xF6F6F6);
         private static final Color Border_Color = new Color(0x5C5C5C);
-        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 24);
-        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 24);
+        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 28);
+        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 28);
+        private static final Font Date_Font = new Font("Arial", Font.PLAIN, 18);
         private static final Font Description_Font = new Font("Arial", Font.PLAIN, 16);
 
-        public TransactionCard(Icon icon, String amountText, String typeText, String dateText, String descriptionText) {
+        public TransactionCard(Icon icon, String amountText, String typeText, String dateText, String timeText, String descriptionText) {
             // 设置卡片的整体布局
             setLayout(new BorderLayout());
             setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -164,27 +165,29 @@ public class Page08_History extends JFrame{
             add(rightPanel, BorderLayout.CENTER);
 
             // 上行：三个标签
-            JPanel topRowPanel = new JPanel(new GridLayout(1, 3, 10, 0));
+            JPanel topRowPanel = new JPanel();
+            topRowPanel.setLayout(null);
+            topRowPanel.setPreferredSize(new Dimension(550, 50));
             topRowPanel.setOpaque(false);
 
             JLabel amountLabel = new JLabel(amountText);
+            amountLabel.setBounds(5, 5, 125, 40);
             amountLabel.setFont(Amount_Font);
-            amountLabel.setPreferredSize(new Dimension(165, 50));
-            amountLabel.setOpaque(false);
+//            amountLabel.setOpaque(true);
             amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(amountLabel);
 
             JLabel typeLabel = new JLabel(typeText);
+            typeLabel.setBounds(140, 5, 125, 40);
             typeLabel.setFont(Type_Font);
-            typeLabel.setPreferredSize(new Dimension(165, 50));
-            typeLabel.setOpaque(false);
+//            typeLabel.setOpaque(true);
             typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(typeLabel);
 
-            JLabel dateLabel = new JLabel(dateText);
-            dateLabel.setFont(Type_Font);
-            dateLabel.setPreferredSize(new Dimension(210, 50));
-            dateLabel.setOpaque(false);
+            JLabel dateLabel = new JLabel(dateText+ " "+ timeText);
+            dateLabel.setBounds(275, 5, 250, 40);
+            dateLabel.setFont(Date_Font);
+//            dateLabel.setOpaque(true);
             dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(dateLabel);
 
