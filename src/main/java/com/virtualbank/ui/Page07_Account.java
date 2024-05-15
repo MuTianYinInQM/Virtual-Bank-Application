@@ -14,11 +14,29 @@ public class Page07_Account extends JFrame {
     private JButton transferButton;
     private JButton saveButton;
     private JButton historyButton;
+    // 页面上显示余额的
+    private JLabel dataBalanceLabel;
 
 
     public Page07_Account(Account account) {
         this.currentAccount = account;
         initializeUI(account);
+    }
+
+    public JButton getConsumeButton() {
+        return consumeButton;
+    }
+
+    public JButton getTransferButton() {
+        return transferButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public JButton getHistoryButton() {
+        return historyButton;
     }
 
     public Account getCurrentAccount() {
@@ -74,7 +92,7 @@ public class Page07_Account extends JFrame {
         // !!! DYNAMICS
         // Data Labels with dynamic values
         JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        JLabel dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
         JLabel dataTypeLabel = createDataLabel("Piggy Bank", 540, 270, Font.PLAIN, 28);
         JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
         this.add(dataIdLabel);
@@ -83,10 +101,11 @@ public class Page07_Account extends JFrame {
         this.add(dataInterestLabel);
 
         // Buttons for account operations
-        JButton historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
-        JButton transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
-        JButton saveButton = createButton("images/save_Button.png", 340, 520, 233, 85);
-        JButton consumeButton = createButton("images/consume_Button.png", 660, 520, 233, 85);
+        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
+        // TODO 为什么存钱罐可以自己给自己转账 所以还是应该创建更高级的转账功能 直接指定UUID转账
+        this.transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
+        this.saveButton = createButton("images/save_Button.png", 340, 520, 233, 85);
+        this.consumeButton = createButton("images/consume_Button.png", 660, 520, 233, 85);
         this.add(historyButton);
         this.add(transferButton);
         this.add(saveButton);
@@ -113,7 +132,7 @@ public class Page07_Account extends JFrame {
 
         // !!! DYNAMICS
         JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        JLabel dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
         JLabel dataTypeLabel = createDataLabel("Saving Account", 540, 270, Font.PLAIN, 28);
         JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
         JLabel dataStartDateLabel = createDataLabel(account.getCreateDateTime().toString(), 540, 400, Font.PLAIN, 28);
@@ -127,7 +146,9 @@ public class Page07_Account extends JFrame {
         this.add(dataEndDateLabel);
         this.add(dataDurationLabel);
 
-
+        // TODO 调整位置
+        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
+        this.add(historyButton);
     }
 
     private void setupCurrentAccountUI(CurrentAccount account) {
@@ -144,7 +165,7 @@ public class Page07_Account extends JFrame {
 
         // !!! DYNAMICS
         JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        JLabel dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
         JLabel dataTypeLabel = createDataLabel("Current Account", 540, 270, Font.PLAIN, 28);
         JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
         this.add(dataIdLabel);
@@ -152,8 +173,8 @@ public class Page07_Account extends JFrame {
         this.add(dataTypeLabel);
         this.add(dataInterestLabel);
 
-        JButton historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
-        JButton transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
+        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
+        this.transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
         this.add(historyButton);
         this.add(transferButton);
 
@@ -207,11 +228,14 @@ public class Page07_Account extends JFrame {
         return label;
     }
 
+    public void updatePage() {
+        dataBalanceLabel.setText(String.format("%.2f", currentAccount.getBalance()));
+    }
 
     public static void main(String[] args) {
-        Account exampleAccount = new SavingAccount("Example Account", 1000, 0.02, 24, Period.ofYears(1));
+//        Account exampleAccount = new SavingAccount("Example Account", 1000, 0.02, 24, Period.ofYears(1));
 //        Account exampleAccount = new PiggyBank("Example Account", 1000);
-//        Account exampleAccount = new CurrentAccount("Example Account", 1000, 0.02, 24);
+        Account exampleAccount = new CurrentAccount("Example Account", 1000, 0.02, 24);
         Page07_Account window = new Page07_Account(exampleAccount);
         window.setVisible(true);
     }

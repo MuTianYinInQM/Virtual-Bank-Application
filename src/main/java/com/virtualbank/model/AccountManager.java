@@ -46,12 +46,12 @@ public class AccountManager implements Serializable {
     private void checkAccountExistenceChangeability(Account account) {
         // 检查账户是否存在
         if (account == null) {
-            throw new IllegalArgumentException("Receiving account with UUID " + account + " not found.");
+            throw new IllegalArgumentException("Account with UUID " + account + " not found.");
         }
 
         // 检查账户是否允许转账操作
         if (!account.checkDepositChangeability()) {
-            throw new IllegalArgumentException("Sending account with UUID " + account + " does not permit transfers.");
+            throw new IllegalArgumentException("Account with UUID " + account + " does not permit transfers.");
         }
     }
 
@@ -74,7 +74,7 @@ public class AccountManager implements Serializable {
         checkAmountPositive(amount);
         // 检查发送账户余额是否足够
         if (!account.checkDepositSufficiency(amount)) {
-            throw new IllegalArgumentException("Sending account with UUID " + id + " does not have sufficient funds.");
+            throw new IllegalArgumentException("Account with UUID " + id + " does not have sufficient funds.");
         }
 
         account.withdraw(amount);

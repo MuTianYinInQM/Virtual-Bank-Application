@@ -51,7 +51,7 @@ public class AccountOperationController implements Page {
                     }
                     uiStack.pop();
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(page, exception.toString());
+                    JOptionPane.showMessageDialog(page, exception.getMessage());
                 }
             }
         });

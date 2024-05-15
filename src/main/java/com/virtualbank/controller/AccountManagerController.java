@@ -112,7 +112,7 @@ public class AccountManagerController implements PropertyChangeListener, Page {
     private void openAccountDetails(Account account) {
         Page07_Account page07Account = new Page07_Account(account);
         AccountController accountController = new AccountController(page07Account, accountManager, uiStack);
-        uiStack.pushWindow(accountController);
+        uiStack.pushPage(accountController);
     }
 
     @Override

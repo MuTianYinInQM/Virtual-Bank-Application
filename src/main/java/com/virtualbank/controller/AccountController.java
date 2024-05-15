@@ -2,14 +2,23 @@ package com.virtualbank.controller;
 
 import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
+import com.virtualbank.model.AccountOperationType;
+import com.virtualbank.model.account.Account;
+import com.virtualbank.model.account.CurrentAccount;
+import com.virtualbank.model.account.PiggyBank;
+import com.virtualbank.model.account.SavingAccount;
 import com.virtualbank.ui.Page07_Account;
 import com.virtualbank.model.UIStack;
+import com.virtualbank.ui.Page08_History;
+import com.virtualbank.ui.Window07_AccountOperation;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class AccountController implements Page {
+public class AccountController implements PropertyChangeListener, Page {
 
     private Page07_Account page;
     // 虽然这个在这里没用，但是AccountManager要传递给下一个页面使用，这里仅仅是过了一遍手
@@ -20,11 +29,18 @@ public class AccountController implements Page {
         this.page = view;
         this.accountManager = accountManager;
         this.uiStack = uiStack;
+        this.accountManager.addPropertyChangeListener(this);
         initController();
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        page.updatePage();
     }
 
 
     private void initController() {
+        Account account = page.getCurrentAccount();
         page.getExitButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +61,56 @@ public class AccountController implements Page {
                 }
             }
         });
+        page.getHistoryButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Page08_History window = new Page08_History(account.getUuid());
+                HistoryController controller =
+                        new HistoryController(window, uiStack);
+                uiStack.pushPage(controller);
+            }
+        });
+        if (account instanceof PiggyBank) {
+            page.getConsumeButton().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Window07_AccountOperation window = new Window07_AccountOperation(account, AccountOperationType.CONSUME);
+                    AccountOperationController controller =
+                            new AccountOperationController(window, accountManager, uiStack);
+                    uiStack.pushWindow(controller);
+                }
+            });
+            page.getSaveButton().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Window07_AccountOperation window = new Window07_AccountOperation(account, AccountOperationType.SAVE);
+                    AccountOperationController controller =
+                            new AccountOperationController(window, accountManager, uiStack);
+                    uiStack.pushWindow(controller);
+                }
+            });
+            page.getTransferButton().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Window07_AccountOperation window = new Window07_AccountOperation(account, AccountOperationType.TRANSFER);
+                    AccountOperationController controller =
+                            new AccountOperationController(window, accountManager, uiStack);
+                    uiStack.pushWindow(controller);
+                }
+            });
+        } else if (account instanceof CurrentAccount) {
+            page.getTransferButton().addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Window07_AccountOperation window = new Window07_AccountOperation(account, AccountOperationType.TRANSFER);
+                    AccountOperationController controller =
+                            new AccountOperationController(window, accountManager, uiStack);
+                    uiStack.pushWindow(controller);
+                }
+            });
+        } else if (account instanceof SavingAccount) {
+            // 什么也不干
+        }
     }
 
 
