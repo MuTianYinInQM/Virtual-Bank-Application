@@ -18,6 +18,7 @@ public class Page06_Goal implements DataUpdateListener {
 	private JPanel goalsPanel; // Panel for goals and buttons
 	private JScrollPane scrollPane; // Scroll pane for goalsPanel
 	private JButton createButton;
+	private JButton exitButton;
 	private SavingGoalService goalService;
 	private ImageIcon goalBackground; // 定义图标变量
 	private List<JPanel> goalPanels = new ArrayList<>(); // 用于存储每个目标的面板
@@ -40,6 +41,7 @@ public class Page06_Goal implements DataUpdateListener {
 		return goalPanels;
 	}
 
+	// 删除目标的函数
 	public void removeGoalPanel(JPanel panel) {
 		goalsPanel.remove(panel);
 		goalsPanel.revalidate();
@@ -52,6 +54,7 @@ public class Page06_Goal implements DataUpdateListener {
 		scrollPane = new JScrollPane(goalsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		createButton = new JButton("Create");
 		goalBackground = new ImageIcon("images/Goal_Background.png"); // 加载背景图片
+		exitButton = new JButton();
 
 		// 确保正确设置关闭操作
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -73,26 +76,41 @@ public class Page06_Goal implements DataUpdateListener {
 	private void configureUI() {
 		window.setLayout(null); // 使用绝对布局
 		window.setSize(1260, 780);
+		window.setResizable(false);
 
 		goalsPanel.setLayout(new BoxLayout(goalsPanel, BoxLayout.Y_AXIS));
-		goalsPanel.setOpaque(false);
+		goalsPanel.setOpaque(false);	/* 很遗憾这里没有起作用 */
 
-		createButton.setFont(new Font("Arial", Font.BOLD, 16));
-		createButton.setBounds(580, 620, 150, 50);  // 适当调整按钮位置和大小
+		// 配置exitButton
+		exitButton.setBounds(16, 2, 135, 57);
+		exitButton.addActionListener(e -> window.dispose());
+		exitButton.setOpaque(false);
+		exitButton.setContentAreaFilled(false);
+		exitButton.setBorderPainted(false);
+		exitButton.setFocusPainted(false);
+
+		// 配置createButton
+		createButton.setBounds(85, 200, 350, 56);
+//		createButton.setOpaque(false);
+//		createButton.setContentAreaFilled(false);
+//		createButton.setBorderPainted(false);
+//		createButton.setFocusPainted(false);
 		createButton.addActionListener(e -> createOrModifyGoal(null));  // 添加监听器以创建新目标
 
 		JLabel backgroundLabel = new JLabel(goalBackground);
 		backgroundLabel.setBounds(0, 0, 1260, 780);
 		window.setContentPane(backgroundLabel);
 
-		scrollPane.setOpaque(true);
+		// 等待重写
+		scrollPane.setOpaque(false);
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setBounds(100, 100, 1000, 360); // 设置滚动面板的位置和大小
 		scrollPane.getViewport().setBackground(new Color(225, 225, 175)); // 使用RGB颜色代码
-		scrollPane.setBackground(new Color(240, 240, 240));		createButton.setBounds(580, 620, 100, 50); // 设置创建按钮的位置和大小
+		scrollPane.setBackground(new Color(240, 240, 240));
 
 		window.add(scrollPane);
 		window.add(createButton);
+		window.add(exitButton);
 	}
 
 	private void loadGoals() {

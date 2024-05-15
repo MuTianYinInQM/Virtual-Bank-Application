@@ -92,7 +92,7 @@ public class Page08_History extends JFrame{
         };
         scrollPane.getViewport().setOpaque(false); // 确保视口是透明的
         scrollPane.setOpaque(false); // 确保滚动面板是透明的
-        scrollPane.setBounds(247, 275, 775, 440);
+        scrollPane.setBounds(247, 300, 775, 420);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
 
@@ -140,24 +140,26 @@ public class Page08_History extends JFrame{
         private static final int ARC_HEIGHT = 10;
         private static final Color Background_Color = new Color(0xF6F6F6);
         private static final Color Border_Color = new Color(0x5C5C5C);
-        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 20);
-        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 20);
-        private static final Font Description_Font = new Font("Arial", Font.PLAIN, 14);
+        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 24);
+        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 24);
+        private static final Font Description_Font = new Font("Arial", Font.PLAIN, 16);
 
         public TransactionCard(Icon icon, String amountText, String typeText, String dateText, String descriptionText) {
             // 设置卡片的整体布局
             setLayout(new BorderLayout());
             setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            setBackground(Color.WHITE);
+            setBackground(new Color(0xF6F6F6));
+            setPreferredSize(new Dimension(680, 120));
+            setMaximumSize(new Dimension(680, 120));
 
             // 左侧图标部分
             JLabel iconLabel = new JLabel(icon);
-            iconLabel.setPreferredSize(new Dimension(90, 125));
+            iconLabel.setPreferredSize(new Dimension(90, 120));
             add(iconLabel, BorderLayout.WEST);
 
             // 右侧内容部分
             JPanel rightPanel = new JPanel(new BorderLayout());
-            rightPanel.setPreferredSize(new Dimension(550, 125));
+            rightPanel.setPreferredSize(new Dimension(550, 120));
             rightPanel.setOpaque(false);
             add(rightPanel, BorderLayout.CENTER);
 
@@ -167,20 +169,23 @@ public class Page08_History extends JFrame{
 
             JLabel amountLabel = new JLabel(amountText);
             amountLabel.setFont(Amount_Font);
-            amountLabel.setPreferredSize(new Dimension(135, 30));
+            amountLabel.setPreferredSize(new Dimension(165, 50));
             amountLabel.setOpaque(false);
+            amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(amountLabel);
 
             JLabel typeLabel = new JLabel(typeText);
             typeLabel.setFont(Type_Font);
-            typeLabel.setPreferredSize(new Dimension(155, 30));
+            typeLabel.setPreferredSize(new Dimension(165, 50));
             typeLabel.setOpaque(false);
+            typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(typeLabel);
 
             JLabel dateLabel = new JLabel(dateText);
             dateLabel.setFont(Type_Font);
-            dateLabel.setPreferredSize(new Dimension(210, 30));
+            dateLabel.setPreferredSize(new Dimension(210, 50));
             dateLabel.setOpaque(false);
+            dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(dateLabel);
 
             rightPanel.add(topRowPanel, BorderLayout.NORTH);
@@ -188,8 +193,9 @@ public class Page08_History extends JFrame{
             // 下行：描述标签
             JLabel descriptionLabel = new JLabel(descriptionText);
             descriptionLabel.setFont(Description_Font);
-            descriptionLabel.setPreferredSize(new Dimension(535, 30));
+            descriptionLabel.setPreferredSize(new Dimension(535, 50));
             descriptionLabel.setOpaque(false);
+            descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
             rightPanel.add(descriptionLabel, BorderLayout.SOUTH);
         }
 
