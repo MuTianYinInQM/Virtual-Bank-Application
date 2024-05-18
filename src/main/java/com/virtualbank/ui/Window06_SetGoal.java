@@ -83,9 +83,12 @@ public class Window06_SetGoal {
 		backgroundLabel.add(targetAmountField);
 
 		// Confirm Button
-		this.confirmButton = new JButton("Confirm");
-		this.confirmButton.setBounds(235, 250, 130, 40);
-		this.confirmButton.setFont(new Font("Arial", Font.BOLD, 20));
+		this.confirmButton = new JButton(new ImageIcon("images/confirm2.png"));
+		this.confirmButton.setBounds(230, 240, 140, 50);
+//		this.confirmButton.setFont(new Font("Arial", Font.BOLD, 20));
+		this.confirmButton.setOpaque(false);
+		this.confirmButton.setContentAreaFilled(false);
+		this.confirmButton.setBorderPainted(false);
 		this.confirmButton.addActionListener(e -> saveGoal());
 		backgroundLabel.add(confirmButton);
 
