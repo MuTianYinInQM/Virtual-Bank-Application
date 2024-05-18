@@ -3,6 +3,7 @@ package com.virtualbank.ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,14 @@ import com.virtualbank.repository.SavingGoalRepository;
 
 public class Page06_Goal implements DataUpdateListener {
 	private JFrame window;
-	private JPanel goalsPanel; // Panel for goals and buttons
+	private JLabel backgroundLabel;	// 盛放背景图的JLabel
+	private JPanel goalsPanel; // goalsPanel是被滚动的面板视口
 	private JScrollPane scrollPane; // Scroll pane for goalsPanel
 	private JButton createButton;
 	private JButton exitButton;
 	private SavingGoalService goalService;
-	private ImageIcon goalBackground; // 定义图标变量
-	private List<JPanel> goalPanels = new ArrayList<>(); // 用于存储每个目标的面板
+	private ImageIcon goalBackground;
+	private List<JPanel> goalPanels = new ArrayList<>(); // 存储每个目标的面板
 	private SavingGoalController controller;
 
 	public Page06_Goal() {
@@ -50,11 +52,12 @@ public class Page06_Goal implements DataUpdateListener {
 
 	private void initializeComponents() {
 		window = new JFrame("Goal Tracker");
+		backgroundLabel = new JLabel();
 		goalsPanel = new JPanel();
 		scrollPane = new JScrollPane(goalsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		createButton = new JButton("Create");
-		goalBackground = new ImageIcon("images/Goal_Background.png"); // 加载背景图片
+		createButton = new JButton();
 		exitButton = new JButton();
+		goalBackground = new ImageIcon("images/Goal_Background.png"); // 加载背景图片
 
 		// 确保正确设置关闭操作
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -78,9 +81,6 @@ public class Page06_Goal implements DataUpdateListener {
 		window.setSize(1260, 780);
 		window.setResizable(false);
 
-		goalsPanel.setLayout(new BoxLayout(goalsPanel, BoxLayout.Y_AXIS));
-		goalsPanel.setOpaque(false);	/* 很遗憾这里没有起作用 */
-
 		// 配置exitButton
 		exitButton.setBounds(16, 2, 135, 57);
 		exitButton.addActionListener(e -> window.dispose());
@@ -88,83 +88,85 @@ public class Page06_Goal implements DataUpdateListener {
 		exitButton.setContentAreaFilled(false);
 		exitButton.setBorderPainted(false);
 		exitButton.setFocusPainted(false);
+		window.add(exitButton);
 
 		// 配置createButton
-		createButton.setBounds(85, 200, 350, 56);
-//		createButton.setOpaque(false);
-//		createButton.setContentAreaFilled(false);
-//		createButton.setBorderPainted(false);
-//		createButton.setFocusPainted(false);
+		createButton.setBounds(85, 180, 350, 56);
+		createButton.setOpaque(false);
+		createButton.setContentAreaFilled(false);
+		createButton.setBorderPainted(false);
+		createButton.setFocusPainted(false);
 		createButton.addActionListener(e -> createOrModifyGoal(null));  // 添加监听器以创建新目标
-
-		JLabel backgroundLabel = new JLabel(goalBackground);
-		backgroundLabel.setBounds(0, 0, 1260, 780);
-		window.setContentPane(backgroundLabel);
-
-		// 等待重写
-		scrollPane.setOpaque(false);
-		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setBounds(100, 100, 1000, 360); // 设置滚动面板的位置和大小
-		scrollPane.getViewport().setBackground(new Color(225, 225, 175)); // 使用RGB颜色代码
-		scrollPane.setBackground(new Color(240, 240, 240));
-
-		window.add(scrollPane);
 		window.add(createButton);
-		window.add(exitButton);
+
+		// 配置scrollPane
+		scrollPane.setBounds(500, 125, 620, 580); // 设置滚动面板的位置和大小
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setOpaque(false);
+		goalsPanel.setOpaque(false);
+		goalsPanel.setLayout(new BoxLayout(goalsPanel, BoxLayout.Y_AXIS));
+		window.add(scrollPane);
+
+		// 配置backgroundLabel
+		backgroundLabel.setIcon(goalBackground);
+		backgroundLabel.setBounds(0, 0, window.getWidth(), window.getHeight());
+		window.add(backgroundLabel);
 	}
 
 	private void loadGoals() {
 		List<SavingGoal> goals = goalService.getAllSavingGoals();
 		goalsPanel.removeAll();
-		goalPanels.clear(); // 清空目标面板列表
+		goalPanels.clear(); // 清空存储goalCard的ArrayList
 
+		// 遍历每个goal并为其创建、配置goalCard
 		for (SavingGoal goal : goals) {
-			JPanel goalPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 50, 5));
-			goalPanel.setOpaque(false);
+			// 提取每个goal信息
+			String goalName = goal.getGoalName();
+			double currentAmountNum = goal.getCurrentAmount();
+			double targetAmountNum = goal.getTargetAmount();
+			String currentAmount = String.format("%.2f", currentAmountNum);
+			String targetAmount = String.format("%.2f", targetAmountNum);
 
-			// 使用HTML设置不同颜色
-			String labelText = String.format (
-					"<html><font color='blue'>%s</font>: <font color='green'>$</font><font color='green'>%.2f</font> / <font color='red'>$</font><font color='red'>%.2f</font></html>",
-					goal.getGoalName(), goal.getCurrentAmount(), goal.getTargetAmount());
-			JLabel goalLabel = new JLabel(labelText);
-			goalLabel.setFont(new Font("Arial", Font.BOLD, 14)); // 设置字体大小和风格
+			// 创建并配置goalCard
+			GoalCard goalCard = new GoalCard(goal, goalName, currentAmount, targetAmount);
+			goalPanels.add(goalCard);	// 添加到ArrayList中
+			goalsPanel.add(goalCard);	// 添加到滚动面板中
+			goalsPanel.add(Box.createVerticalStrut(10));	// 卡片之间留有间隙
 
-			JProgressBar progressBar = new JProgressBar(0, 100);
-			progressBar.setPreferredSize(new Dimension(400, 20));
-			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
-			progressBar.setValue(progressValue);
-			updateProgressBar(progressBar, progressValue);
-
-			JButton modifyButton = new JButton("Modify");
-			JButton deleteButton = new JButton("Delete");
-
-			modifyButton.putClientProperty("goal", goal);
-			deleteButton.putClientProperty("goal", goal);
-
-			goalPanel.add(goalLabel);
-			goalPanel.add(progressBar);
-			goalPanel.add(modifyButton);
-			goalPanel.add(deleteButton);
-
-			goalPanels.add(goalPanel);
-			goalsPanel.add(goalPanel);
+//			String labelText = String.format (
+//					"<html><font color='blue'>%s</font>: <font color='green'>$</font><font color='green'>%.2f</font> / <font color='red'>$</font><font color='red'>%.2f</font></html>",
+//					goal.getGoalName(), goal.getCurrentAmount(), goal.getTargetAmount());
+//			JLabel goalLabel = new JLabel(labelText);
+//			goalLabel.setFont(new Font("Arial", Font.BOLD, 14)); // 设置字体大小和风格
+//
+//			// 设置progressBar样式
+//			JProgressBar progressBar = new JProgressBar(0, 100);
+//			progressBar.setPreferredSize(new Dimension(400, 20));
+//			// 计算进度值
+//			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
+//			// 设置进度条的值（等待修改）
+//			progressBar.setValue(progressValue);
+//			// 更新精度条样式
+//			updateProgressBar(progressBar, progressValue);
+//
+//			JButton modifyButton = new JButton("Modify");
+//			JButton deleteButton = new JButton("Delete");
+//			modifyButton.putClientProperty("goal", goal);
+//			deleteButton.putClientProperty("goal", goal);
+//
+//			goalPanel.add(goalLabel);
+//			goalPanel.add(progressBar);
+//			goalPanel.add(modifyButton);
+//			goalPanel.add(deleteButton);
+//
+//			goalPanels.add(goalPanel);	// 添加到ArrayList中
+//			goalsPanel.add(goalPanel);	// 添加到滚动面板中
 		}
 
+		// 重绘滚动面板
 		goalsPanel.revalidate();
 		goalsPanel.repaint();
-	}
-
-	private void updateProgressBar(JProgressBar progressBar, int progress) {
-		progressBar.setStringPainted(true);
-		if (progress < 25) {
-			progressBar.setForeground(Color.RED);
-		} else if (progress < 50) {
-			progressBar.setForeground(Color.ORANGE);
-		} else if (progress < 75) {
-			progressBar.setForeground(Color.YELLOW);
-		} else {
-			progressBar.setForeground(Color.GREEN);
-		}
 	}
 
 	@Override
@@ -206,8 +208,6 @@ public class Page06_Goal implements DataUpdateListener {
 		}
 	}
 
-
-
 	private void openSetGoalWindow(SavingGoal goal) {
 		Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, goalService, this);
 		setGoalWindow.display(); // 使用display方法来显示窗口
@@ -221,10 +221,145 @@ public class Page06_Goal implements DataUpdateListener {
 		openSetGoalWindow(goal);
 	}
 
+	// 静态内部类GoalCard
+	public static class GoalCard extends JPanel {
+		private JLabel valueLabel;
+		private JPanel upBarPanel;
+		private JPanel downBarPanel;
+		private JLabel progressLabel;
+		private JButton modifyButton;
+		private JButton deleteButton;
+//		private JLabel backgroundLabel;
+		private static final Font valueLabelFont = new Font("Arial", Font.PLAIN, 24);
+		private static final Color Background_Color = new Color(0xBCCCDF);
+		private static final Color Border_Color = new Color(0x5C5C5C);
+		private static final int ARC_WIDTH = 10;
+		private static final int ARC_HEIGHT = 10;
+
+
+		public GoalCard(SavingGoal goal, String goalName, String currentAmount, String targetAmount) {
+
+			// 设置卡片的整体布局
+			setLayout(null);
+			setPreferredSize(new Dimension(520, 110));
+			setMaximumSize(new Dimension(520, 110));
+//			backgroundLabel = new JLabel();
+//			backgroundLabel.setIcon(new ImageIcon("images/goalCard.png"));
+//			this.add(backgroundLabel);
+//			backgroundLabel.setBounds(0, 0, 520, 110);
+
+			// 配置valueLabel
+			valueLabel = new JLabel();
+			String valueLabelText = String.format (
+					"<html><font color='yellow'>%s : </font><font color='blue'>%s</font> / <font color='red'>%s</font></html>",
+					goalName, currentAmount, targetAmount);
+//			System.out.println(valueLabelText);
+			valueLabel.setText(valueLabelText);
+			valueLabel.setFont(valueLabelFont);
+			valueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			valueLabel.setOpaque(false);
+			valueLabel.setBorder(null);
+			this.add(valueLabel);
+			valueLabel.setBounds(10, 15, 380, 45);
+
+			// 配置modifyButton
+			modifyButton = new JButton();
+			modifyButton.putClientProperty("goal", goal);
+			modifyButton.setIcon(new ImageIcon("images/Modify_Button.png"));
+			modifyButton.setBorderPainted(false);
+			modifyButton.setContentAreaFilled(false);
+			modifyButton.setFocusPainted(false);
+			modifyButton.setBounds(390, 12, 113, 43);
+			this.add(modifyButton);
+
+			// 配置deleteButton
+			deleteButton = new JButton();
+			deleteButton.putClientProperty("goal", goal);
+			deleteButton.setIcon(new ImageIcon("images/Delete_Button.png"));
+			deleteButton.setBorderPainted(false);
+			deleteButton.setContentAreaFilled(false);
+			deleteButton.setFocusPainted(false);
+			deleteButton.setBounds(390, 65, 113, 43);
+			this.add(deleteButton);
+
+			// 配置progressLabel
+			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
+			System.out.println("progressValue: " + progressValue);
+			String progressValueText = progressValue + "%";
+			progressLabel = new JLabel(progressValueText);
+			progressLabel.setFont(valueLabelFont);
+			progressLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			progressLabel.setOpaque(false);
+			progressLabel.setBorder(null);
+			progressLabel.setBounds(300, 68, 60, 30);
+			this.add(progressLabel);
+
+			// 配置进度条
+			upBarPanel = new JPanel();
+			upBarPanel.setBorder(null);
+
+			Color upBarColor = null;
+			int upBarWidth = 0;
+			if(progressValue < 25){
+				upBarColor = new Color(0xB30000);
+				upBarWidth = 50;
+			}
+			else if(progressValue < 50){
+				upBarColor = new Color(0xFFAB0A);
+				upBarWidth = 105;
+			}
+			else if(progressValue < 75){
+				upBarColor = new Color(0xFBFF0A);
+				upBarWidth = 165;
+			}
+			else if(progressValue < 100){
+				upBarColor = new Color(0x0AFF0F);
+				upBarWidth = 240;
+			}
+			else{
+				upBarColor = new Color(0x0AFF0F);
+				upBarWidth = 270;
+			}
+			upBarPanel.setBackground(upBarColor);
+			upBarPanel.setBounds(20, 80, upBarWidth, 8);
+
+			downBarPanel = new JPanel();
+			downBarPanel.setBackground(new Color(0x9EABBB));
+			downBarPanel.setBorder(null);
+			downBarPanel.setBounds(20, 80, 270, 8);
+			this.add(upBarPanel);
+			this.add(downBarPanel);
+		}
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2 = (Graphics2D) g.create();
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			// 设置背景颜色和圆角矩形
+			g2.setColor(Background_Color);
+			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
+
+			g2.dispose();
+		}
+
+		@Override
+		protected void paintBorder(Graphics g) {
+			Graphics2D g2 = (Graphics2D) g.create();
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			// 设置圆角矩形边框
+			g2.setColor(Border_Color);
+			g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
+
+			g2.dispose();
+		}
+
+
+	}
+
 	public static void main(String[] args) {
 		new Page06_Goal();
 	}
 }
-
-
-
