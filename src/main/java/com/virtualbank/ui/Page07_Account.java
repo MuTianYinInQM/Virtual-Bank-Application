@@ -58,14 +58,7 @@ public class Page07_Account extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);  // Use null layout for absolute positioning
 
-        JButton exitButton = createButton("Exit", 20, 20, 100, 50);
-        this.add(exitButton);
-        this.exitButton = exitButton;
-        JButton deleteButton = createButton("images/delete_Button.png", 500, 630, 233, 85);
-        this.add(deleteButton);
-        this.deleteButton = deleteButton;
-
-
+        // 根据账户类型设置各自的UI
         if (currentAccount instanceof CurrentAccount) {
             setupCurrentAccountUI((CurrentAccount) account);
         } else if (currentAccount instanceof SavingAccount) {
@@ -76,36 +69,30 @@ public class Page07_Account extends JFrame {
     }
 
     private void setupPiggyBankUI(PiggyBank account) {
-        setupCommonUIElements("images/Piggy_Bank.png");
 
+        ImageIcon backgroundIcon = new ImageIcon("images/Piggy_Bank.png");
+        JLabel backgroundLabel = new JLabel(backgroundIcon);
+        backgroundLabel.setBounds(0, 0, 1260, 780);
+        this.setContentPane(backgroundLabel);
 
-        // Labels for account details
-        JLabel idLabel = createLabel("ID", 340, 140, 200, 50, Font.BOLD, 28);
-        JLabel balanceLabel = createLabel("Balance", 340, 205, 200, 50, Font.BOLD, 28);
-        JLabel typeLabel = createLabel("Type", 340, 270, 200, 50, Font.BOLD, 28);
-        JLabel interestLabel = createLabel("Interest", 340, 335, 200, 50, Font.BOLD, 28);
-        this.add(idLabel);
-        this.add(balanceLabel);
-        this.add(typeLabel);
-        this.add(interestLabel);
+        setupCommonUIElements();
 
         // !!! DYNAMICS
         // Data Labels with dynamic values
-        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
-        JLabel dataTypeLabel = createDataLabel("Piggy Bank", 540, 270, Font.PLAIN, 28);
-        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
+        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 470, 332);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 470, 400);
+        JLabel dataTypeLabel = createDataLabel("Piggy Bank", 470, 473);
+        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 470, 550);
         this.add(dataIdLabel);
         this.add(dataBalanceLabel);
         this.add(dataTypeLabel);
         this.add(dataInterestLabel);
 
         // Buttons for account operations
-        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
-        // TODO 为什么存钱罐可以自己给自己转账 所以还是应该创建更高级的转账功能 直接指定UUID转账
-        this.transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
-        this.saveButton = createButton("images/save_Button.png", 340, 520, 233, 85);
-        this.consumeButton = createButton("images/consume_Button.png", 660, 520, 233, 85);
+        this.historyButton = createButton("", 902, 506, 230, 57);
+        this.transferButton = createButton("", 187, 150, 228, 60);
+        this.saveButton = createButton("", 458, 150, 153, 57);
+        this.consumeButton = createButton("", 638, 150, 160, 58);
         this.add(historyButton);
         this.add(transferButton);
         this.add(saveButton);
@@ -113,31 +100,22 @@ public class Page07_Account extends JFrame {
     }
 
     private void setupSavingAccountUI(SavingAccount account) {
-        setupCommonUIElements("images/Current_Account.png");
 
-        JLabel idLabel = createLabel("ID", 340, 140, 200, 50, Font.BOLD, 28);
-        JLabel balanceLabel = createLabel("Balance", 340, 205, 200, 50, Font.BOLD, 28);
-        JLabel typeLabel = createLabel("Type", 340, 270, 200, 50, Font.BOLD, 28);
-        JLabel interestLabel = createLabel("Interest", 340, 335, 200, 50, Font.BOLD, 28);
-        JLabel startDateLabel = createLabel("Start Date", 340, 400, 200, 50, Font.BOLD, 28);
-        JLabel endDateLabel = createLabel("End Date", 340, 465, 200, 50, Font.BOLD, 28);
-        JLabel durationLabel = createLabel("Duration", 340, 530, 200, 50, Font.BOLD, 28);
-        this.add(idLabel);
-        this.add(balanceLabel);
-        this.add(typeLabel);
-        this.add(interestLabel);
-        this.add(startDateLabel);
-        this.add(endDateLabel);
-        this.add(durationLabel);
+        ImageIcon backgroundIcon = new ImageIcon("images/Saving_Account.png");
+        JLabel backgroundLabel = new JLabel(backgroundIcon);
+        backgroundLabel.setBounds(0, 0, 1260, 780);
+        this.setContentPane(backgroundLabel);
+
+        setupCommonUIElements();
 
         // !!! DYNAMICS
-        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
-        JLabel dataTypeLabel = createDataLabel("Saving Account", 540, 270, Font.PLAIN, 28);
-        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
-        JLabel dataStartDateLabel = createDataLabel(account.getCreateDateTime().toString(), 540, 400, Font.PLAIN, 28);
-        JLabel dataEndDateLabel = createDataLabel(account.getMaturityDateTime().toString(), 540, 465, Font.PLAIN, 28);
-        JLabel dataDurationLabel = createDataLabel(String.format("%d Years", account.getTermPeriod().getYears()), 540, 530, Font.PLAIN, 28);
+        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 470, 322);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 470, 376);
+        JLabel dataTypeLabel = createDataLabel("Saving Account", 470, 427);
+        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 470, 476);
+        JLabel dataStartDateLabel = createDataLabel(account.getCreateDateTime().toString(), 470, 527);
+        JLabel dataEndDateLabel = createDataLabel(account.getMaturityDateTime().toString(), 470, 579);
+        JLabel dataDurationLabel = createDataLabel(String.format("%d Years", account.getTermPeriod().getYears()), 470, 630);
         this.add(dataIdLabel);
         this.add(dataBalanceLabel);
         this.add(dataTypeLabel);
@@ -146,59 +124,47 @@ public class Page07_Account extends JFrame {
         this.add(dataEndDateLabel);
         this.add(dataDurationLabel);
 
-        // TODO 调整位置
-        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
+        this.historyButton = createButton("", 902, 506, 230, 57);
         this.add(historyButton);
     }
 
-    private void setupCurrentAccountUI(CurrentAccount account) {
-        setupCommonUIElements("images/Current_Account.png");
 
-        JLabel idLabel = createLabel("ID", 340, 140, 200, 50, Font.BOLD, 28);
-        JLabel balanceLabel = createLabel("Balance", 340, 205, 200, 50, Font.BOLD, 28);
-        JLabel typeLabel = createLabel("Type", 340, 270, 200, 50, Font.BOLD, 28);
-        JLabel interestLabel = createLabel("Interest", 340, 335, 200, 50, Font.BOLD, 28);
-        this.add(idLabel);
-        this.add(balanceLabel);
-        this.add(typeLabel);
-        this.add(interestLabel);
+    private void setupCurrentAccountUI(CurrentAccount account) {
+
+        ImageIcon backgroundIcon = new ImageIcon("images/Current_Account.png");
+        JLabel backgroundLabel = new JLabel(backgroundIcon);
+        backgroundLabel.setBounds(0, 0, 1260, 780);
+        this.setContentPane(backgroundLabel);
+
+        setupCommonUIElements();
 
         // !!! DYNAMICS
-        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 540, 140, Font.PLAIN, 28);
-        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 540, 205, Font.PLAIN, 28);
-        JLabel dataTypeLabel = createDataLabel("Current Account", 540, 270, Font.PLAIN, 28);
-        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 540, 335, Font.PLAIN, 28);
+        JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 470, 332);
+        this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 470, 400);
+        JLabel dataTypeLabel = createDataLabel("Piggy Bank", 470, 473);
+        JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 470, 550);
         this.add(dataIdLabel);
         this.add(dataBalanceLabel);
         this.add(dataTypeLabel);
         this.add(dataInterestLabel);
 
-        this.historyButton = createButton("images/history_Button.png", 340, 420, 233, 85);
-        this.transferButton = createButton("images/transfer_Button.png", 660, 420, 233, 85);
+        this.historyButton = createButton("", 902, 506, 230, 57);
+        this.transferButton = createButton("", 187, 150, 228, 60);
         this.add(historyButton);
         this.add(transferButton);
-
-        this.setVisible(true);
     }
 
-    private void setupCommonUIElements(String backgroundImage) {
-        // 设置背景
-        ImageIcon goalBackground = new ImageIcon(backgroundImage);
-        JLabel backgroundLabel = new JLabel(goalBackground);
-        backgroundLabel.setBounds(0, 0, 1260, 780);
-        this.setContentPane(backgroundLabel);
+    private void setupCommonUIElements() {
 
-        // 创建和添加退出按钮
-        JButton exitButton = createButton("Exit", 20, 20, 100, 50);
+        // 设置退出按钮和删除按钮
+        exitButton = createButton("", 16, 2, 135, 57);
+//        if(exitButton != null)  System.out.println("exitButton created.");
         this.add(exitButton);
-        this.exitButton = exitButton;  // 设置类变量以便于其他操作可能需要引用
-
-        // 创建和添加删除按钮
-        JButton deleteButton = createButton("images/delete_Button.png", 500, 630, 233, 85);
+        deleteButton = createButton("", 902, 157, 230, 57);
         this.add(deleteButton);
-        this.deleteButton = deleteButton;  // 同样设置类变量
     }
 
+    // 创建JButton的统一方法
     private JButton createButton(String textOrIconPath, int x, int y, int width, int height) {
         JButton button = new JButton();
         button.setBounds(x, y, width, height);
@@ -206,7 +172,13 @@ public class Page07_Account extends JFrame {
 
         if (textOrIconPath.endsWith(".png") || textOrIconPath.endsWith(".jpg")) {
             button.setIcon(new ImageIcon(textOrIconPath));
-        } else {
+        }
+        else if(textOrIconPath.isEmpty()){
+            button.setOpaque(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+        }
+        else{
             button.setText(textOrIconPath);
             button.setFont(new Font("Arial", Font.PLAIN, 20));
         }
@@ -214,17 +186,10 @@ public class Page07_Account extends JFrame {
         return button;
     }
 
-    private JLabel createLabel(String text, int x, int y, int width, int height, int style, int fontSize) {
+    private JLabel createDataLabel(String text, int x, int y) {
         JLabel label = new JLabel(text, SwingConstants.CENTER);
-        label.setBounds(x, y, width, height);
-        label.setFont(new Font("Arial", style, fontSize));
-        return label;
-    }
-
-    private JLabel createDataLabel(String text, int x, int y, int style, int fontSize) {
-        JLabel label = new JLabel(text, SwingConstants.CENTER);
-        label.setBounds(x, y, 300, 50);
-        label.setFont(new Font("Arial", style, fontSize));
+        label.setBounds(x, y, 280, 30);
+        label.setFont(new Font("Arial", Font.PLAIN, 26));
         return label;
     }
 

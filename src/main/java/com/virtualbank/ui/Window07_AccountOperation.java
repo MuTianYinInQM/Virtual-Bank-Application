@@ -3,7 +3,7 @@ package com.virtualbank.ui;
 import com.virtualbank.model.AccountOperationType;
 import com.virtualbank.model.account.Account;
 
-import java.awt.Font;
+import java.awt.*;
 import java.util.UUID;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,11 +40,12 @@ public class Window07_AccountOperation extends JFrame {
         this.descriptionBox = new JTextField();
         this.confirmButton = new JButton();
 
-        final int this_width = 600;
-        final int this_height = 378;
-        this.setBounds(330, 200, this_width, this_height);
+        final int this_width = 800;
+        final int this_height = 480;
+        this.setBounds(300, 200, this_width, this_height);
         this.setResizable(false);
         this.setLayout(null);
+        this.setBackground(new Color(0xF8F6E9));
 
         String title = null;
         if (operationType == AccountOperationType.TRANSFER) {
@@ -64,45 +65,48 @@ public class Window07_AccountOperation extends JFrame {
 
         Font plainLabelFont = new Font("Arial", Font.PLAIN, 20);
 
-        // amountBox
-        String labelText = null;
+        // amountLabel
+        String amountLabelText = null;
         if (operationType == AccountOperationType.TRANSFER) {
-            labelText = "Transfer Amount";
-        } else if (operationType == AccountOperationType.CONSUME) {
-            labelText = "CONSUME Amount";
-        } else if (operationType == AccountOperationType.SAVE) {
-            labelText = "SAVE Amount";
+            amountLabelText = "*Transfer Amount*";
         }
-        JLabel transferLabel = new JLabel(labelText);
+        else if (operationType == AccountOperationType.CONSUME) {
+            amountLabelText = "*CONSUME Amount*";
+        }
+        else if (operationType == AccountOperationType.SAVE) {
+            amountLabelText = "*SAVE Amount*";
+        }
 
-        this.add(transferLabel);
-        transferLabel.setBounds(60, 80, 120, 40);
-        transferLabel.setFont(plainLabelFont);
-        transferLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel amountLabel = new JLabel(amountLabelText);
+        amountLabel.setBounds(200, 60, 200, 40);
+        amountLabel.setFont(plainLabelFont);
+        amountLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        this.add(amountLabel);
 
-        // transferAmountField
-        this.add(this.amountBox);
-        this.amountBox.setBounds(200, 80, 320, 40);
+        // amountBox
+        this.amountBox.setBounds(200, 100, 400, 40);
         this.amountBox.setFont(plainLabelFont);
+        this.add(this.amountBox);
 
-        // sumLabel
-        JLabel sumLabel = new JLabel("Description");
-        this.add(sumLabel);
-        sumLabel.setBounds(60, 140, 120, 40);
-        sumLabel.setFont(plainLabelFont);
-        sumLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        // descriptionLabel
+        JLabel descriptionLabel = new JLabel("**Description**");
+        this.add(descriptionLabel);
+        descriptionLabel.setBounds(200, 180, 200, 40);
+        descriptionLabel.setFont(plainLabelFont);
+        descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         // descriptionBox
         this.add(this.descriptionBox);
-        this.descriptionBox.setBounds(200, 140, 320, 40);
+        this.descriptionBox.setBounds(200, 220, 400, 40);
         this.descriptionBox.setFont(plainLabelFont);
 
         // confirmButton
         this.add(this.confirmButton);
-        this.confirmButton.setBounds(240, 220, 120, 40);
-        this.confirmButton.setFont(plainLabelFont);
-        this.confirmButton.setHorizontalAlignment(SwingConstants.CENTER);
-        this.confirmButton.setText("OK");
+        this.confirmButton.setBounds(330, 300, 140, 55);
+        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
+        confirmButton.setIcon(confirmButtonIcon);
+        confirmButton.setBorder(null);
+        confirmButton.setContentAreaFilled(false);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
