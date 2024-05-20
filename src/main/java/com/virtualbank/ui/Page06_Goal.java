@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.virtualbank.interfaces.DataUpdateListener;
 import com.virtualbank.controller.SavingGoalController;
+import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
 import com.virtualbank.repository.SavingGoalRepository;
@@ -25,9 +26,11 @@ public class Page06_Goal implements DataUpdateListener {
 	private ImageIcon goalBackground;
 	private List<JPanel> goalPanels = new ArrayList<>(); // 存储每个目标的面板
 	private SavingGoalController controller;
+	private AccountManager accountManager;
 
-	public Page06_Goal() {
-		this.goalService = new SavingGoalService(new SavingGoalRepository());
+	public Page06_Goal(AccountManager accountManager) {
+		this.accountManager = accountManager;
+		this.goalService = new SavingGoalService(new SavingGoalRepository(), accountManager);
 		initializeComponents();
 		configureUI();
 		loadGoals();
@@ -166,7 +169,7 @@ public class Page06_Goal implements DataUpdateListener {
 			// 重新添加监听器
 			modifyButton.addActionListener(e -> {
 				SavingGoal goal = (SavingGoal) modifyButton.getClientProperty("goal");
-				openSetGoalWindow(goal);
+				openSetGoalWindow(goal, accountManager.getTotalBalance());
 			});
 			deleteButton.addActionListener(e -> {
 				SavingGoal goal = (SavingGoal) deleteButton.getClientProperty("goal");
@@ -180,8 +183,8 @@ public class Page06_Goal implements DataUpdateListener {
 		}
 	}
 
-	private void openSetGoalWindow(SavingGoal goal) {
-		Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, goalService, this);
+	private void openSetGoalWindow(SavingGoal goal, double currentBalance) {
+		Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, goalService, this, currentBalance);
 		setGoalWindow.display(); // 使用display方法来显示窗口
 	}
 
@@ -190,7 +193,12 @@ public class Page06_Goal implements DataUpdateListener {
 		if (goal == null) {
 			goal = new SavingGoal();  // 创建一个新的SavingGoal实例
 		}
-		openSetGoalWindow(goal);
+		double currentBalance = accountManager.getTotalBalance();
+		openSetGoalWindow(goal, currentBalance);
+	}
+
+	public AccountManager getAccountManager() {
+		return accountManager;
 	}
 
 	// 静态内部类GoalCard
@@ -283,30 +291,6 @@ public class Page06_Goal implements DataUpdateListener {
 			add(upBarPanel);
 			add(downBarPanel);
 		}
-
-//		@Override
-//		protected void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			Graphics2D g2 = (Graphics2D) g.create();
-//			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//			g2.setColor(Background_Color);
-//			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
-//
-//			g2.dispose();
-//		}
-//
-//		@Override
-//		protected void paintBorder(Graphics g) {
-//			Graphics2D g2 = (Graphics2D) g.create();
-//			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//			g2.setColor(Border_Color);
-//			g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
-//
-//			g2.dispose();
-//		}
-
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -336,6 +320,7 @@ public class Page06_Goal implements DataUpdateListener {
 
 
 	public static void main(String[] args) {
-		new Page06_Goal();
+		AccountManager accountManager = new AccountManager();
+		new Page06_Goal(accountManager);
 	}
 }

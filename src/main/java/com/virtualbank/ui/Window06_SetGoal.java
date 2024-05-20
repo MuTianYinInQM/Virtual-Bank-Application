@@ -4,6 +4,7 @@ import java.awt.Font;
 import javax.swing.*;
 
 import com.virtualbank.interfaces.DataUpdateListener;
+import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
 import com.virtualbank.repository.SavingGoalRepository;
@@ -18,11 +19,13 @@ public class Window06_SetGoal {
 	private SavingGoalService savingGoalService;
 	private SavingGoal goalToUpdate;
 	private DataUpdateListener updateListener;
+	private double currentBalance;
 
-	public Window06_SetGoal(SavingGoal goalToUpdate, SavingGoalService savingGoalService, DataUpdateListener listener) {
+	public Window06_SetGoal(SavingGoal goalToUpdate, SavingGoalService savingGoalService, DataUpdateListener listener, double currentBalance) {
 		this.goalToUpdate = goalToUpdate;
 		this.savingGoalService = savingGoalService;
 		this.updateListener = listener;
+		this.currentBalance = currentBalance;
 
 		// Window settings
 		this.window = new JFrame("JoyBank - Set Your Goal");
@@ -121,7 +124,7 @@ public class Window06_SetGoal {
 				JOptionPane.showMessageDialog(window, "Goal successfully updated!");
 			} else {
 				// 否则创建一个新的目标
-				SavingGoal newGoal = new SavingGoal(null, childName, targetAmount, 0, goalName);
+				SavingGoal newGoal = new SavingGoal(null, childName, targetAmount, currentBalance, goalName);
 				savingGoalService.addSavingGoal(childName, goalName, targetAmount);
 				JOptionPane.showMessageDialog(window, "Goal successfully saved!");
 			}
@@ -138,12 +141,17 @@ public class Window06_SetGoal {
 
 
 	public static void main(String[] args) {
+		AccountManager accountManager = new AccountManager();
+		double currentBalance = accountManager.getTotalBalance();
 		DataUpdateListener listener = new DataUpdateListener() {
 			@Override
 			public void onDataUpdated() {
 				System.out.println("Data has been updated.");
 			}
 		};
-		new Window06_SetGoal(null, new SavingGoalService(new SavingGoalRepository()), listener);
+		SavingGoalService savingGoalService = new SavingGoalService(new SavingGoalRepository(), accountManager); // 初始化 SavingGoalService 时传入 AccountManager
+
+		// 确保在创建 Window06_SetGoal 对象时也传入 AccountManager
+		new Window06_SetGoal(null, savingGoalService, listener, currentBalance);
 	}
 }

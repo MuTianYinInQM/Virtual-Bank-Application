@@ -30,7 +30,10 @@ public class SavingGoalController {
         for (ActionListener listener : listeners) {
             page.getCreateButton().removeActionListener(listener);
         }
-        page.getCreateButton().addActionListener(e -> openSetGoalWindow(null));
+        page.getCreateButton().addActionListener(e -> {
+            double currentBalance = page.getAccountManager().getTotalBalance(); // 获取当前余额
+            openSetGoalWindow(null, currentBalance); // 传递当前余额
+        });
     }
 
     private void setupModifyAndDeleteButtonListeners() {
@@ -50,7 +53,8 @@ public class SavingGoalController {
             // 添加新的监听器
             modifyButton.addActionListener(e -> {
                 SavingGoal goal = (SavingGoal) modifyButton.getClientProperty("goal");
-                openSetGoalWindow(goal);
+                double currentBalance = page.getAccountManager().getTotalBalance(); // 获取当前余额
+                openSetGoalWindow(goal, currentBalance); // 传递当前余额
             });
 
             deleteButton.addActionListener(e -> {
@@ -71,8 +75,8 @@ public class SavingGoalController {
         setupModifyAndDeleteButtonListeners();
     }
 
-    private void openSetGoalWindow(SavingGoal goal) {
-        Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, savingGoalService, page);
+    private void openSetGoalWindow(SavingGoal goal, double currentBalance) {
+        Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, savingGoalService, page, currentBalance);
         setGoalWindow.display();
     }
 }

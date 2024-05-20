@@ -1,5 +1,6 @@
 package com.virtualbank.service;
 
+import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.repository.SavingGoalRepository;
 
@@ -10,14 +11,20 @@ import java.util.stream.Collectors;
 public class SavingGoalService {
 
     private final SavingGoalRepository savingGoalRepository;
-
-    public SavingGoalService(SavingGoalRepository savingGoalRepository) {
+    private final AccountManager accountManager;
+    public SavingGoalService(SavingGoalRepository savingGoalRepository, AccountManager accountManager) {
         this.savingGoalRepository = savingGoalRepository;
+        this.accountManager = accountManager;
+    }
+
+    public double getCurrentBalance() {
+        return accountManager.getTotalBalance();
     }
 
     // 添加新的储蓄目标
     public SavingGoal addSavingGoal(String childName, String goalName, double targetAmount) {
-        SavingGoal newGoal = new SavingGoal(UUID.randomUUID().toString(), childName, targetAmount, 0, goalName);
+        double currentBalance = getCurrentBalance();
+        SavingGoal newGoal = new SavingGoal(UUID.randomUUID().toString(), childName, targetAmount, currentBalance, goalName);
         savingGoalRepository.save(newGoal);
         return newGoal;
     }
@@ -30,16 +37,6 @@ public class SavingGoalService {
         savingGoalRepository.save(existingGoal);
         return existingGoal;
     }
-
-//    // 为指定的储蓄目标贡献资金
-//    public SavingGoal contributeToGoal(String goalId, double contribution) {
-//        SavingGoal goal = savingGoalRepository.findById(goalId)
-//                .orElseThrow(() -> new IllegalArgumentException("Saving goal not found with ID: " + goalId));
-//        double newCurrentAmount = goal.getCurrentAmount() + contribution;
-//        goal.setCurrentAmount(newCurrentAmount);
-//        savingGoalRepository.save(goal);
-//        return goal;
-//    }
 
     // 获取所有的储蓄目标
     public List<SavingGoal> getAllSavingGoals() {
