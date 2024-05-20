@@ -100,7 +100,7 @@ public class Page06_Goal implements DataUpdateListener {
 		window.add(createButton);
 
 		// 配置scrollPane
-		scrollPane.setBounds(500, 125, 620, 580); // 设置滚动面板的位置和大小
+		scrollPane.setBounds(500, 130, 620, 575); // 设置滚动面板的位置和大小
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.setOpaque(false);
@@ -209,8 +209,8 @@ public class Page06_Goal implements DataUpdateListener {
 
 		public GoalCard(SavingGoal goal, String goalName, String currentAmount, String targetAmount) {
 			setLayout(null);
-			setPreferredSize(new Dimension(1600, 150));
-			setMaximumSize(new Dimension(1600, 150));
+			setPreferredSize(new Dimension(1200, 125));
+			setMaximumSize(new Dimension(1200, 125));
 
 			valueLabel = new JLabel();
 			String valueLabelText = String.format(
@@ -218,10 +218,10 @@ public class Page06_Goal implements DataUpdateListener {
 					goalName, currentAmount, targetAmount);
 			valueLabel.setText(valueLabelText);
 			valueLabel.setFont(valueLabelFont);
-			valueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			valueLabel.setHorizontalAlignment(SwingConstants.LEFT);
 			valueLabel.setOpaque(false);
 			valueLabel.setBorder(null);
-			valueLabel.setBounds(10, 15, 480, 45);
+			valueLabel.setBounds(75, 15, 500, 45);
 			add(valueLabel);
 
 			modifyButton = new JButton();
@@ -230,7 +230,7 @@ public class Page06_Goal implements DataUpdateListener {
 			modifyButton.setBorderPainted(false);
 			modifyButton.setContentAreaFilled(false);
 			modifyButton.setFocusPainted(false);
-			modifyButton.setBounds(500, 12, 113, 43);
+			modifyButton.setBounds(480, 12, 113, 43);
 			add(modifyButton);
 
 			deleteButton = new JButton();
@@ -239,7 +239,7 @@ public class Page06_Goal implements DataUpdateListener {
 			deleteButton.setBorderPainted(false);
 			deleteButton.setContentAreaFilled(false);
 			deleteButton.setFocusPainted(false);
-			deleteButton.setBounds(500, 65, 113, 43);
+			deleteButton.setBounds(480, 65, 113, 43);
 			add(deleteButton);
 
 			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
@@ -284,6 +284,29 @@ public class Page06_Goal implements DataUpdateListener {
 			add(downBarPanel);
 		}
 
+//		@Override
+//		protected void paintComponent(Graphics g) {
+//			super.paintComponent(g);
+//			Graphics2D g2 = (Graphics2D) g.create();
+//			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//			g2.setColor(Background_Color);
+//			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
+//
+//			g2.dispose();
+//		}
+//
+//		@Override
+//		protected void paintBorder(Graphics g) {
+//			Graphics2D g2 = (Graphics2D) g.create();
+//			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//			g2.setColor(Border_Color);
+//			g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
+//
+//			g2.dispose();
+//		}
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -291,7 +314,7 @@ public class Page06_Goal implements DataUpdateListener {
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 			g2.setColor(Background_Color);
-			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
+			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
 
 			g2.dispose();
 		}
@@ -302,10 +325,13 @@ public class Page06_Goal implements DataUpdateListener {
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 			g2.setColor(Border_Color);
-			g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
+			// 边框宽度为3，所以需要调整绘制边框的矩形区域
+			g2.setStroke(new BasicStroke(2));
+			g2.draw(new RoundRectangle2D.Double(1.5, 1.5, getWidth() - 3, getHeight() - 3, 20, 20));
 
 			g2.dispose();
 		}
+
 	}
 
 
