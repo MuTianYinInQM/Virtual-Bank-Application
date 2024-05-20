@@ -134,34 +134,6 @@ public class Page06_Goal implements DataUpdateListener {
 			goalsPanel.add(goalCard);	// 添加到滚动面板中
 			goalsPanel.add(Box.createVerticalStrut(10));	// 卡片之间留有间隙
 
-//			String labelText = String.format (
-//					"<html><font color='blue'>%s</font>: <font color='green'>$</font><font color='green'>%.2f</font> / <font color='red'>$</font><font color='red'>%.2f</font></html>",
-//					goal.getGoalName(), goal.getCurrentAmount(), goal.getTargetAmount());
-//			JLabel goalLabel = new JLabel(labelText);
-//			goalLabel.setFont(new Font("Arial", Font.BOLD, 14)); // 设置字体大小和风格
-//
-//			// 设置progressBar样式
-//			JProgressBar progressBar = new JProgressBar(0, 100);
-//			progressBar.setPreferredSize(new Dimension(400, 20));
-//			// 计算进度值
-//			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
-//			// 设置进度条的值（等待修改）
-//			progressBar.setValue(progressValue);
-//			// 更新精度条样式
-//			updateProgressBar(progressBar, progressValue);
-//
-//			JButton modifyButton = new JButton("Modify");
-//			JButton deleteButton = new JButton("Delete");
-//			modifyButton.putClientProperty("goal", goal);
-//			deleteButton.putClientProperty("goal", goal);
-//
-//			goalPanel.add(goalLabel);
-//			goalPanel.add(progressBar);
-//			goalPanel.add(modifyButton);
-//			goalPanel.add(deleteButton);
-//
-//			goalPanels.add(goalPanel);	// 添加到ArrayList中
-//			goalsPanel.add(goalPanel);	// 添加到滚动面板中
 		}
 
 		// 重绘滚动面板
@@ -229,62 +201,48 @@ public class Page06_Goal implements DataUpdateListener {
 		private JLabel progressLabel;
 		private JButton modifyButton;
 		private JButton deleteButton;
-//		private JLabel backgroundLabel;
 		private static final Font valueLabelFont = new Font("Arial", Font.PLAIN, 24);
 		private static final Color Background_Color = new Color(0xBCCCDF);
 		private static final Color Border_Color = new Color(0x5C5C5C);
 		private static final int ARC_WIDTH = 10;
 		private static final int ARC_HEIGHT = 10;
 
-
 		public GoalCard(SavingGoal goal, String goalName, String currentAmount, String targetAmount) {
-
-			// 设置卡片的整体布局
 			setLayout(null);
-			setPreferredSize(new Dimension(520, 110));
-			setMaximumSize(new Dimension(520, 110));
-//			backgroundLabel = new JLabel();
-//			backgroundLabel.setIcon(new ImageIcon("images/goalCard.png"));
-//			this.add(backgroundLabel);
-//			backgroundLabel.setBounds(0, 0, 520, 110);
+			setPreferredSize(new Dimension(1600, 150));
+			setMaximumSize(new Dimension(1600, 150));
 
-			// 配置valueLabel
 			valueLabel = new JLabel();
-			String valueLabelText = String.format (
+			String valueLabelText = String.format(
 					"<html><font color='yellow'>%s : </font><font color='blue'>%s</font> / <font color='red'>%s</font></html>",
 					goalName, currentAmount, targetAmount);
-//			System.out.println(valueLabelText);
 			valueLabel.setText(valueLabelText);
 			valueLabel.setFont(valueLabelFont);
 			valueLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			valueLabel.setOpaque(false);
 			valueLabel.setBorder(null);
-			this.add(valueLabel);
-			valueLabel.setBounds(10, 15, 380, 45);
+			valueLabel.setBounds(10, 15, 480, 45);
+			add(valueLabel);
 
-			// 配置modifyButton
 			modifyButton = new JButton();
 			modifyButton.putClientProperty("goal", goal);
 			modifyButton.setIcon(new ImageIcon("images/Modify_Button.png"));
 			modifyButton.setBorderPainted(false);
 			modifyButton.setContentAreaFilled(false);
 			modifyButton.setFocusPainted(false);
-			modifyButton.setBounds(390, 12, 113, 43);
-			this.add(modifyButton);
+			modifyButton.setBounds(500, 12, 113, 43);
+			add(modifyButton);
 
-			// 配置deleteButton
 			deleteButton = new JButton();
 			deleteButton.putClientProperty("goal", goal);
 			deleteButton.setIcon(new ImageIcon("images/Delete_Button.png"));
 			deleteButton.setBorderPainted(false);
 			deleteButton.setContentAreaFilled(false);
 			deleteButton.setFocusPainted(false);
-			deleteButton.setBounds(390, 65, 113, 43);
-			this.add(deleteButton);
+			deleteButton.setBounds(500, 65, 113, 43);
+			add(deleteButton);
 
-			// 配置progressLabel
 			int progressValue = (int) ((goal.getCurrentAmount() / goal.getTargetAmount()) * 100);
-			System.out.println("progressValue: " + progressValue);
 			String progressValueText = progressValue + "%";
 			progressLabel = new JLabel(progressValueText);
 			progressLabel.setFont(valueLabelFont);
@@ -292,31 +250,26 @@ public class Page06_Goal implements DataUpdateListener {
 			progressLabel.setOpaque(false);
 			progressLabel.setBorder(null);
 			progressLabel.setBounds(300, 68, 60, 30);
-			this.add(progressLabel);
+			add(progressLabel);
 
-			// 配置进度条
 			upBarPanel = new JPanel();
 			upBarPanel.setBorder(null);
 
 			Color upBarColor = null;
 			int upBarWidth = 0;
-			if(progressValue < 25){
+			if (progressValue < 25) {
 				upBarColor = new Color(0xB30000);
 				upBarWidth = 50;
-			}
-			else if(progressValue < 50){
+			} else if (progressValue < 50) {
 				upBarColor = new Color(0xFFAB0A);
 				upBarWidth = 105;
-			}
-			else if(progressValue < 75){
+			} else if (progressValue < 75) {
 				upBarColor = new Color(0xFBFF0A);
 				upBarWidth = 165;
-			}
-			else if(progressValue < 100){
+			} else if (progressValue < 100) {
 				upBarColor = new Color(0x0AFF0F);
 				upBarWidth = 240;
-			}
-			else{
+			} else {
 				upBarColor = new Color(0x0AFF0F);
 				upBarWidth = 270;
 			}
@@ -327,8 +280,8 @@ public class Page06_Goal implements DataUpdateListener {
 			downBarPanel.setBackground(new Color(0x9EABBB));
 			downBarPanel.setBorder(null);
 			downBarPanel.setBounds(20, 80, 270, 8);
-			this.add(upBarPanel);
-			this.add(downBarPanel);
+			add(upBarPanel);
+			add(downBarPanel);
 		}
 
 		@Override
@@ -337,7 +290,6 @@ public class Page06_Goal implements DataUpdateListener {
 			Graphics2D g2 = (Graphics2D) g.create();
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-			// 设置背景颜色和圆角矩形
 			g2.setColor(Background_Color);
 			g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
 
@@ -349,15 +301,13 @@ public class Page06_Goal implements DataUpdateListener {
 			Graphics2D g2 = (Graphics2D) g.create();
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-			// 设置圆角矩形边框
 			g2.setColor(Border_Color);
 			g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
 
 			g2.dispose();
 		}
-
-
 	}
+
 
 	public static void main(String[] args) {
 		new Page06_Goal();

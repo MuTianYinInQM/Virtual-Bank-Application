@@ -35,8 +35,9 @@ public class SavingGoalController {
 
     private void setupModifyAndDeleteButtonListeners() {
         for (JPanel goalPanel : page.getGoalPanels()) {
-            JButton modifyButton = (JButton) goalPanel.getComponent(2);
-            JButton deleteButton = (JButton) goalPanel.getComponent(3);
+            // 使用正确的索引值获取组件
+            JButton modifyButton = (JButton) goalPanel.getComponent(1);
+            JButton deleteButton = (JButton) goalPanel.getComponent(2);
 
             // 清除旧的监听器
             for (ActionListener al : modifyButton.getActionListeners()) {
@@ -64,6 +65,7 @@ public class SavingGoalController {
             });
         }
     }
+
 
     public void refreshListeners() {
         setupModifyAndDeleteButtonListeners();
