@@ -50,7 +50,8 @@ public class Main {
         UIStack uiStack = new UIStack();
         TaskService taskService = new TaskService();
 
-        new UserLoginController(page01Login, userService,taskService , uiStack);
+        UserLoginController userLoginController = new UserLoginController(page01Login, userService, taskService, uiStack);
+        uiStack.pushPage(userLoginController);
     }
 
 }

@@ -58,8 +58,6 @@ public class UserRegisterController implements Page {
 
         if (result) {
             JOptionPane.showMessageDialog(page, "Registration Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-            page.setVisible(false); // 隐藏注册页面
-            loginPage.setVisible(true); // 显示登录页面
             uiStack.pop();
         } else {
             JOptionPane.showMessageDialog(page, "Registration Failed: Username may already exist", "Registration Error", JOptionPane.ERROR_MESSAGE);

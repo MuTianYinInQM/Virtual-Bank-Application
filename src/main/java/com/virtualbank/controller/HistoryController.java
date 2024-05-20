@@ -29,16 +29,16 @@ public class HistoryController implements Page {
             }
         });
 
-        // 绑定滚动条的调整监听器
-        page.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                // 这里可以放置一些逻辑，例如动态加载更多的历史记录等
-                if (!e.getValueIsAdjusting()) {
-                    loadMoreHistory();
-                }
-            }
-        });
+//        // 绑定滚动条的调整监听器
+//        page.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+//            @Override
+//            public void adjustmentValueChanged(AdjustmentEvent e) {
+//                // 这里可以放置一些逻辑，例如动态加载更多的历史记录等
+//                if (!e.getValueIsAdjusting()) {
+//                    loadMoreHistory();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -62,11 +62,11 @@ public class HistoryController implements Page {
     }
 
 
-    private void loadMoreHistory() {
-        // 这里可以实现当用户滚动到底部时加载更多历史记录的功能
-        // 目前这个方法是空的，可以根据需要实现具体功能
-        // TODO
-    }
+//    private void loadMoreHistory() {
+//        // 这里可以实现当用户滚动到底部时加载更多历史记录的功能
+//        // 目前这个方法是空的，可以根据需要实现具体功能
+//        // TODO
+//    }
 
     public static void main(String[] args) {
         Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
