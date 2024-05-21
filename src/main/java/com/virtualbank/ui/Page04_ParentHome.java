@@ -1,3 +1,9 @@
+/**
+ * The home page for a parent user to check task lists for his children
+ * as well as create new tasks
+ * @author Yunbo Jia, Liyang Qian
+ * @version 3.0 2024-5-21
+ */
 package com.virtualbank.ui;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,21 +15,41 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The Page04_ParentHome class represents the parent home page in the JoyBank application.
+ * This page allows parents to view, create, and manage tasks.
+ *
+ * @see JFrame
+ */
 public class Page04_ParentHome extends JFrame {
 
     private JButton exitButton = new JButton();
     private JButton createTaskButton = new JButton();
     private JPanel backgroundPanel; // 声明 backgroundPanel 字段
-    private JScrollPane scrollPane; 
+    private JScrollPane scrollPane;
 
+    /**
+     * Gets the exit button.
+     *
+     * @return the exit button
+     */
     public JButton getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Gets the create task button.
+     *
+     * @return the create task button
+     */
     public JButton getCreateTaskButton() {
         return createTaskButton;
     }
 
+    /**
+     * Constructs a new Page04_ParentHome instance.
+     * Sets up the main UI components and displays tasks from a JSON file.
+     */
     public Page04_ParentHome() {
         final int window_width = 1260;
         final int window_height = 780;
@@ -40,7 +66,6 @@ public class Page04_ParentHome extends JFrame {
         backgroundPanel.setBounds(0, 0, window_width, window_height);
         add(backgroundPanel);
 
-        // 返回上一级，LoginPage的按钮Exit
         exitButton.setBounds(20, 20, 134, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
@@ -51,14 +76,12 @@ public class Page04_ParentHome extends JFrame {
 //        exitButton.setBorderPainted(false);
         backgroundPanel.add(exitButton);
 
-        // 创建新任务的按钮
         createTaskButton.setBounds(30, 135, 516, 98);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
         createTaskButton.setBorder(null);
         backgroundPanel.add(createTaskButton);
 
-        // 创建带滚动条的区域
         JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
         scrollPanel.setBackground(new Color(0xfcfcf7));
@@ -75,6 +98,12 @@ public class Page04_ParentHome extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Displays tasks from a JSON file.
+     * Reads tasks from the specified JSON file and displays them in the scroll panel.
+     *
+     * @param jsonFilePath the path to the JSON file containing task data
+     */
     public void displayTasksFromJsonFile(String jsonFilePath) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -93,7 +122,6 @@ public class Page04_ParentHome extends JFrame {
                 return;
             }
 
-            // 清空原有任务
             scrollPanel.removeAll();
 
             for (Task task : tasks) {
@@ -124,16 +152,40 @@ public class Page04_ParentHome extends JFrame {
         backgroundPanel.add(backgroundLabel);
     }
 
+    /**
+     * Gets the scroll pane containing the tasks.
+     *
+     * @return the scroll pane
+     */
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
 
+    /**
+     * The Parent_FinishedTaskLabel class represents a label for finished tasks with a confirm button.
+     */
     public class Parent_FinishedTaskLabel extends TaskLabel.FinishedTaskLabel {
 
         private JButton confirmButton;
 
+        /**
+         * Gets the confirm button.
+         *
+         * @return the confirm button
+         */
         public JButton getConfirmButton() { return confirmButton; }
 
+        /**
+         * Constructs a new Parent_FinishedTaskLabel instance.
+         *
+         * @param id          the task ID
+         * @param taskName    the task name
+         * @param description the task description
+         * @param reward      the task reward
+         * @param childName   the child's name
+         * @param startDate   the task start date
+         * @param dueDate     the task due date
+         */
         public Parent_FinishedTaskLabel(String id, String taskName, String description, double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             confirmButton = new JButton();
@@ -148,14 +200,33 @@ public class Page04_ParentHome extends JFrame {
         }
     }
 
+    /**
+     * The Parent_NotAcceptedTaskLabel class represents a label for not accepted tasks with a terminate button.
+     */
     public class Parent_NotAcceptedTaskLabel extends TaskLabel.NotAcceptedTaskLabel {
 
         private JButton terminateButton;
 
+        /**
+         * Gets the terminate button.
+         *
+         * @return the terminate button
+         */
         public JButton getTerminateButton() {
             return terminateButton;
         }
 
+        /**
+         * Constructs a new Parent_NotAcceptedTaskLabel instance.
+         *
+         * @param id          the task ID
+         * @param taskName    the task name
+         * @param description the task description
+         * @param reward      the task reward
+         * @param childName   the child's name
+         * @param startDate   the task start date
+         * @param dueDate     the task due date
+         */
         public Parent_NotAcceptedTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton();
@@ -163,20 +234,39 @@ public class Page04_ParentHome extends JFrame {
             ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
             terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
-            terminateButton.setContentAreaFilled(false); // 不填充内容区
-            terminateButton.setBorderPainted(false); // 不绘制边框
+            terminateButton.setContentAreaFilled(false);
+            terminateButton.setBorderPainted(false);
             this.add(terminateButton);
         }
     }
 
+    /**
+     * The Parent_OngoingTaskLabel class represents a label for ongoing tasks with a terminate button.
+     */
     public class Parent_OngoingTaskLabel extends TaskLabel.OngoingTaskLabel {
 
         private JButton terminateButton;
 
+        /**
+         * Gets the terminate button.
+         *
+         * @return the terminate button
+         */
         public JButton getTerminateButton() {
             return terminateButton;
         }
 
+        /**
+         * Constructs a new Parent_OngoingTaskLabel instance.
+         *
+         * @param id          the task ID
+         * @param taskName    the task name
+         * @param description the task description
+         * @param reward      the task reward
+         * @param childName   the child's name
+         * @param startDate   the task start date
+         * @param dueDate     the task due date
+         */
         public Parent_OngoingTaskLabel(String id, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton();
@@ -184,12 +274,17 @@ public class Page04_ParentHome extends JFrame {
             ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
             terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
-            terminateButton.setContentAreaFilled(false); // 不填充内容区
+            terminateButton.setContentAreaFilled(false);
             terminateButton.setBorderPainted(false);
             this.add(terminateButton);
         }
     }
 
+    /**
+     * The main method to run the Page04_ParentHome application.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         Page04_ParentHome page04ParentHome = new Page04_ParentHome();
     }
