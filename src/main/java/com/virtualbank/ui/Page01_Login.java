@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public class Page01_Login extends JFrame {
 
     /** Username input field */
-    private JTextField username_textField; // 用户名输入框
+    private JTextField username_textField;
     /** Password input field */
     private JPasswordField password_textField;
     /** Confirm button */
@@ -76,7 +76,7 @@ public class Page01_Login extends JFrame {
         setTitle("JoyBank - Login Page");
         setResizable(false);
         setLayout(null);
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/LoginBackground.png"); // 添加背景图
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/LoginBackground.png");
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         getContentPane().add(backgroundLabel);
@@ -85,7 +85,7 @@ public class Page01_Login extends JFrame {
         Border border = BorderFactory.createLineBorder(new Color(0x3d6de1), 2);
         username_textField = new JTextField();
         username_textField.setBounds(450, 310, 360, 50);
-        Font font = new Font(username_textField.getFont().getName(), Font.PLAIN, 20); // 创建一个新字体对象，设置大小为20
+        Font font = new Font(username_textField.getFont().getName(), Font.PLAIN, 20);
         username_textField.setFont(font);
         username_textField.setBorder(border);
         backgroundLabel.add(username_textField);
