@@ -82,6 +82,8 @@ public class UserLoginController implements Page {
             case "Username does not exist":
                 JOptionPane.showMessageDialog(page, "Username does not exist", "Login Error", JOptionPane.ERROR_MESSAGE);
                 break;
+            case "Failed to load account manager":
+                JOptionPane.showMessageDialog(page, "Failed to load account manager", "Login Error", JOptionPane.ERROR_MESSAGE);
             default:
                 JOptionPane.showMessageDialog(page, "Login Failed", "Login Error", JOptionPane.ERROR_MESSAGE);
                 break;
