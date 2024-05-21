@@ -8,16 +8,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+/**
+ * Controller class for creating new tasks.
+ * Provides methods to handle user input and validate task creation.
+ */
 public class CreateTaskController {
     private TaskService taskService;
     private Window3_CreateNewTask createTaskUI;
 
+    /**
+     * Constructs a CreateTaskController with the specified TaskService and UI components.
+     *
+     * @param taskService the task service to be used for managing tasks
+     * @param createTaskUI the UI component representing the task creation window
+     */
     public CreateTaskController(TaskService taskService, Window3_CreateNewTask createTaskUI) {
         this.taskService = taskService;
         this.createTaskUI = createTaskUI;
         attachEventHandlers();
     }
 
+    /**
+     * Checks if the given time string is in the correct format (DD-MM-YY).
+     *
+     * @param str the time string to check
+     * @return true if the time string is in the correct format, false otherwise
+     */
     public boolean checkTime(String str) { // 检查输入是否符合规范
         if (str.length() == 8) {
             if (Character.isDigit(str.charAt(0))
@@ -37,11 +53,14 @@ public class CreateTaskController {
         }
     }
 
+    /**
+     * Attaches event handlers to the UI components.
+     */
     private void attachEventHandlers() {
         createTaskUI.getConfirmButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 获取用户输入的数据
+                // Retrieves user input data
                 String taskName = createTaskUI.getTaskName_textField().getText().trim();
                 String content = createTaskUI.getContent_textField().getText().trim();
                 String money = createTaskUI.getMoney_textField().getText().trim();
@@ -49,7 +68,7 @@ public class CreateTaskController {
                 String startTime = createTaskUI.getStart_textField().getText().trim();
                 String dueTime = createTaskUI.getDue_textField().getText().trim();
 
-                // 验证输入数据的有效性
+                // Validates the input data
                 if (taskName.isEmpty() || content.isEmpty() || money.isEmpty() || childName.isEmpty() || startTime.isEmpty() || dueTime.isEmpty()) {
                     JOptionPane.showMessageDialog(createTaskUI, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -65,7 +84,7 @@ public class CreateTaskController {
                     return;
                 }
 
-                try { // 判断reward/money是否可以转换为浮点数形式
+                try { // Checks if reward/money can be converted to a double
                     double number = Double.parseDouble(money);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(createTaskUI, "\"Reward Amount\" should be in this format: xx.xx", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -87,7 +106,7 @@ public class CreateTaskController {
                     return;
                 }
 
-                // 尝试转换金额为数值
+                // Attempts to convert the reward to a double
                 double reward;
                 try {
                     reward = Double.parseDouble(money);
@@ -96,7 +115,7 @@ public class CreateTaskController {
                     return;
                 }
 
-                // 创建新的任务并添加到任务列表
+                // Creates a new task and adds it to the task list
                 try {
                     taskService.createTask(taskName, content, reward, childName, startTime, dueTime);
                     JOptionPane.showMessageDialog(createTaskUI, "Task created successfully.", "Task Creation", JOptionPane.INFORMATION_MESSAGE);

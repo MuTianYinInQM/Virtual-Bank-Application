@@ -7,17 +7,35 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+/**
+ * Service class for managing tasks.
+ * Provides methods to create, update, delete, and manage tasks and their statuses.
+ */
 public class TaskService {
     protected TaskRepository taskRepository = new TaskRepository();
 
-    // 创建任务并保存到存储中
+    /**
+     * Creates a new task and saves it to the repository.
+     *
+     * @param taskName the name of the task
+     * @param description the description of the task
+     * @param reward the reward amount for the task
+     * @param childName the name of the child who is the target of the task
+     * @param startDate the start date of the task
+     * @param endDate the end date of the task
+     */
     public void createTask(String taskName, String description, double reward, String childName, String startDate, String endDate) {
         Task newTask = new Task(UUID.randomUUID().toString(), taskName, description, reward, childName, startDate, endDate, "not_accepted");
         taskRepository.add(newTask);
     }
 
-    // 根据任务ID发布任务，改变任务状态为"published"
+    /**
+     * Publishes a task by changing its status to "published".
+     *
+     * @param taskId the ID of the task to publish
+     * @throws IllegalStateException if the task status is not "created"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void publishTask(String taskId) {
         Optional<Task> taskOptional = taskRepository.findById(taskId);
         if (taskOptional.isPresent()) {
@@ -33,7 +51,13 @@ public class TaskService {
         }
     }
 
-    // 根据任务ID撤回任务，改变任务状态为"retracted"
+    /**
+     * Retracts a task by changing its status to "retracted".
+     *
+     * @param taskId the ID of the task to retract
+     * @throws IllegalStateException if the task status is not "published"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void retractTask(String taskId) {
         Optional<Task> taskOptional = taskRepository.findById(taskId);
         if (taskOptional.isPresent()) {
@@ -49,18 +73,39 @@ public class TaskService {
         }
     }
 
-    // 获取所有任务
+    /**
+     * Gets all tasks.
+     *
+     * @return a list of all tasks
+     */
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-    // 根据任务ID获取特定任务
+    /**
+     * Gets a specific task by its ID.
+     *
+     * @param taskId the ID of the task to retrieve
+     * @return the task with the specified ID
+     * @throws IllegalArgumentException if the task is not found
+     */
     public Task getTaskById(String taskId) {
         return taskRepository.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Task with id " + taskId + " not found"));
     }
 
-    // 更新任务信息
+    /**
+     * Updates the details of a specific task.
+     *
+     * @param taskId the ID of the task to update
+     * @param taskName the new name of the task
+     * @param description the new description of the task
+     * @param reward the new reward amount for the task
+     * @param childName the new name of the child who is the target of the task
+     * @param startDate the new start date of the task
+     * @param endDate the new end date of the task
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void updateTask(String taskId, String taskName, String description, double reward, String childName, String startDate, String endDate) {
         Optional<Task> taskOptional = taskRepository.findById(taskId);
         if (taskOptional.isPresent()) {
@@ -77,19 +122,34 @@ public class TaskService {
         }
     }
 
-    // 删除任务
+    /**
+     * Deletes a specific task.
+     *
+     * @param taskId the ID of the task to delete
+     */
     public void deleteTask(String taskId) {
         taskRepository.deleteById(taskId);
     }
 
-    // 获取特定状态的任务
+    /**
+     * Gets tasks with a specific status.
+     *
+     * @param status the status to filter tasks by
+     * @return a list of tasks with the specified status
+     */
     public List<Task> getTasksByStatus(String status) {
         return taskRepository.findAll().stream()
                 .filter(task -> status.equals(task.getStatus()))
                 .collect(Collectors.toList());
     }
 
-    // 儿童用户接受任务
+    /**
+     * Allows a child user to accept a task.
+     *
+     * @param taskId the ID of the task to accept
+     * @throws IllegalStateException if the task status is not "not_accepted" or "published"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void acceptTask(String taskId) {
         Task task = getTaskById(taskId);
         if ("not_accepted".equals(task.getStatus()) || "published".equals(task.getStatus())) {
@@ -100,7 +160,14 @@ public class TaskService {
         }
     }
 
-    // 儿童用户提交任务
+    /**
+     * Allows a child user to submit a task.
+     *
+     * @param taskId the ID of the task to submit
+     * @return the updated task
+     * @throws IllegalStateException if the task status is not "ongoing"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public Task submitTask(String taskId) {
         Task task = getTaskById(taskId);
         if ("ongoing".equals(task.getStatus())) {
@@ -112,7 +179,13 @@ public class TaskService {
         return task;
     }
 
-    // 儿童用户放弃任务
+    /**
+     * Allows a child user to give up a task.
+     *
+     * @param taskId the ID of the task to give up
+     * @throws IllegalStateException if the task status is not "ongoing" or "not_accepted"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void giveUpTask(String taskId) {
         Task task = getTaskById(taskId);
         if ("ongoing".equals(task.getStatus()) || "not_accepted".equals(task.getStatus())) {
@@ -123,7 +196,13 @@ public class TaskService {
         }
     }
 
-    //家长用户终止任务
+    /**
+     * Allows a parent user to terminate a task.
+     *
+     * @param taskId the ID of the task to terminate
+     * @throws IllegalStateException if the task status is not "ongoing" or "not_accepted"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void terminateTask(String taskId){
         Task task = getTaskById(taskId);
         if ("ongoing".equals(task.getStatus()) || "not_accepted".equals(task.getStatus())) {
@@ -133,7 +212,13 @@ public class TaskService {
             throw new IllegalStateException("Task can only be terminated if it is in 'ongoing' or 'not_accepted' status.");
         }
     }
-
+    /**
+     * Allows a parent user to confirm a task as completed.
+     *
+     * @param taskId the ID of the task to confirm
+     * @throws IllegalStateException if the task status is not "finished"
+     * @throws IllegalArgumentException if the task is not found
+     */
     public void confirmTask(String taskId){
         Task task = getTaskById(taskId);
         if ("finished".equals(task.getStatus())) {
