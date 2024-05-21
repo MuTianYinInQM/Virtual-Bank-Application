@@ -6,51 +6,86 @@ import java.awt.*;
 import java.time.Period;
 import javax.swing.*;
 
+/**
+ * Page07_Account
+ * This class represents the account details page in the banking UI.
+ */
 public class Page07_Account extends JFrame {
-    private Account currentAccount;
-    private JButton exitButton;
-    private JButton deleteButton;
-    private JButton consumeButton;
-    private JButton transferButton;
-    private JButton saveButton;
-    private JButton historyButton;
-    // 页面上显示余额的
-    private JLabel dataBalanceLabel;
+    private Account currentAccount; // Current account being displayed
+    private JButton exitButton; // Button to exit the page
+    private JButton deleteButton; // Button to delete the account
+    private JButton consumeButton; // Button for consuming money
+    private JButton transferButton; // Button for transferring money
+    private JButton saveButton; // Button for saving money
+    private JButton historyButton; // Button to view transaction history
+    private JLabel dataBalanceLabel; // Label to display account balance
 
-
+    /**
+     * Constructor for Page07_Account class.
+     * @param account The account to display details for.
+     */
     public Page07_Account(Account account) {
         this.currentAccount = account;
         initializeUI(account);
     }
 
+    /**
+     * Get the consume button.
+     * @return The consume button.
+     */
     public JButton getConsumeButton() {
         return consumeButton;
     }
 
+    /**
+     * Get the transfer button.
+     * @return The transfer button.
+     */
     public JButton getTransferButton() {
         return transferButton;
     }
 
+    /**
+     * Get the save button.
+     * @return The save button.
+     */
     public JButton getSaveButton() {
         return saveButton;
     }
 
+    /**
+     * Get the history button.
+     * @return The history button.
+     */
     public JButton getHistoryButton() {
         return historyButton;
     }
 
+    /**
+     * Get the current account being displayed.
+     * @return The current account.
+     */
     public Account getCurrentAccount() {
         return currentAccount;
     }
 
+    /**
+     * Get the exit button.
+     * @return The exit button.
+     */
     public JButton getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Get the delete button.
+     * @return The delete button.
+     */
     public JButton getDeleteButton() {
         return deleteButton;
     }
 
+    // Initialize UI components based on the account type
     private void initializeUI(Account account) {
         setTitle("Account Details");
         setSize(1260, 780);  // Set the size to match the Current Account window
@@ -58,7 +93,7 @@ public class Page07_Account extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);  // Use null layout for absolute positioning
 
-        // 根据账户类型设置各自的UI
+        // Set up UI based on account type
         if (currentAccount instanceof CurrentAccount) {
             setupCurrentAccountUI((CurrentAccount) account);
         } else if (currentAccount instanceof SavingAccount) {
@@ -68,6 +103,7 @@ public class Page07_Account extends JFrame {
         }
     }
 
+    // Set up UI for PiggyBank account
     private void setupPiggyBankUI(PiggyBank account) {
 
         ImageIcon backgroundIcon = new ImageIcon("images/Piggy_Bank.png");
@@ -99,6 +135,7 @@ public class Page07_Account extends JFrame {
         this.add(consumeButton);
     }
 
+    // Set up UI for SavingAccount account
     private void setupSavingAccountUI(SavingAccount account) {
 
         ImageIcon backgroundIcon = new ImageIcon("images/Saving_Account.png");
@@ -128,7 +165,7 @@ public class Page07_Account extends JFrame {
         this.add(historyButton);
     }
 
-
+    // Set up UI for CurrentAccount account
     private void setupCurrentAccountUI(CurrentAccount account) {
 
         ImageIcon backgroundIcon = new ImageIcon("images/Current_Account.png");
@@ -154,6 +191,7 @@ public class Page07_Account extends JFrame {
         this.add(transferButton);
     }
 
+    // Set up common UI elements like buttons
     private void setupCommonUIElements() {
 
         // 设置退出按钮和删除按钮
@@ -164,7 +202,7 @@ public class Page07_Account extends JFrame {
         this.add(deleteButton);
     }
 
-    // 创建JButton的统一方法
+    // Create a JButton with specified properties
     private JButton createButton(String textOrIconPath, int x, int y, int width, int height) {
         JButton button = new JButton();
         button.setBounds(x, y, width, height);
@@ -186,6 +224,7 @@ public class Page07_Account extends JFrame {
         return button;
     }
 
+    // Create a JLabel with specified text and position
     private JLabel createDataLabel(String text, int x, int y) {
         JLabel label = new JLabel(text, SwingConstants.CENTER);
         label.setBounds(x, y, 280, 30);
@@ -193,10 +232,12 @@ public class Page07_Account extends JFrame {
         return label;
     }
 
+    // Update page with current account data
     public void updatePage() {
         dataBalanceLabel.setText(String.format("%.2f", currentAccount.getBalance()));
     }
 
+    // Main method for testing Page07_Account class
     public static void main(String[] args) {
 //        Account exampleAccount = new SavingAccount("Example Account", 1000, 0.02, 24, Period.ofYears(1));
 //        Account exampleAccount = new PiggyBank("Example Account", 1000);
@@ -205,12 +246,15 @@ public class Page07_Account extends JFrame {
         window.setVisible(true);
     }
 
+    // Show a message dialog
     public void showMessage(String accountNotFound, String error) {
     }
 
+    // Show an error message dialog
     public void showError(String accountNotFound, String error) {
     }
 
+    // Show a message dialog
     public void showMessageDialog(Page07_Account any, String accountNotFound, String s, int i) {
 
     }
