@@ -1,5 +1,5 @@
 /**
- * The first UI page
+ * The UI page for a user to log in or register for a new account
  * @author Yunbo Jia
  * @version 2.0 2024-5-21
  */
