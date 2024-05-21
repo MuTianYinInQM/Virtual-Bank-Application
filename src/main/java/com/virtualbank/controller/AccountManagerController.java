@@ -8,6 +8,7 @@ import com.virtualbank.model.account.PiggyBank;
 import com.virtualbank.model.account.SavingAccount;
 import com.virtualbank.ui.Page03_ChildHome;
 import com.virtualbank.model.UIStack;
+import com.virtualbank.ui.Page06_Goal;
 import com.virtualbank.ui.Window1_ChooseAccountType;
 import com.virtualbank.ui.Page07_Account;
 
@@ -47,6 +48,13 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                     AccountTypeChooseController accountTypeChooseController =
                             new AccountTypeChooseController(chooseAccountTypeWindow, accountManager, this.uiStack);
                     uiStack.pushWindow(accountTypeChooseController);
+                }
+        );
+
+        page.getGoalButton().addActionListener(
+                e -> {
+                    Page06_Goal page06Goal = new Page06_Goal(accountManager, uiStack);
+                    // 在函数里面能干的全干了 不需要再 push stack 了
                 }
         );
 

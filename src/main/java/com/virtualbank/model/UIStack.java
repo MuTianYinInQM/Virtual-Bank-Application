@@ -48,7 +48,7 @@ public class UIStack {
         if (!stack.isEmpty()) {
             Page topView = stack.pop();
             // The top view is supposed to be visible, so we make it invisible upon removal
-            topView.toggleVisibility(); // Make the top view invisible
+            topView.dispose(); // Make the top view invisible
 
             if (!stack.isEmpty()) {
                 // Ensure the new top view is visible

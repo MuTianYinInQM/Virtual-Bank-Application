@@ -1,5 +1,6 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
 import com.virtualbank.ui.Page06_Goal;
@@ -13,14 +14,14 @@ import javax.swing.*;
  * Controller class for managing saving goals in the UI.
  * Provides methods to handle user interactions and manage saving goals from the UI.
  */
-public class SavingGoalController {
+public class SavingGoalController implements Page {
     private Page06_Goal page;
     private SavingGoalService savingGoalService;
 
     /**
      * Constructs a SavingGoalController with the specified Page06_Goal and SavingGoalService.
      *
-     * @param page the UI component representing the saving goals page
+     * @param page              the UI component representing the saving goals page
      * @param savingGoalService the service for managing saving goals
      */
     public SavingGoalController(Page06_Goal page, SavingGoalService savingGoalService) {
@@ -99,12 +100,33 @@ public class SavingGoalController {
     /**
      * Opens the window to set or modify a saving goal.
      *
-     * @param goal the saving goal to modify, or null to create a new goal
+     * @param goal           the saving goal to modify, or null to create a new goal
      * @param currentBalance the current balance to be passed to the window
      */
     private void openSetGoalWindow(SavingGoal goal, double currentBalance) {
         Window06_SetGoal setGoalWindow = new Window06_SetGoal(goal, savingGoalService, page, currentBalance);
         setGoalWindow.display();
+    }
+
+
+    @Override
+    public void toggleVisibility() {
+        this.page.setVisible(!this.page.isVisible());
+    }
+
+    @Override
+    public void setVisibility(boolean visibility) {
+        this.page.setVisible(visibility);
+    }
+
+    @Override
+    public boolean getVisibility() {
+        return this.page.isVisible();
+    }
+
+    @Override
+    public void dispose() {
+        this.page.dispose();
     }
 }
 
