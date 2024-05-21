@@ -32,6 +32,7 @@ public class Page06_Goal extends JFrame implements DataUpdateListener {
     private SavingGoalController controller; // Saving goal controller
     private AccountManager accountManager; // Account manager
     private UIStack uiStack;
+    private Boolean isPopped = false;
 
     /**
      * Constructor for Page06_Goal class.
@@ -109,9 +110,12 @@ public class Page06_Goal extends JFrame implements DataUpdateListener {
         this.setResizable(false);
 
         exitButton.setBounds(16, 2, 135, 57);
-        exitButton.addActionListener(
-                e -> uiStack.pop()
-        );
+        exitButton.addActionListener(e -> {
+            if (!isPopped) {
+                uiStack.pop();
+                isPopped = true;
+            }
+        });
         exitButton.setOpaque(false);
         exitButton.setContentAreaFilled(false);
         exitButton.setBorderPainted(false);
