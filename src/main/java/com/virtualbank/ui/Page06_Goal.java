@@ -337,7 +337,6 @@ public class Page06_Goal implements DataUpdateListener {
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 			g2.setColor(Border_Color);
-			// 边框宽度为3，所以需要调整绘制边框的矩形区域
 			g2.setStroke(new BasicStroke(2));
 			g2.draw(new RoundRectangle2D.Double(1.5, 1.5, getWidth() - 3, getHeight() - 3, 20, 20));
 
