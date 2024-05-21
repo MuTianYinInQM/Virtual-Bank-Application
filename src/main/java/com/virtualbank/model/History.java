@@ -29,7 +29,7 @@ public class History implements Serializable {
     }
 
     // 确保存储目录存在
-    private void ensureDirectoryExists(Path path) {
+    void ensureDirectoryExists(Path path) {
         try {
             if (!Files.exists(path)) {
                 Files.createDirectories(path);

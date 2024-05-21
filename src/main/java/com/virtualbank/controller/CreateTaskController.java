@@ -3,6 +3,7 @@ package com.virtualbank.controller;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.ui.Window3_CreateNewTask;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -130,5 +131,9 @@ public class CreateTaskController {
                 }
             }
         });
+    }
+
+    public void showMessageDialog(Component parentComponent, Object message, String title, int messageType) {
+        JOptionPane.showMessageDialog(parentComponent, message, title, messageType);
     }
 }

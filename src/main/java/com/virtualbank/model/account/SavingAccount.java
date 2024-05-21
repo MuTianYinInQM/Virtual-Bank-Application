@@ -8,6 +8,7 @@ public class SavingAccount extends Account {
     private boolean isMatured; // 标记账户是否已到期
     private final LocalDateTime maturityDateTime;
     private final Period termPeriod; // 使用Period来表示存款期限
+    private LocalDateTime lastSettlementDate;
 
     public SavingAccount(String accountName, double initialBalance, double interestRate,
                          double timeLapseCoefficient, Period termPeriod) {
@@ -85,5 +86,10 @@ public class SavingAccount extends Account {
                 ", createDateTime=" + createDateTime +
                 ", timeLapseCoefficient=" + timeLapseCoefficient +
                 '}';
+    }
+
+    public void simulateTimePassage(Period period) {
+        this.lastSettlementDate = this.createDateTime.plus(period);
+        this.isMatured = true; // 假设立即到期
     }
 }

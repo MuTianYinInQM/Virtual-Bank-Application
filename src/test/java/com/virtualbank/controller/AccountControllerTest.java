@@ -2,15 +2,19 @@ package com.virtualbank.controller;
 
 import static org.mockito.Mockito.*;
 
-
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.UIStack;
 import com.virtualbank.model.account.Account;
+import com.virtualbank.model.account.CurrentAccount;
+import com.virtualbank.model.account.PiggyBank;
+import com.virtualbank.model.account.SavingAccount;
 import com.virtualbank.ui.Page07_Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import javax.swing.*;
+
 import java.awt.event.ActionListener;
+
 
 class AccountControllerTest {
     private AccountController controller;
@@ -46,12 +50,43 @@ class AccountControllerTest {
 
     @Test
     void testInitController() {
-        // 测试初始化控制器
-        verify(mockPage.getExitButton(), atLeastOnce()).addActionListener(any(ActionListener.class));
-        verify(mockPage.getDeleteButton(), atLeastOnce()).addActionListener(any(ActionListener.class));
-        verify(mockPage.getHistoryButton(), atLeastOnce()).addActionListener(any(ActionListener.class));
+        // Verify event listeners are added for common buttons
+        verify(mockExitButton).addActionListener(any(ActionListener.class));
+        verify(mockDeleteButton).addActionListener(any(ActionListener.class));
+        verify(mockHistoryButton).addActionListener(any(ActionListener.class));
     }
 
+    @Test
+    void testInitControllerWithPiggyBank() {
+        // 设置特定账户类型
+        when(mockPage.getCurrentAccount()).thenReturn(mock(PiggyBank.class));
+        controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
+
+        verify(mockConsumeButton).addActionListener(any(ActionListener.class));
+        verify(mockSaveButton).addActionListener(any(ActionListener.class));
+        verify(mockTransferButton).addActionListener(any(ActionListener.class));
+    }
+
+    @Test
+    void testInitControllerWithCurrentAccount() {
+        // 设置特定账户类型
+        when(mockPage.getCurrentAccount()).thenReturn(mock(CurrentAccount.class));
+        controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
+
+        verify(mockTransferButton).addActionListener(any(ActionListener.class));
+    }
+
+    @Test
+    void testInitControllerWithSavingAccount() {
+        // 设置特定账户类型
+        when(mockPage.getCurrentAccount()).thenReturn(mock(SavingAccount.class));
+        controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
+
+        // No additional listeners should be added for SavingAccount
+        verify(mockConsumeButton, never()).addActionListener(any(ActionListener.class));
+        verify(mockSaveButton, never()).addActionListener(any(ActionListener.class));
+        verify(mockTransferButton, never()).addActionListener(any(ActionListener.class));
+    }
 
 
     @Test
