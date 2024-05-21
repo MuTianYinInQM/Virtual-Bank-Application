@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountManagerTest {
+class AccountManagerModelTest {
     private AccountManager accountManager;
     private UUID currentAccountId;
     private UUID savingAccountId;

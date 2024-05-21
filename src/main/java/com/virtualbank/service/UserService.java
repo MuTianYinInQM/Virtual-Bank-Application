@@ -63,4 +63,9 @@ public class UserService {
             return "Login Failed";
         }
     }
+
+    // 获取账户管理器方法
+    public AccountManager getAccountManager(String username) throws IOException, ClassNotFoundException {
+        return AccountManagerSerializer.deserializeAccountManager(username);
+    }
 }
