@@ -24,6 +24,7 @@ public class CreateSavingAccountController implements Page {
         this.accountManager = accountManager;
         this.uiStack = uiStack;
         initController();
+
     }
 
     private void initController() {

@@ -210,4 +210,8 @@ public class Page07_Account extends JFrame {
 
     public void showError(String accountNotFound, String error) {
     }
+
+    public void showMessageDialog(Page07_Account any, String accountNotFound, String s, int i) {
+
+    }
 }

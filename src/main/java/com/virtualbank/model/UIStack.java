@@ -62,4 +62,8 @@ public class UIStack {
             System.exit(0);
         }
     }
+
+    public int size() {
+        return stack.size();
+    }
 }

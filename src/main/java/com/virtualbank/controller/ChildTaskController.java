@@ -59,7 +59,7 @@ public class ChildTaskController {
         });
     }
 
-    private void submitTask(String taskId) {
+    void submitTask(String taskId) {
         try {
             Task task = taskService.submitTask(taskId);
             JOptionPane.showMessageDialog(childTaskUI, "Task submitted successfully.");
@@ -70,7 +70,7 @@ public class ChildTaskController {
         }
     }
 
-    private void giveUpTask(String taskId) {
+    void giveUpTask(String taskId) {
         try {
             taskService.giveUpTask(taskId);
             JOptionPane.showMessageDialog(childTaskUI, "Task given up successfully.");
@@ -80,7 +80,7 @@ public class ChildTaskController {
         }
     }
 
-    private void acceptTask(String taskId) {
+    void acceptTask(String taskId) {
         try {
             taskService.acceptTask(taskId);
             JOptionPane.showMessageDialog(childTaskUI, "Task accepted successfully.");
@@ -90,13 +90,13 @@ public class ChildTaskController {
         }
     }
 
-    private void deleteTask(String taskId) {
+    void deleteTask(String taskId) {
         taskService.deleteTask(taskId);
         JOptionPane.showMessageDialog(childTaskUI, "Task deleted successfully.");
         refreshTasks();
     }
 
-    private void refreshTasks() {
+    void refreshTasks() {
         // 在UI线程中运行，确保线程安全
         SwingUtilities.invokeLater(() -> {
             // 首先清除现有的UI组件上的所有事件监听器
@@ -117,7 +117,7 @@ public class ChildTaskController {
         });
     }
 
-    private void detachEventHandlers() {
+    void detachEventHandlers() {
         JPanel viewPanel = (JPanel) childTaskUI.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
         for (Component comp : components) {

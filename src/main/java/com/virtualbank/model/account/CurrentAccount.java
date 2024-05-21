@@ -5,11 +5,11 @@ import java.time.Duration;
 
 public class CurrentAccount extends Account {
     // 上一次更新余额的时间
-    private LocalDateTime lastSettlementDate;
+    public LocalDateTime lastSettlementDate;
     // interestRate 是年化利率；interestRatePerDay是每天的利率 需要开根号
     private double interestRatePerDay;
 
-    private static double calculateDailyInterestRate(double interestRate_) {
+    public static double calculateDailyInterestRate(double interestRate_) {
         return Math.pow(1 + interestRate_, 1.0 / 365) - 1;
     }
 
