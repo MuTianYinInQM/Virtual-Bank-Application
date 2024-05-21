@@ -1,7 +1,9 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.interfaces.Page;
 import com.virtualbank.model.AccountManager;
 import com.virtualbank.model.Task;
+import com.virtualbank.model.UIStack;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.ui.Page05_ChildTask;
 import com.virtualbank.ui.TaskLabel;
@@ -11,38 +13,41 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Controller class for managing child tasks.
  * Provides methods to handle user interactions and manage tasks from the child UI.
  */
-public class ChildTaskController {
+public class ChildTaskController implements Page {
+    private UIStack uiStack;
     private TaskService taskService;
-    private Page05_ChildTask childTaskUI;
+    private Page05_ChildTask page;
     private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // Maps TaskLabel to task ID
     private AccountManager accountManager;
 
     /**
      * Constructs a ChildTaskController with the specified TaskService, UI components, and AccountManager.
      *
-     * @param taskService the task service to be used for managing tasks
-     * @param childTaskUI the UI component representing the child task page
+     * @param taskService    the task service to be used for managing tasks
+     * @param page           the UI component representing the child task page
      * @param accountManager the account manager for handling rewards
      */
-    public ChildTaskController(TaskService taskService, Page05_ChildTask childTaskUI, AccountManager accountManager) {
+    public ChildTaskController(TaskService taskService, Page05_ChildTask page,
+                               AccountManager accountManager, UIStack uiStack) {
         this.taskService = taskService;
-        this.childTaskUI = childTaskUI;
+        this.page = page;
         this.accountManager = accountManager;
+        this.uiStack = uiStack;
         initializeTaskMap(); // 在构造函数中初始化映射
         attachEventHandlers();
+        this.page.getExitButton().addActionListener(e -> uiStack.pop());
     }
 
     /**
      * Initializes the task map by mapping UI components to task IDs.
      */
     private void initializeTaskMap() {
-        JPanel viewPanel = (JPanel) childTaskUI.getScrollPane().getViewport().getView();
+        JPanel viewPanel = (JPanel) page.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
         for (Component comp : components) {
             if (comp instanceof TaskLabel) {
@@ -83,11 +88,11 @@ public class ChildTaskController {
     private void submitTask(String taskId) {
         try {
             Task task = taskService.submitTask(taskId);
-            JOptionPane.showMessageDialog(childTaskUI, "Task submitted successfully.");
+            JOptionPane.showMessageDialog(page, "Task submitted successfully.");
             accountManager.prize(accountManager.getPiggyUuid(), task.getReward(), "Task prize for " + task.getTaskName());
             refreshTasks();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(childTaskUI, "Failed to submit task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(page, "Failed to submit task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -99,10 +104,10 @@ public class ChildTaskController {
     private void giveUpTask(String taskId) {
         try {
             taskService.giveUpTask(taskId);
-            JOptionPane.showMessageDialog(childTaskUI, "Task given up successfully.");
+            JOptionPane.showMessageDialog(page, "Task given up successfully.");
             refreshTasks();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(childTaskUI, "Failed to give up task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(page, "Failed to give up task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -114,10 +119,10 @@ public class ChildTaskController {
     private void acceptTask(String taskId) {
         try {
             taskService.acceptTask(taskId);
-            JOptionPane.showMessageDialog(childTaskUI, "Task accepted successfully.");
+            JOptionPane.showMessageDialog(page, "Task accepted successfully.");
             refreshTasks();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(childTaskUI, "Failed to accept task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(page, "Failed to accept task: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -128,7 +133,7 @@ public class ChildTaskController {
      */
     private void deleteTask(String taskId) {
         taskService.deleteTask(taskId);
-        JOptionPane.showMessageDialog(childTaskUI, "Task deleted successfully.");
+        JOptionPane.showMessageDialog(page, "Task deleted successfully.");
         refreshTasks();
     }
 
@@ -142,14 +147,14 @@ public class ChildTaskController {
             // First, detach existing event handlers from UI components
             detachEventHandlers();
             // Reload and display tasks
-            childTaskUI.displayTasksFromJsonFile("src/main/resources/tasks.json");
+            page.displayTasksFromJsonFile("src/main/resources/tasks.json");
             // Reinitialize the task map with newly loaded components
             initializeTaskMap();
             // Reattach event handlers
             attachEventHandlers();
             // Revalidate and repaint the UI
-            childTaskUI.validate();
-            childTaskUI.repaint();
+            page.validate();
+            page.repaint();
         });
     }
 
@@ -157,7 +162,7 @@ public class ChildTaskController {
      * Detaches event handlers from UI components.
      */
     private void detachEventHandlers() {
-        JPanel viewPanel = (JPanel) childTaskUI.getScrollPane().getViewport().getView();
+        JPanel viewPanel = (JPanel) page.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
         for (Component comp : components) {
             if (comp instanceof TaskLabel) {
@@ -190,5 +195,26 @@ public class ChildTaskController {
                 }
             }
         }
+    }
+
+
+    @Override
+    public void toggleVisibility() {
+        this.page.setVisible(!this.page.isVisible());
+    }
+
+    @Override
+    public void setVisibility(boolean visibility) {
+        this.page.setVisible(visibility);
+    }
+
+    @Override
+    public boolean getVisibility() {
+        return this.page.isVisible();
+    }
+
+    @Override
+    public void dispose() {
+        this.page.dispose();
     }
 }

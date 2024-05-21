@@ -6,11 +6,9 @@ import com.virtualbank.model.account.Account;
 import com.virtualbank.model.account.CurrentAccount;
 import com.virtualbank.model.account.PiggyBank;
 import com.virtualbank.model.account.SavingAccount;
-import com.virtualbank.ui.Page03_ChildHome;
+import com.virtualbank.service.TaskService;
+import com.virtualbank.ui.*;
 import com.virtualbank.model.UIStack;
-import com.virtualbank.ui.Page06_Goal;
-import com.virtualbank.ui.Window1_ChooseAccountType;
-import com.virtualbank.ui.Page07_Account;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -58,6 +56,15 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                 }
         );
 
+        page.getTaskButton().addActionListener(
+                e -> {
+                    Page05_ChildTask page05ChildTask = new Page05_ChildTask();
+                    TaskService taskService = new TaskService();
+
+                    ChildTaskController childTaskController = new ChildTaskController(taskService, page05ChildTask, accountManager, uiStack);
+                    uiStack.pushPage(childTaskController);
+                }
+        );
         //点击 enter 进入一个Account的界面
         // 在刷新页面的时候一并添加了Account的Listener
         updatePage();
