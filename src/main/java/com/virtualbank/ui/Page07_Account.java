@@ -204,4 +204,10 @@ public class Page07_Account extends JFrame {
         Page07_Account window = new Page07_Account(exampleAccount);
         window.setVisible(true);
     }
+
+    public void showMessage(String accountNotFound, String error) {
+    }
+
+    public void showError(String accountNotFound, String error) {
+    }
 }

@@ -123,6 +123,7 @@ public class Page03_ChildHome extends JFrame {
         goalButtonLabel.repaint(); // 重新绘制文本
     }
 
+
     public static class CurrentAccountLabel extends AccountLabel { // 活期账户卡片
         public CurrentAccountLabel(String ID, Double money) {
             super(ID, money, "Current Account");
