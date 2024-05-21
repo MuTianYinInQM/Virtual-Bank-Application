@@ -1,3 +1,8 @@
+/**
+ * Define the task label used in child's task page and parent's home page
+ * @author Yunbo Jia
+ * @version 3.0 2024-5-21
+ */
 package com.virtualbank.ui;
 
 import javax.swing.*;
