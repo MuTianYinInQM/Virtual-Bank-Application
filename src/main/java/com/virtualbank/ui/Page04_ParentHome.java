@@ -25,7 +25,7 @@ public class Page04_ParentHome extends JFrame {
 
     private JButton exitButton = new JButton();
     private JButton createTaskButton = new JButton();
-    private JPanel backgroundPanel; // 声明 backgroundPanel 字段
+    private JPanel backgroundPanel;
     private JScrollPane scrollPane;
 
     /**
@@ -60,7 +60,7 @@ public class Page04_ParentHome extends JFrame {
 //        ImageIcon background = new ImageIcon("images/ParentHomePage.png");
 //        JLabel backgroundLabel = new JLabel(background);
 //        backgroundLabel.setBounds(0, 0, window_width, window_height);
-        backgroundPanel = new JPanel(); // 初始化 backgroundPanel
+        backgroundPanel = new JPanel();
 //        backgroundPanel.add(backgroundLabel);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
@@ -86,13 +86,13 @@ public class Page04_ParentHome extends JFrame {
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
         scrollPanel.setBackground(new Color(0xfcfcf7));
         scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setBounds(660, 190, 550, 540); // 调整位置和大小
+        scrollPane.setBounds(660, 190, 550, 540);
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         backgroundPanel.add(scrollPane);
 
-        displayTasksFromJsonFile("src/main/resources/tasks.json"); // 从 JSON 文件中读取并显示任务数据
+        displayTasksFromJsonFile("src/main/resources/tasks.json");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

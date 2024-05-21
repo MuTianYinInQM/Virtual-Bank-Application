@@ -112,8 +112,8 @@ public class Page03_ChildHome extends JFrame {
 
         // Goal and its completion progress
         // TODO 现在这部分还不能变化 目标不归我管 怎么处理
-        Double currentAmount = 2544.00; // 当前进度
-        Double goal = 500.00; // 目标
+        Double currentAmount = 2544.00;
+        Double goal = 500.00;
         String goalText = String.format("%.2f/%.2f", currentAmount, goal);
         JLabel initialGoalButtonLabel = new JLabel(goalText);
         initialGoalButtonLabel.setBounds(42, 20, 220, 109);
@@ -143,7 +143,7 @@ public class Page03_ChildHome extends JFrame {
         initialScrollPanel.setLayout(new BoxLayout(initialScrollPanel, BoxLayout.Y_AXIS));
         initialScrollPanel.setBackground(new Color(0xfcfcf7));
         JScrollPane scrollPane = new JScrollPane(initialScrollPanel);
-        scrollPane.setBounds(655, 230, 550, 480); // 调整位置和大小
+        scrollPane.setBounds(655, 230, 550, 480);
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -167,14 +167,14 @@ public class Page03_ChildHome extends JFrame {
         final double goal = 500;
         String goalText = String.format("%.2f/%.2f", totalBalance, goal);
         goalButtonLabel.setText(goalText);
-        goalButtonLabel.repaint(); // 重新绘制文本
+        goalButtonLabel.repaint();
     }
 
 
     /**
      * A label representing a current account, a subclass of AccountLabel
      */
-    public static class CurrentAccountLabel extends AccountLabel { // 活期账户卡片
+    public static class CurrentAccountLabel extends AccountLabel {
         public CurrentAccountLabel(String ID, Double money) {
             super(ID, money, "Current Account");
             // 图标

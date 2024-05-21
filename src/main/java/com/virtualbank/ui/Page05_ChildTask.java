@@ -46,8 +46,8 @@ public class Page05_ChildTask extends JFrame{
         setLayout(null);
         setTitle("JoyBank - Child Task Page");
 
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/TaskBoardBackground.png"); // 添加背景图
-        backgroundPanel = new JPanel(); // 初始化 backgroundPanel
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/TaskBoardBackground.png");
+        backgroundPanel = new JPanel();
         backgroundPanel.setBackground(new Color(0xf8f6ea));
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
@@ -67,13 +67,13 @@ public class Page05_ChildTask extends JFrame{
         scrollPanel.setBackground(new Color(0xfcfcf7));
 
         scrollPane = new JScrollPane(scrollPanel);
-        scrollPane.setBounds(670, 200, 550, 520); // 调整位置和大小
+        scrollPane.setBounds(670, 200, 550, 520);
         scrollPane.setBackground(new Color(0xf8f6ea));
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         backgroundPanel.add(scrollPane);
 
-        displayTasksFromJsonFile("src/main/resources/tasks.json"); // 从 JSON 文件中读取并显示任务数据
+        displayTasksFromJsonFile("src/main/resources/tasks.json");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -186,7 +186,7 @@ public class Page05_ChildTask extends JFrame{
             ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
             giveUpButton.setIcon(giveupButtonImage);
             giveUpButton.setBorder(null);
-            giveUpButton.setContentAreaFilled(false); // 不填充内容区
+            giveUpButton.setContentAreaFilled(false);
             giveUpButton.setBorderPainted(false);
             this.add(giveUpButton);
 
@@ -196,7 +196,7 @@ public class Page05_ChildTask extends JFrame{
             acceptButton.setIcon(acceptButtonImage);
             acceptButton.setOpaque(false);
             acceptButton.setBorder(null);
-            acceptButton.setContentAreaFilled(false); // 不填充内容区
+            acceptButton.setContentAreaFilled(false);
             acceptButton.setBorderPainted(false);
             this.add(acceptButton);
         }
@@ -245,7 +245,7 @@ public class Page05_ChildTask extends JFrame{
             ImageIcon giveupButtonImage = new ImageIcon("images/GiveUpButtonImage.png");
             giveUPButton.setIcon(giveupButtonImage);
             giveUPButton.setBorder(null);
-            giveUPButton.setContentAreaFilled(false); // 不填充内容区
+            giveUPButton.setContentAreaFilled(false);
             giveUPButton.setBorderPainted(false);
             this.add(giveUPButton);
 
