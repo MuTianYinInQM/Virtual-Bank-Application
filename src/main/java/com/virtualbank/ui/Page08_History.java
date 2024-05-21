@@ -13,33 +13,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.virtualbank.controller.HistoryController;
 
+/**
+ * Page08_History
+ * This class represents the transaction history page in the banking UI.
+ */
 public class Page08_History extends JFrame{
-    // 存放历史记录的容器
-    private JPanel historyPanel;
-//    private JPanel titlePanel;
-    private JScrollPane scrollPane;
-    private JButton exitButton;
-    private ObjectMapper mapper = new ObjectMapper();
-    private String accountID; // 新增一个成员变量用于存储accountID
+    private JPanel historyPanel; // Container for displaying history records
+    //    private JPanel titlePanel;
+    private JScrollPane scrollPane; // Scroll pane for history panel
+    private JButton exitButton; // Button to exit the page
+    private ObjectMapper mapper = new ObjectMapper(); // ObjectMapper for JSON handling
+    private String accountID; // Member variable to store account ID
 
 
+    /**
+     * Get the exit button.
+     * @return The exit button.
+     */
     public JButton getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Get the scroll pane.
+     * @return The scroll pane.
+     */
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
 
 
-    public Page08_History(UUID accountID) { // 修改构造函数以接收accountID
-        this.accountID = accountID.toString(); // 保存accountID
+    /**
+     * Constructor for Page08_History class.
+     * @param accountID The account ID to display history for.
+     */
+    public Page08_History(UUID accountID) {
+        this.accountID = accountID.toString(); // Save accountID
         initializeComponents();
         configureUI();
         loadHistory();
         this.setVisible(true);
     }
 
+    // Initialize UI components
     private void initializeComponents() {
         this.setTitle("Transaction History for Account " + accountID);
         historyPanel = new JPanel();
@@ -67,8 +83,8 @@ public class Page08_History extends JFrame{
         this.add(exitButton);
     }
 
+    // Configure UI layout and appearance
     private void configureUI() {
-        // 已删去TitleLabel部分
 //        historyPanel.setLayout(new BoxLayout(historyPanel, BoxLayout.Y_AXIS));
 //        scrollPane = new JScrollPane(historyPanel);
 //        scrollPane.setBounds(300, 180, 640, 400);
@@ -77,9 +93,8 @@ public class Page08_History extends JFrame{
 //        scrollPane.getViewport().setOpaque(false);
 //        this.add(scrollPane);
 
-        // 配置history滚动面板
         historyPanel.setLayout(new BoxLayout(historyPanel, BoxLayout.Y_AXIS));
-        historyPanel.setOpaque(false); // 确保历史记录面板是透明的
+        historyPanel.setOpaque(false);
 
         scrollPane = new JScrollPane(historyPanel) {
             @Override
@@ -90,8 +105,8 @@ public class Page08_History extends JFrame{
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-        scrollPane.getViewport().setOpaque(false); // 确保视口是透明的
-        scrollPane.setOpaque(false); // 确保滚动面板是透明的
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setOpaque(false);
         scrollPane.setBounds(247, 300, 775, 420);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -100,8 +115,8 @@ public class Page08_History extends JFrame{
 
     }
 
+    // Load transaction history from JSON file
     private void loadHistory() {
-        // 修改文件路径以使用accountID
         String filePath = "src/main/resources/historys/" + accountID + "_history.json";
         File file = new File(filePath);
         try {
@@ -116,6 +131,7 @@ public class Page08_History extends JFrame{
         }
     }
 
+    // Add a history label to the history panel
     private void addHistoryLabel(Map<String, Object> transaction) {
 
         double amount = (double) transaction.get("amount");
@@ -124,19 +140,18 @@ public class Page08_History extends JFrame{
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
         System.out.println("type:"+type);
-        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";   // 这里有待更新
+        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";
         System.out.println("isCredit:"+isCredit);
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");
 
-        // 下面将信息填入card中
         TransactionCard transactionCard = new TransactionCard(cardIcon, isCredit + amount, type, date, time, description);
 
         historyPanel.add(transactionCard);
         historyPanel.add(Box.createVerticalStrut(10));
     }
 
-    // 静态内部类TransactionCard
+    // Static inner class representing a transaction card
     static class TransactionCard extends JPanel {
         private static final int ARC_WIDTH = 10;
         private static final int ARC_HEIGHT = 10;
@@ -147,26 +162,23 @@ public class Page08_History extends JFrame{
         private static final Font Date_Font = new Font("Arial", Font.PLAIN, 18);
         private static final Font Description_Font = new Font("Arial", Font.PLAIN, 16);
 
+        // Constructor for creating a transaction card
         public TransactionCard(Icon icon, String amountText, String typeText, String dateText, String timeText, String descriptionText) {
-            // 设置卡片的整体布局
             setLayout(new BorderLayout());
             setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             setBackground(new Color(0xF6F6F6));
             setPreferredSize(new Dimension(680, 120));
             setMaximumSize(new Dimension(680, 120));
 
-            // 左侧图标部分
             JLabel iconLabel = new JLabel(icon);
             iconLabel.setPreferredSize(new Dimension(90, 120));
             add(iconLabel, BorderLayout.WEST);
 
-            // 右侧内容部分
             JPanel rightPanel = new JPanel(new BorderLayout());
             rightPanel.setPreferredSize(new Dimension(550, 120));
             rightPanel.setOpaque(false);
             add(rightPanel, BorderLayout.CENTER);
 
-            // 上行：三个标签
             JPanel topRowPanel = new JPanel();
             topRowPanel.setLayout(null);
             topRowPanel.setPreferredSize(new Dimension(550, 50));
@@ -195,7 +207,6 @@ public class Page08_History extends JFrame{
 
             rightPanel.add(topRowPanel, BorderLayout.NORTH);
 
-            // 下行：描述标签
             JLabel descriptionLabel = new JLabel(descriptionText);
             descriptionLabel.setFont(Description_Font);
             descriptionLabel.setPreferredSize(new Dimension(535, 50));
@@ -204,25 +215,25 @@ public class Page08_History extends JFrame{
             rightPanel.add(descriptionLabel, BorderLayout.SOUTH);
         }
 
+        // Custom painting for transaction card
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // 设置背景颜色和圆角矩形
             g2.setColor(Background_Color);
             g2.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), ARC_WIDTH, ARC_HEIGHT));
 
             g2.dispose();
         }
 
+        // Custom painting for transaction card border
         @Override
         protected void paintBorder(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // 设置圆角矩形边框
             g2.setColor(Border_Color);
             g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, ARC_WIDTH, ARC_HEIGHT));
 
@@ -232,6 +243,7 @@ public class Page08_History extends JFrame{
 
     }
 
+    // Main method for testing Page08_History class
     public static void main(String[] args) {
         Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
     }
