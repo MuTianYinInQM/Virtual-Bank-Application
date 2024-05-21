@@ -14,20 +14,28 @@ import com.virtualbank.model.SavingGoal;
 import com.virtualbank.service.SavingGoalService;
 import com.virtualbank.repository.SavingGoalRepository;
 
-
+/**
+ * Page06_Goal - Goal Tracker
+ * This class is a UI component responsible for displaying and managing user's saving goals.
+ * It implements the DataUpdateListener interface for receiving data update notifications.
+ */
 public class Page06_Goal implements DataUpdateListener {
-	private JFrame window;
-	private JLabel backgroundLabel;	// 盛放背景图的JLabel
-	private JPanel goalsPanel; // goalsPanel是被滚动的面板视口
-	private JScrollPane scrollPane; // Scroll pane for goalsPanel
-	private JButton createButton;
-	private JButton exitButton;
-	private SavingGoalService goalService;
-	private ImageIcon goalBackground;
-	private List<JPanel> goalPanels = new ArrayList<>(); // 存储每个目标的面板
-	private SavingGoalController controller;
-	private AccountManager accountManager;
+	private JFrame window; // Main window
+	private JLabel backgroundLabel; // Background label
+	private JPanel goalsPanel; // Goals panel
+	private JScrollPane scrollPane; // Scroll pane
+	private JButton createButton; // Create button
+	private JButton exitButton; // Exit button
+	private SavingGoalService goalService; // Saving goal service
+	private ImageIcon goalBackground; // Goal background image
+	private List<JPanel> goalPanels = new ArrayList<>(); // List to store goal panels
+	private SavingGoalController controller; // Saving goal controller
+	private AccountManager accountManager; // Account manager
 
+	/**
+	 * Constructor for Page06_Goal class.
+	 * @param accountManager The account manager.
+	 */
 	public Page06_Goal(AccountManager accountManager) {
 		this.accountManager = accountManager;
 		this.goalService = new SavingGoalService(new SavingGoalRepository(), accountManager);
@@ -35,24 +43,33 @@ public class Page06_Goal implements DataUpdateListener {
 		configureUI();
 		loadGoals();
 		window.setVisible(true);
-		this.controller = new SavingGoalController(this, goalService); // 初始化控制器
+		this.controller = new SavingGoalController(this, goalService); // Initialize controller
 	}
 
+	/**
+	 * Get the create button.
+	 * @return The create button.
+	 */
 	public JButton getCreateButton() {
 		return createButton;
 	}
 
+	/**
+	 * Get the list of goal panels.
+	 * @return The list of goal panels.
+	 */
 	public List<JPanel> getGoalPanels() {
 		return goalPanels;
 	}
 
-	// 删除目标的函数
+	// Remove goal panel
 	public void removeGoalPanel(JPanel panel) {
 		goalsPanel.remove(panel);
 		goalsPanel.revalidate();
 		goalsPanel.repaint();
 	}
 
+	// Initialize components
 	private void initializeComponents() {
 		window = new JFrame("Goal Tracker");
 		backgroundLabel = new JLabel();
@@ -62,7 +79,6 @@ public class Page06_Goal implements DataUpdateListener {
 		exitButton = new JButton();
 		goalBackground = new ImageIcon("images/Goal_Background.png"); // 加载背景图片
 
-		// 确保正确设置关闭操作
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
@@ -79,12 +95,12 @@ public class Page06_Goal implements DataUpdateListener {
 		configureUI();  // 进行UI配置
 	}
 
+	// Configure UI
 	private void configureUI() {
 		window.setLayout(null); // 使用绝对布局
 		window.setSize(1260, 780);
 		window.setResizable(false);
 
-		// 配置exitButton
 		exitButton.setBounds(16, 2, 135, 57);
 		exitButton.addActionListener(e -> window.dispose());
 		exitButton.setOpaque(false);
@@ -93,7 +109,6 @@ public class Page06_Goal implements DataUpdateListener {
 		exitButton.setFocusPainted(false);
 		window.add(exitButton);
 
-		// 配置createButton
 		createButton.setBounds(85, 180, 350, 56);
 		createButton.setOpaque(false);
 		createButton.setContentAreaFilled(false);
@@ -102,7 +117,6 @@ public class Page06_Goal implements DataUpdateListener {
 		createButton.addActionListener(e -> createOrModifyGoal(null));  // 添加监听器以创建新目标
 		window.add(createButton);
 
-		// 配置scrollPane
 		scrollPane.setBounds(500, 130, 620, 575); // 设置滚动面板的位置和大小
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getViewport().setOpaque(false);
@@ -111,12 +125,12 @@ public class Page06_Goal implements DataUpdateListener {
 		goalsPanel.setLayout(new BoxLayout(goalsPanel, BoxLayout.Y_AXIS));
 		window.add(scrollPane);
 
-		// 配置backgroundLabel
 		backgroundLabel.setIcon(goalBackground);
 		backgroundLabel.setBounds(0, 0, window.getWidth(), window.getHeight());
 		window.add(backgroundLabel);
 	}
 
+	// Load goals
 	private void loadGoals() {
 		List<SavingGoal> goals = goalService.getAllSavingGoals();
 		goalsPanel.removeAll();
@@ -131,7 +145,6 @@ public class Page06_Goal implements DataUpdateListener {
 			String currentAmount = String.format("%.2f", currentAmountNum);
 			String targetAmount = String.format("%.2f", targetAmountNum);
 
-			// 创建并配置goalCard
 			GoalCard goalCard = new GoalCard(goal, goalName, currentAmount, targetAmount);
 			goalPanels.add(goalCard);	// 添加到ArrayList中
 			goalsPanel.add(goalCard);	// 添加到滚动面板中
@@ -139,7 +152,6 @@ public class Page06_Goal implements DataUpdateListener {
 
 		}
 
-		// 重绘滚动面板
 		goalsPanel.revalidate();
 		goalsPanel.repaint();
 	}
@@ -148,6 +160,8 @@ public class Page06_Goal implements DataUpdateListener {
 	public void onDataUpdated() {
 		refreshData();
 	}
+
+	// Refresh data
 	public void refreshData() {
 		loadGoals();  // 重新加载目标
 		controller.refreshListeners();  // 重新绑定按钮监听器
@@ -188,33 +202,47 @@ public class Page06_Goal implements DataUpdateListener {
 		setGoalWindow.display(); // 使用display方法来显示窗口
 	}
 
-	// 创建新目标或修改现有目标时调用此方法
+	// Create or modify goal
 	public void createOrModifyGoal(SavingGoal goal) {
 		if (goal == null) {
-			goal = new SavingGoal();  // 创建一个新的SavingGoal实例
+			goal = new SavingGoal(); // Create a new SavingGoal instance
 		}
 		double currentBalance = accountManager.getTotalBalance();
 		openSetGoalWindow(goal, currentBalance);
 	}
 
+	/**
+	 * Get the account manager.
+	 * @return The account manager.
+	 */
 	public AccountManager getAccountManager() {
 		return accountManager;
 	}
 
-	// 静态内部类GoalCard
+	/**
+	 * Static inner class GoalCard.
+	 * This class represents a goal card used to display information about a saving goal.
+	 */
 	public static class GoalCard extends JPanel {
-		private JLabel valueLabel;
-		private JPanel upBarPanel;
-		private JPanel downBarPanel;
-		private JLabel progressLabel;
-		private JButton modifyButton;
-		private JButton deleteButton;
-		private static final Font valueLabelFont = new Font("Arial", Font.PLAIN, 24);
-		private static final Color Background_Color = new Color(0xBCCCDF);
-		private static final Color Border_Color = new Color(0x5C5C5C);
-		private static final int ARC_WIDTH = 10;
-		private static final int ARC_HEIGHT = 10;
+		private JLabel valueLabel; // Value label
+		private JPanel upBarPanel; // Upper progress bar panel
+		private JPanel downBarPanel; // Lower progress bar panel
+		private JLabel progressLabel; // Progress label
+		private JButton modifyButton; // Modify button
+		private JButton deleteButton; // Delete button
+		private static final Font valueLabelFont = new Font("Arial", Font.PLAIN, 24); // Value label font
+		private static final Color Background_Color = new Color(0xBCCCDF); // Background color
+		private static final Color Border_Color = new Color(0x5C5C5C); // Border color
+		private static final int ARC_WIDTH = 10; // Arc width
+		private static final int ARC_HEIGHT = 10; // Arc height
 
+		/**
+		 * Constructor for GoalCard class.
+		 * @param goal The saving goal.
+		 * @param goalName The goal name.
+		 * @param currentAmount The current amount.
+		 * @param targetAmount The target amount.
+		 */
 		public GoalCard(SavingGoal goal, String goalName, String currentAmount, String targetAmount) {
 			setLayout(null);
 			setPreferredSize(new Dimension(1200, 125));
@@ -319,6 +347,7 @@ public class Page06_Goal implements DataUpdateListener {
 	}
 
 
+	// Main method for testing Page06_Goal class
 	public static void main(String[] args) {
 		AccountManager accountManager = new AccountManager();
 		new Page06_Goal(accountManager);
