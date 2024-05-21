@@ -12,14 +12,24 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller class for managing the parent home page.
+ * Provides methods to handle user interactions and manage tasks from the UI.
+ */
 public class ParentHomeController {
     private Page04_ParentHome parentHomeUI;
     private Window3_CreateNewTask createTaskWindow;
-    private CreateTaskController createTaskController; // 持久化控制器
+    private CreateTaskController createTaskController; // Persistent controller
     private TaskService taskService;
 
-    private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // 映射TaskLabel到任务ID
+    private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // Maps TaskLabel to task ID
 
+    /**
+     * Constructs a ParentHomeController with the specified TaskService and UI components.
+     *
+     * @param taskService the task service to be used for managing tasks
+     * @param parentHomeUI the UI component representing the parent home page
+     */
     public ParentHomeController(TaskService taskService, Page04_ParentHome parentHomeUI) {
         this.taskService = taskService;
         this.parentHomeUI = parentHomeUI;
@@ -27,6 +37,9 @@ public class ParentHomeController {
         attachEventHandlers();
     }
 
+    /**
+     * Initializes the task map by mapping UI components to task IDs.
+     */
     private void initializeTaskMap() {
         JPanel viewPanel = (JPanel) parentHomeUI.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
@@ -38,6 +51,9 @@ public class ParentHomeController {
         }
     }
 
+    /**
+     * Attaches event handlers to UI components.
+     */
     private void attachEventHandlers() {
         taskLabelToIdMap.forEach((comp, taskId) -> {
             if (comp instanceof TaskLabel) {
@@ -61,7 +77,7 @@ public class ParentHomeController {
         parentHomeUI.getCreateTaskButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 添加逻辑来显示创建任务窗口
+                // Logic to display the create task window
                 createTaskWindow = new Window3_CreateNewTask();
                 createTaskController = new CreateTaskController(taskService, createTaskWindow);
                 parentHomeUI.dispose();
@@ -74,12 +90,23 @@ public class ParentHomeController {
             }
         });
     }
+
+    /**
+     * Deletes a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to delete
+     */
     private void deleteTask(String taskId) {
         taskService.deleteTask(taskId);
         JOptionPane.showMessageDialog(parentHomeUI, "Task deleted successfully.");
         refreshTasks();
     }
 
+    /**
+     * Terminates a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to terminate
+     */
     private void terminateTask(String taskId) {
         try {
             taskService.terminateTask(taskId);
@@ -90,6 +117,11 @@ public class ParentHomeController {
         }
     }
 
+    /**
+     * Confirms a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to confirm
+     */
     private void confirmTask(String taskId){
         try {
             taskService.confirmTask(taskId);
@@ -100,26 +132,30 @@ public class ParentHomeController {
         }
     }
 
+    /**
+     * Refreshes the tasks displayed in the UI.
+     * Ensures thread safety by running on the UI thread.
+     */
     private void refreshTasks() {
-        // 在UI线程中运行，确保线程安全
+        // Runs on the UI thread to ensure thread safety
         SwingUtilities.invokeLater(() -> {
-            // 首先清除现有的UI组件上的所有事件监听器
+            // First, detach existing event handlers from UI components
             detachEventHandlers();
-
-            // 重新加载和显示任务
+            // Reload and display tasks
             parentHomeUI.displayTasksFromJsonFile("src/main/resources/tasks.json");
-
-            // 从新加载的组件中获取新的映射
+            // Reinitialize the task map with newly loaded components
             initializeTaskMap();
-
-            // 重新绑定事件处理器
+            // Reattach event handlers
             attachEventHandlers();
-
-            // 重新验证和重绘界面
+            // Revalidate and repaint the UI
             parentHomeUI.validate();
             parentHomeUI.repaint();
         });
     }
+
+    /**
+     * Displays the create task window.
+     */
     private void showCreateTaskWindow() {
         if (createTaskWindow == null) {
             createTaskWindow = new Window3_CreateNewTask();
@@ -128,6 +164,10 @@ public class ParentHomeController {
         createTaskWindow.setVisible(true);
         parentHomeUI.setVisible(false);
     }
+
+    /**
+     * Detaches event handlers from UI components.
+     */
     private void detachEventHandlers() {
         JPanel viewPanel = (JPanel) parentHomeUI.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();

@@ -1,21 +1,39 @@
 package com.virtualbank.model;
+
+/**
+ * Represents a task model.
+ * Contains details of a task such as task name, description, reward amount,
+ * task target, start date, end date, and status.
+ */
 public class Task {
-    private String id;               // 任务的唯一标识符
-    private String taskName;             // 任务名称
-    private String description;      // 任务描述
-    private double reward;           // 奖励金额
+    private String id;               // Unique identifier for the task
+    private String taskName;         // Name of the task
+    private String description;      // Description of the task
+    private double reward;           // Reward amount
 
-    private String childName;        // 任务对象/小孩名字
-    private String startDate; // 使用字符串表示时间，如 "2024-04-01 10:00"
-    private String endDate;   // 同上
-    private String status;           // 任务状态，如："created", "published", "retracted"
+    private String childName;        // Name of the child who is the target of the task
+    private String startDate;        // Start date of the task in the format "YYYY-MM-DD HH:MM"
+    private String endDate;          // End date of the task in the same format
+    private String status;           // Status of the task
 
-    // 无参构造函数
+    /**
+     * No-argument constructor.
+     */
     public Task() {
-
     }
 
-    // 构造函数
+    /**
+     * Constructor with arguments to initialize the task properties.
+     *
+     * @param id the unique identifier for the task
+     * @param taskName the name of the task
+     * @param description the description of the task
+     * @param reward the reward amount for the task
+     * @param childName the name of the child who is the target of the task
+     * @param startDate the start date of the task
+     * @param endDate the end date of the task
+     * @param status the status of the task
+     */
     public Task(String id, String taskName, String description, double reward, String childName,
                 String startDate, String endDate, String status) {
         this.id = id;
@@ -28,69 +46,157 @@ public class Task {
         this.status = status;
     }
 
-    // Getter和Setter方法
+    /**
+     * Gets the unique identifier of the task.
+     *
+     * @return the unique identifier of the task
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Sets the unique identifier of the task.
+     *
+     * @param id the unique identifier to set
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Gets the name of the task.
+     *
+     * @return the name of the task
+     */
     public String getTaskName() {
         return taskName;
     }
 
+    /**
+     * Sets the name of the task.
+     *
+     * @param taskName the name to set
+     */
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 
+    /**
+     * Gets the description of the task.
+     *
+     * @return the description of the task
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the description of the task.
+     *
+     * @param description the description to set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Gets the reward amount for the task.
+     *
+     * @return the reward amount for the task
+     */
     public double getReward() {
         return reward;
     }
 
+    /**
+     * Sets the reward amount for the task.
+     *
+     * @param reward the reward amount to set
+     */
     public void setReward(double reward) {
         this.reward = reward;
     }
 
-    public String getChildName() { return childName; }
+    /**
+     * Gets the name of the child who is the target of the task.
+     *
+     * @return the name of the child
+     */
+    public String getChildName() {
+        return childName;
+    }
 
-    public void setChildName(String childName) { this.childName = childName; }
+    /**
+     * Sets the name of the child who is the target of the task.
+     *
+     * @param childName the name to set
+     */
+    public void setChildName(String childName) {
+        this.childName = childName;
+    }
+
+    /**
+     * Gets the start date of the task.
+     *
+     * @return the start date of the task
+     */
     public String getStartDate() {
         return startDate;
     }
 
+    /**
+     * Sets the start date of the task.
+     *
+     * @param startDate the start date to set
+     */
     public void setStartDate(String startDate) {
-        // 可以在这里添加验证逻辑以确保日期格式正确
+        // Validation logic can be added here to ensure correct date format
         this.startDate = startDate;
     }
 
+    /**
+     * Gets the end date of the task.
+     *
+     * @return the end date of the task
+     */
     public String getEndDate() {
         return endDate;
     }
 
+    /**
+     * Sets the end date of the task.
+     *
+     * @param endDate the end date to set
+     */
     public void setEndDate(String endDate) {
-        // 同上
+        // Validation logic can be added here to ensure correct date format
         this.endDate = endDate;
     }
 
+    /**
+     * Gets the status of the task.
+     *
+     * @return the status of the task
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Sets the status of the task.
+     *
+     * @param status the status to set
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
-    // toString方法，用于打印任务信息
+    /**
+     * Returns a string representation of the task object.
+     *
+     * @return a string representation of the task object
+     */
     @Override
     public String toString() {
         return "Task{" +

@@ -13,12 +13,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Controller class for managing child tasks.
+ * Provides methods to handle user interactions and manage tasks from the child UI.
+ */
 public class ChildTaskController {
     private TaskService taskService;
     private Page05_ChildTask childTaskUI;
-    private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // 映射TaskLabel到任务ID
+    private Map<Component, String> taskLabelToIdMap = new HashMap<>(); // Maps TaskLabel to task ID
     private AccountManager accountManager;
 
+    /**
+     * Constructs a ChildTaskController with the specified TaskService, UI components, and AccountManager.
+     *
+     * @param taskService the task service to be used for managing tasks
+     * @param childTaskUI the UI component representing the child task page
+     * @param accountManager the account manager for handling rewards
+     */
     public ChildTaskController(TaskService taskService, Page05_ChildTask childTaskUI, AccountManager accountManager) {
         this.taskService = taskService;
         this.childTaskUI = childTaskUI;
@@ -27,7 +38,9 @@ public class ChildTaskController {
         attachEventHandlers();
     }
 
-    // 初始化映射，将组件与任务ID相关联
+    /**
+     * Initializes the task map by mapping UI components to task IDs.
+     */
     private void initializeTaskMap() {
         JPanel viewPanel = (JPanel) childTaskUI.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
@@ -39,6 +52,9 @@ public class ChildTaskController {
         }
     }
 
+    /**
+     * Attaches event handlers to UI components.
+     */
     private void attachEventHandlers() {
         // 为每个TaskLabel及其子类添加事件处理
         taskLabelToIdMap.forEach((comp, taskId) -> {
@@ -59,6 +75,11 @@ public class ChildTaskController {
         });
     }
 
+    /**
+     * Submits a task by its ID, awards the child, and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to submit
+     */
     private void submitTask(String taskId) {
         try {
             Task task = taskService.submitTask(taskId);
@@ -70,6 +91,11 @@ public class ChildTaskController {
         }
     }
 
+    /**
+     * Allows a child user to give up a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to give up
+     */
     private void giveUpTask(String taskId) {
         try {
             taskService.giveUpTask(taskId);
@@ -80,6 +106,11 @@ public class ChildTaskController {
         }
     }
 
+    /**
+     * Allows a child user to accept a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to accept
+     */
     private void acceptTask(String taskId) {
         try {
             taskService.acceptTask(taskId);
@@ -90,33 +121,41 @@ public class ChildTaskController {
         }
     }
 
+    /**
+     * Deletes a task by its ID and displays a confirmation message.
+     *
+     * @param taskId the ID of the task to delete
+     */
     private void deleteTask(String taskId) {
         taskService.deleteTask(taskId);
         JOptionPane.showMessageDialog(childTaskUI, "Task deleted successfully.");
         refreshTasks();
     }
 
+    /**
+     * Refreshes the tasks displayed in the UI.
+     * Ensures thread safety by running on the UI thread.
+     */
     private void refreshTasks() {
-        // 在UI线程中运行，确保线程安全
+        // Runs on the UI thread to ensure thread safety
         SwingUtilities.invokeLater(() -> {
-            // 首先清除现有的UI组件上的所有事件监听器
+            // First, detach existing event handlers from UI components
             detachEventHandlers();
-
-            // 重新加载和显示任务
+            // Reload and display tasks
             childTaskUI.displayTasksFromJsonFile("src/main/resources/tasks.json");
-
-            // 从新加载的组件中获取新的映射
+            // Reinitialize the task map with newly loaded components
             initializeTaskMap();
-
-            // 重新绑定事件处理器
+            // Reattach event handlers
             attachEventHandlers();
-
-            // 重新验证和重绘界面
+            // Revalidate and repaint the UI
             childTaskUI.validate();
             childTaskUI.repaint();
         });
     }
 
+    /**
+     * Detaches event handlers from UI components.
+     */
     private void detachEventHandlers() {
         JPanel viewPanel = (JPanel) childTaskUI.getScrollPane().getViewport().getView();
         Component[] components = viewPanel.getComponents();
