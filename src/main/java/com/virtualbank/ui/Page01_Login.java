@@ -14,7 +14,6 @@ import javax.swing.border.Border;
  * This UI page includes text fields for username and password
  * as well as a confirm button and a register button.
  *
- *
  * @see JFrame
  */
 public class Page01_Login extends JFrame {

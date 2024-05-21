@@ -1,3 +1,9 @@
+/**
+ * The home page for a child user to go to his goal and task pages
+ * as well as check his bank accounts and create new bank accounts
+ * @author Yunbo Jia, Liyang Qian
+ * @version 3.0 2024-5-21
+ */
 package com.virtualbank.ui;
 
 import com.virtualbank.model.AccountManager;
@@ -8,35 +14,72 @@ import java.awt.*;
 import java.time.Period;
 import java.util.UUID;
 
+/**
+ * Page03_ChildHome is a JFrame subclass representing the child home page.
+ * This page includes buttons for exiting, viewing goals, tasks, and creating a new account.
+ * It also features a scroll panel to display various account information.
+ *
+ * @see JFrame
+ */
 public class Page03_ChildHome extends JFrame {
 
     private JButton exitButton = new JButton();
     private JButton goalButton = new JButton();
     private JButton taskButton = new JButton();
     private JButton createAccountButton = new JButton();
-    private JPanel scrollPanel; // 将滚动面板声明为类的成员变量
-    private JLabel goalButtonLabel; // 处理目标和总金额的
+    private JPanel scrollPanel;
+    private JLabel goalButtonLabel;
 
+    /**
+     * Gets the exit button.
+     *
+     * @return the JButton object for the exit button
+     */
     public JButton getExitButton() {
         return exitButton;
     }
 
+    /**
+     * Gets the goal button.
+     *
+     * @return the JButton object for the goal button
+     */
     public JButton getGoalButton() {
         return goalButton;
     }
 
+    /**
+     * Gets the task button.
+     *
+     * @return the JButton object for the task button
+     */
     public JButton getTaskButton() {
         return taskButton;
     }
 
+    /**
+     * Gets the create account button.
+     *
+     * @return the JButton object for the create account button
+     */
     public JButton getCreateAccountButton() {
         return createAccountButton;
     }
 
+    /**
+     * Gets the scroll panel.
+     *
+     * @return the JPanel object for the scroll panel
+     */
     public JPanel getScrollPanel() {
         return scrollPanel;
     }
 
+    /**
+     * Constructs a new Page03_ChildHome frame.
+     * Sets up the frame size, title, layout, initializes components,
+     * and adds them to the frame.
+     */
     public Page03_ChildHome() {
         final int window_width = 1260;
         final int window_height = 780;
@@ -54,7 +97,7 @@ public class Page03_ChildHome extends JFrame {
 //        backgroundPanel.setBounds(0, 0, window_width, window_height);
 //        add(backgroundPanel);
 
-        // 返回上一级，LoginPage的按钮Exit
+        // Exit button to return to LoginPage
         exitButton.setBounds(20, 20, 134, 50);
         ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
@@ -62,12 +105,12 @@ public class Page03_ChildHome extends JFrame {
         exitButton.setContentAreaFilled(false);
         backgroundPanel.add(exitButton);
 
-        // 进入孩子目标页面的Goal按钮
+        // Goal button to enter child's goal page
         goalButton.setBounds(34, 150, 238, 113);
         ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
         goalButton.setIcon(goalButtonIcon);
 
-        // 目标及其完成进度
+        // Goal and its completion progress
         // TODO 现在这部分还不能变化 目标不归我管 怎么处理
         Double currentAmount = 2544.00; // 当前进度
         Double goal = 500.00; // 目标
@@ -81,21 +124,21 @@ public class Page03_ChildHome extends JFrame {
         backgroundPanel.add(goalButton);
         this.goalButtonLabel = initialGoalButtonLabel;
 
-        // 进入孩子任务页面的Task按钮
+        // Task button to enter child's task page
         taskButton.setBounds(320, 150, 238, 113);
         ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
         taskButton.setIcon(taskButtonIcon);
         taskButton.setBorder(null);
         backgroundPanel.add(taskButton);
 
-        // 创建新账户的按钮
+        // Button to create a new account
         createAccountButton.setBounds(34, 300, 525, 100);
         ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
         createAccountButton.setIcon(createAccountButtonIcon);
         createAccountButton.setBorder(null);
         backgroundPanel.add(createAccountButton);
 
-        // 创建带滚动条的区域
+        // Create scrollable area
         JPanel initialScrollPanel = new JPanel();
         initialScrollPanel.setLayout(new BoxLayout(initialScrollPanel, BoxLayout.Y_AXIS));
         initialScrollPanel.setBackground(new Color(0xfcfcf7));
@@ -113,7 +156,11 @@ public class Page03_ChildHome extends JFrame {
 
     }
 
-
+    /**
+     * Updates the total balance displayed on the goal button.
+     *
+     * @param totalBalance the new total balance to display
+     */
     public void totalBalanceUpdate(double totalBalance) {
         //重新绘制总金额
         // TODO goal 应该可以更改 相信后人的智慧
@@ -124,6 +171,9 @@ public class Page03_ChildHome extends JFrame {
     }
 
 
+    /**
+     * A label representing a current account, a subclass of AccountLabel
+     */
     public static class CurrentAccountLabel extends AccountLabel { // 活期账户卡片
         public CurrentAccountLabel(String ID, Double money) {
             super(ID, money, "Current Account");
@@ -133,6 +183,9 @@ public class Page03_ChildHome extends JFrame {
         }
     }
 
+    /**
+     * A label representing a savings account, a subclass of AccountLabel
+     */
     public static class SavingAccountLabel extends AccountLabel {
         public SavingAccountLabel(String ID, Double money) {
             super(ID, money, "Saving Account");
@@ -142,6 +195,9 @@ public class Page03_ChildHome extends JFrame {
         }
     }
 
+    /**
+     * A label representing a piggy bank account, a subclass of AccountLabel.
+     */
     public static class PiggyBankLabel extends AccountLabel {
         public PiggyBankLabel(String ID, Double money) {
             super(ID, money, "Piggy Bank");
@@ -151,36 +207,53 @@ public class Page03_ChildHome extends JFrame {
         }
     }
 
+    /**
+     * A base label for displaying account information, a subclass of JLabel
+     *
+     * @see JLabel
+     */
     public static class AccountLabel extends JLabel {
 
         private JButton enterButton;
 
+        /**
+         * Gets the enter button.
+         *
+         * @return the JButton object for the enter button
+         */
         public JButton getEnterButton() {
             return enterButton;
         }
 
+        /**
+         * Constructs a new AccountLabel.
+         *
+         * @param ID the account ID
+         * @param money the account balance
+         * @param type the type of account
+         */
         public AccountLabel(String ID, Double money, String type) {
             this.setSize(523, 117);
             Font font = new Font(this.getFont().getName(), Font.PLAIN, 22);
-            // 账户ID
+
             JLabel idLabel = new JLabel("ID:" + ID);
             idLabel.setBounds(133, -20, 220, 109);
             idLabel.setFont(font);
             this.add(idLabel);
-            // 账户金额
+
             String moneyText = String.format("$ %.2f", money);
             JLabel moneyLabel = new JLabel(moneyText);
             moneyLabel.setBounds(350, -20, 220, 109);
             moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
             moneyLabel.setFont(font);
             this.add(moneyLabel);
-            // 类型名称
+
             Font nameFont = new Font(this.getFont().getName(), Font.PLAIN, 25);
             JLabel typeLabel = new JLabel(type);
             typeLabel.setBounds(133, 20, 220, 109);
             typeLabel.setFont(nameFont);
             this.add(typeLabel);
-            // 进入账户的按钮 Enter
+
             // TODO 这个应该怎么回调？
             enterButton = new JButton();
             enterButton.setBounds(415, 40, 95, 60);
@@ -193,6 +266,11 @@ public class Page03_ChildHome extends JFrame {
         }
     }
 
+    /**
+     * Creates and displays the Page03_ChildHome frame.
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         Page03_ChildHome page03ChildHome = new Page03_ChildHome();
         SavingAccountLabel savingAccountLabel = new SavingAccountLabel("001",12.5);

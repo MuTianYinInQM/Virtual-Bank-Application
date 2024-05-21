@@ -15,7 +15,6 @@ import javax.swing.border.Border;
  * as well as a confirm button
  * and check boxes for users to choose the new account belongs to either a parent or a child
  *
- *
  * @see JFrame
  */
 public class Page02_Register extends JFrame{
