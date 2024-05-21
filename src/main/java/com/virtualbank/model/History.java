@@ -21,7 +21,7 @@ import java.util.UUID;
 // 负责持久化 历史记录 (History Logger)
 public class History implements Serializable {
     private static final String DIRECTORY_PATH = "src/main/resources/historys";
-    private ObjectMapper mapper;
+    ObjectMapper mapper;
 
     public History() {
         this.mapper = new ObjectMapper();
