@@ -78,6 +78,7 @@ public abstract class Account implements Serializable {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
         this.balance += amount;
+
     }
 
     // 得到每个函数的是否可以存取钱

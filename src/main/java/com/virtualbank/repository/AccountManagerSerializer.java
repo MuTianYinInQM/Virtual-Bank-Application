@@ -17,7 +17,7 @@ public class AccountManagerSerializer {
         }
         String filePath = DIRECTORY_PATH + File.separator + username;
 
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath, false))) {
             out.writeObject(accountManager);
         } catch (IOException e) {
             System.err.println("Error during serialization: " + e.getMessage());
@@ -25,12 +25,14 @@ public class AccountManagerSerializer {
         }
     }
 
+
     // 反序列化AccountManager对象
     public static AccountManager deserializeAccountManager(String username) throws IOException, ClassNotFoundException {
         String filePath = DIRECTORY_PATH + File.separator + username;
         File file = new File(filePath);
         if (!file.exists()) {
-            throw new FileNotFoundException("File not found for username: " + username);
+            return new AccountManager();
+//            throw new FileNotFoundException("File not found for username: " + username);
         }
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {

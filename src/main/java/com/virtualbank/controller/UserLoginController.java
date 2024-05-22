@@ -1,5 +1,6 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.repository.AccountManagerSerializer;
 import com.virtualbank.service.UserService;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.model.UIStack;
@@ -81,9 +82,14 @@ public class UserLoginController implements Page {
             case "Child Page":
                 JOptionPane.showMessageDialog(page, "Login Successful - Child Page");
                 Page03_ChildHome childPage = new Page03_ChildHome();
-                AccountManagerController accountManagerController = new AccountManagerController(childPage, userService.getAccountManager(username), uiStack);
+                AccountManagerController accountManagerController =
+                        new AccountManagerController(
+                                childPage,
+                                AccountManagerSerializer.deserializeAccountManager(username),
+                                uiStack,
+                                username
+                        );
                 uiStack.pushPage(accountManagerController);
-                page.setVisible(false);
                 break;
             case "Password Incorrect":
                 JOptionPane.showMessageDialog(page, "Password Incorrect", "Login Error", JOptionPane.ERROR_MESSAGE);

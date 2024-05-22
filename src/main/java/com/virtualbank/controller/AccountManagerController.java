@@ -6,6 +6,7 @@ import com.virtualbank.model.account.Account;
 import com.virtualbank.model.account.CurrentAccount;
 import com.virtualbank.model.account.PiggyBank;
 import com.virtualbank.model.account.SavingAccount;
+import com.virtualbank.repository.AccountManagerSerializer;
 import com.virtualbank.service.TaskService;
 import com.virtualbank.ui.*;
 import com.virtualbank.model.UIStack;
@@ -20,12 +21,15 @@ public class AccountManagerController implements PropertyChangeListener, Page {
     private Page03_ChildHome page;
     private AccountManager accountManager;
     private UIStack uiStack;
+    private String username;
 
-    public AccountManagerController(Page03_ChildHome page, AccountManager accountManager, UIStack uiStack) {
+
+    public AccountManagerController(Page03_ChildHome page, AccountManager accountManager, UIStack uiStack, String username) {
         this.page = page;
         this.accountManager = accountManager;
         this.accountManager.addPropertyChangeListener(this); // 监听AccountManager的变化
         this.uiStack = uiStack;
+        this.username = username;
         initPage();
     }
 
@@ -84,6 +88,8 @@ public class AccountManagerController implements PropertyChangeListener, Page {
 
         // TODO 至少现在所有的处理都是一样的 重新渲染一遍
         updatePage();
+        // 然后只要Account有变动，就重新序列化 保证再次载入的时候 Account的一致性
+        AccountManagerSerializer.serializeAccountManager(accountManager, username);
     }
 
     // 动态更新账户信息的方法
@@ -163,7 +169,7 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                 50, 0.05, 24, Period.ofYears(1));
         accountManager.save(currentAccountId, 1000, "Initial deposit to Current Account");
 
-        AccountManagerController controller = new AccountManagerController(page, accountManager, uis);
+        AccountManagerController controller = new AccountManagerController(page, accountManager, uis,"test");
         uis.pushPage(controller);
         controller.updatePage();
     }

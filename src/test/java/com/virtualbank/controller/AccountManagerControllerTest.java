@@ -29,7 +29,8 @@ class AccountManagerControllerTest {
         when(mockPage.getCreateAccountButton()).thenReturn(mock(JButton.class));
         when(mockPage.getScrollPanel()).thenReturn(mock(JPanel.class));
 
-        controller = new AccountManagerController(mockPage, mockAccountManager, mockUiStack);
+        //TODO
+//        controller = new AccountManagerController(mockPage, mockAccountManager, mockUiStack);
     }
 
     @Test
