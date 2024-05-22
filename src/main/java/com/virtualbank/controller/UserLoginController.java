@@ -17,16 +17,26 @@ import java.io.IOException;
 public class UserLoginController implements Page {
     private Page01_Login page;
     private UserService userService;
-    private TaskService taskService; // 添加 TaskService
+    private TaskService taskService;
     private UIStack uiStack;
 
     public UserLoginController(Page01_Login loginPage, UserService userService, TaskService taskService, UIStack uiStack) {
         this.page = loginPage;
         this.userService = userService;
-        this.taskService = taskService; // 初始化 TaskService
+        this.taskService = taskService;
         this.uiStack = uiStack;
+        initializeUserData();
         attachLoginListener();
         attachRegisterListener();
+    }
+
+    private void initializeUserData() {
+        try {
+            userService.loadUserData();
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(page, "Failed to load user data", "Initialization Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void attachLoginListener() {
@@ -36,9 +46,9 @@ public class UserLoginController implements Page {
                 try {
                     performLogin();
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 } catch (ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 }
             }
         });
@@ -58,7 +68,6 @@ public class UserLoginController implements Page {
         char[] password = page.getPassword_textField().getPassword();
         String result = userService.loginUser(username, new String(password));
 
-        // 清除密码数组，提高安全性
         java.util.Arrays.fill(password, '0');
 
         switch (result) {
@@ -84,6 +93,7 @@ public class UserLoginController implements Page {
                 break;
             case "Failed to load account manager":
                 JOptionPane.showMessageDialog(page, "Failed to load account manager", "Login Error", JOptionPane.ERROR_MESSAGE);
+                break;
             default:
                 JOptionPane.showMessageDialog(page, "Login Failed", "Login Error", JOptionPane.ERROR_MESSAGE);
                 break;
@@ -91,12 +101,9 @@ public class UserLoginController implements Page {
     }
 
     private void openRegisterPage() {
-        // 创建注册页面实例
         Page02_Register registerPage = new Page02_Register();
-        // 创建并初始化注册控制器实例，传递注册页面和用户服务
         UserRegisterController registerController = new UserRegisterController(registerPage, userService, uiStack, this.page);
         uiStack.pushPage(registerController);
-
     }
 
     @Override
