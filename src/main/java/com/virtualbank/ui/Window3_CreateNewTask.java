@@ -14,8 +14,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.border.Border;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-
 /**
  * Represents the window for creating a new task in the JoyBank application.
  * This class extends {@link JFrame} and includes fields for entering task details such as

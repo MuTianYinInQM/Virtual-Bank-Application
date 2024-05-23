@@ -90,12 +90,6 @@ public class ParentHomeController {
                 createTaskWindow = new Window3_CreateNewTask();
                 createTaskController = new CreateTaskController(taskService, createTaskWindow);
                 parentHomeUI.dispose();
-                // if (createTaskWindow == null) {
-                //     createTaskWindow = new Window3_CreateNewTask();
-                //     createTaskController = new CreateTaskController(taskService, createTaskWindow);
-                // }
-                // createTaskWindow.setVisible(true);
-                // parentHomeUI.setVisible(false);
             }
         });
     }

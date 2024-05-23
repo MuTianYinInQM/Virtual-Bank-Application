@@ -2,7 +2,7 @@
  * The home page for a parent user to check task lists for his children
  * as well as create new tasks
  * @author Yunbo Jia, Liyang Qian
- * @version 3.0 2024-5-21
+ * @version 4.0 2024-5-24
  */
 package com.virtualbank.ui;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -57,11 +57,7 @@ public class Page04_ParentHome extends JFrame {
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Parent Home Page");
-//        ImageIcon background = new ImageIcon("images/ParentHomePage.png");
-//        JLabel backgroundLabel = new JLabel(background);
-//        backgroundLabel.setBounds(0, 0, window_width, window_height);
         backgroundPanel = new JPanel();
-//        backgroundPanel.add(backgroundLabel);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
         add(backgroundPanel);
@@ -73,7 +69,6 @@ public class Page04_ParentHome extends JFrame {
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         exitButton.setContentAreaFilled(false);
-//        exitButton.setBorderPainted(false);
         backgroundPanel.add(exitButton);
 
         createTaskButton.setBounds(30, 135, 516, 98);
