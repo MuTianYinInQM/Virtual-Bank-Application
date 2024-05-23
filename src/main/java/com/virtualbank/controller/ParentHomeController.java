@@ -1,6 +1,7 @@
 package com.virtualbank.controller;
 
 import com.virtualbank.service.TaskService;
+import com.virtualbank.ui.Page01_Login;
 import com.virtualbank.ui.Page04_ParentHome;
 import com.virtualbank.ui.TaskLabel;
 import com.virtualbank.ui.Window3_CreateNewTask;
@@ -33,7 +34,7 @@ public class ParentHomeController {
     public ParentHomeController(TaskService taskService, Page04_ParentHome parentHomeUI) {
         this.taskService = taskService;
         this.parentHomeUI = parentHomeUI;
-        initializeTaskMap(); // 在构造函数中初始化映射
+        initializeTaskMap();
         attachEventHandlers();
     }
 
@@ -71,6 +72,14 @@ public class ParentHomeController {
             if (comp instanceof Page04_ParentHome.Parent_FinishedTaskLabel) {
                 Page04_ParentHome.Parent_FinishedTaskLabel finishedTaskLabel = (Page04_ParentHome.Parent_FinishedTaskLabel) comp;
                 finishedTaskLabel.getConfirmButton().addActionListener(e -> confirmTask(taskId));
+            }
+        });
+
+        parentHomeUI.getExitButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentHomeUI.dispose(); // 关闭当前页面
+                new Page01_Login(); // 打开登录页面
             }
         });
 
