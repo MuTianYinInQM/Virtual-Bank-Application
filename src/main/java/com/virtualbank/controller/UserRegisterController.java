@@ -9,20 +9,34 @@ import java.awt.event.ActionListener;
 import com.virtualbank.ui.Page01_Login;
 import com.virtualbank.ui.Page02_Register;
 
+/**
+ * Controller for managing user registration interactions.
+ */
 public class UserRegisterController implements Page {
     private Page02_Register page;
     private UserService userService;
     private UIStack uiStack;
-    private Page01_Login loginPage;  // 添加对登录页面的引用
+    private Page01_Login loginPage; // Reference to the login page
 
+    /**
+     * Constructs a UserRegisterController with the specified register page, user service, UI stack, and login page.
+     *
+     * @param page the register page UI component
+     * @param userService the service for managing user data
+     * @param uiStack the UI stack for managing page transitions
+     * @param loginPage the login page UI component
+     */
     public UserRegisterController(Page02_Register page, UserService userService, UIStack uiStack, Page01_Login loginPage) {
         this.page = page;
         this.userService = userService;
         this.uiStack = uiStack;
-        this.loginPage = loginPage;  // 初始化登录页面引用
+        this.loginPage = loginPage;
         attachActionListeners();
     }
 
+    /**
+     * Attaches action listeners to the confirm and exit buttons.
+     */
     private void attachActionListeners() {
         page.getConfirmButton().addActionListener(new ActionListener() {
             @Override
@@ -38,6 +52,9 @@ public class UserRegisterController implements Page {
         });
     }
 
+    /**
+     * Performs the registration process by validating input and registering the user.
+     */
     private void performRegistration() {
         String username = page.getUsername_textField().getText().trim();
         char[] password = page.getPassword_textField().getPassword();
@@ -64,25 +81,44 @@ public class UserRegisterController implements Page {
         }
     }
 
+    /**
+     * Closes the registration page by popping it from the UI stack.
+     */
     private void closeRegisterPage() {
-        uiStack.pop(); // 使用 UI 栈来管理页面
+        uiStack.pop();
     }
 
+    /**
+     * Toggles the visibility of the registration page.
+     */
     @Override
     public void toggleVisibility() {
         this.page.setVisible(!this.page.isVisible());
     }
 
+    /**
+     * Sets the visibility of the registration page.
+     *
+     * @param visibility the new visibility status
+     */
     @Override
     public void setVisibility(boolean visibility) {
         this.page.setVisible(visibility);
     }
 
+    /**
+     * Returns the visibility status of the registration page.
+     *
+     * @return true if the registration page is visible, false otherwise
+     */
     @Override
     public boolean getVisibility() {
         return this.page.isVisible();
     }
 
+    /**
+     * Disposes of the registration page resources.
+     */
     @Override
     public void dispose() {
         this.page.dispose();
