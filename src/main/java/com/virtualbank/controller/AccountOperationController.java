@@ -45,7 +45,13 @@ public class AccountOperationController implements Page {
                     if (AccountOperationType.SAVE == operationType) {
                         accountManager.save(account.getUuid(), amount, description);
                     } else if (AccountOperationType.TRANSFER == operationType) {
-                        accountManager.transfer(account.getUuid(), accountManager.getPiggyUuid(), amount, description);
+                        if (amount >= 0) {
+                            accountManager.transfer(account.getUuid(), accountManager.getPiggyUuid(), amount, description);
+                        } else {
+                            // amount < 0
+                            // transfer money from piggybank to current account
+                            accountManager.transfer(accountManager.getPiggyUuid(), account.getUuid(), -amount, description);
+                        }
                     } else if (AccountOperationType.CONSUME == operationType) {
                         accountManager.consume(account.getUuid(), amount, description);
                     }

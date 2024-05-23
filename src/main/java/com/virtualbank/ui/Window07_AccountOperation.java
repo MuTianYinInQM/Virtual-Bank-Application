@@ -114,7 +114,7 @@ public class Window07_AccountOperation extends JFrame {
 
     public double getAmount() {
         String text = this.amountBox.getText();
-        if (text.matches("\\d+(\\.\\d+)?")) {
+        if (text.matches("-?\\d+(\\.\\d+)?")) {
             return Double.parseDouble(text);
         } else {
             throw new NumberFormatException("The transfer amount is not a valid number.");
@@ -126,6 +126,6 @@ public class Window07_AccountOperation extends JFrame {
     }
 
     public static void main(String[] args) {
-        Window07_AccountOperation transfer = new Window07_AccountOperation(null, AccountOperationType.SAVE);
+        Window07_AccountOperation transfer = new Window07_AccountOperation(null, AccountOperationType.TRANSFER);
     }
 }

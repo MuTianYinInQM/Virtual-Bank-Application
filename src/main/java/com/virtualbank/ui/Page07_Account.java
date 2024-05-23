@@ -237,14 +237,6 @@ public class Page07_Account extends JFrame {
         dataBalanceLabel.setText(String.format("%.2f", currentAccount.getBalance()));
     }
 
-    // Main method for testing Page07_Account class
-    public static void main(String[] args) {
-//        Account exampleAccount = new SavingAccount("Example Account", 1000, 0.02, 24, Period.ofYears(1));
-//        Account exampleAccount = new PiggyBank("Example Account", 1000);
-        Account exampleAccount = new CurrentAccount("Example Account", 1000, 0.02, 24);
-        Page07_Account window = new Page07_Account(exampleAccount);
-        window.setVisible(true);
-    }
 
     // Show a message dialog
     public void showMessage(String accountNotFound, String error) {
@@ -258,4 +250,14 @@ public class Page07_Account extends JFrame {
     public void showMessageDialog(Page07_Account any, String accountNotFound, String s, int i) {
 
     }
+
+    // Main method for testing Page07_Account class
+    public static void main(String[] args) {
+//        Account exampleAccount = new SavingAccount("Example Account", 1000, 0.02, 24, Period.ofYears(1));
+//        Account exampleAccount = new PiggyBank("Example Account", 1000);
+        Account exampleAccount = new CurrentAccount("Example Account", 1000, 0.02, 24);
+        Page07_Account window = new Page07_Account(exampleAccount);
+        window.setVisible(true);
+    }
+
 }
