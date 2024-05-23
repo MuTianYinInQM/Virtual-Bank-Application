@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,12 +55,18 @@ public class History implements Serializable {
             }
         }
 
+        // 创建一个格式化器，格式为小时:分钟:秒
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        // 获取当前时间，并格式化为HH:mm:ss格式的字符串
+        String timeString = LocalTime.now().format(formatter);
+
         // 创建新的交易记录
         Map<String, Object> transaction = new HashMap<>();
         transaction.put("type", accountOperationType.getName());
         transaction.put("amount", amount);
         transaction.put("uuid", id.toString());
-        transaction.put("time", LocalTime.now().toString());
+        transaction.put("time", timeString);  // 使用格式化后的时间
         transaction.put("date", LocalDate.now().toString());
         transaction.put("description", description);
 
