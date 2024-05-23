@@ -158,7 +158,7 @@ public class Page08_History extends JFrame{
         private static final Color Background_Color = new Color(0xF6F6F6);
         private static final Color Border_Color = new Color(0x5C5C5C);
         private static final Font Amount_Font = new Font("Arial", Font.BOLD, 28);
-        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 28);
+        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 18);
         private static final Font Date_Font = new Font("Arial", Font.PLAIN, 18);
         private static final Font Description_Font = new Font("Arial", Font.PLAIN, 16);
 
@@ -185,14 +185,14 @@ public class Page08_History extends JFrame{
             topRowPanel.setOpaque(false);
 
             JLabel amountLabel = new JLabel(amountText);
-            amountLabel.setBounds(5, 5, 125, 40);
+            amountLabel.setBounds(5, 5, 100, 40);
             amountLabel.setFont(Amount_Font);
 //            amountLabel.setOpaque(true);
             amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(amountLabel);
 
             JLabel typeLabel = new JLabel(typeText);
-            typeLabel.setBounds(140, 5, 125, 40);
+            typeLabel.setBounds(110, 5, 150, 40);
             typeLabel.setFont(Type_Font);
 //            typeLabel.setOpaque(true);
             typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -209,7 +209,7 @@ public class Page08_History extends JFrame{
 
             JLabel descriptionLabel = new JLabel(descriptionText);
             descriptionLabel.setFont(Description_Font);
-            descriptionLabel.setPreferredSize(new Dimension(535, 50));
+            descriptionLabel.setPreferredSize(new Dimension(500, 50));
             descriptionLabel.setOpaque(false);
             descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
             rightPanel.add(descriptionLabel, BorderLayout.SOUTH);
