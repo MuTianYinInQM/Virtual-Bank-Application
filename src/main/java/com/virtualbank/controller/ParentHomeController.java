@@ -78,8 +78,8 @@ public class ParentHomeController {
         parentHomeUI.getExitButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                parentHomeUI.dispose(); // 关闭当前页面
-                new Page01_Login(); // 打开登录页面
+                parentHomeUI.dispose();
+                new Page01_Login();
             }
         });
 
