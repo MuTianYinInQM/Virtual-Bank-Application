@@ -5,8 +5,8 @@ public enum AccountOperationType {
     SAVE("DEPOSIT", "Depositing money"),
     INITIAL_SAVE("INITIAL_DEPOSIT", "Initial deposit amount when creating a savings account"),
     TRANSFER("TRANSFER", "Transfer between two cards"),
-    TRANSFER_FROM("TRANSFER_FROM", "Transfer from another card"),
-    TRANSFER_TO("TRANSFER_TO", "Transfer to another card"),
+    TRANSFER_FROM("TRANSFER", "Transfer from another card"),
+    TRANSFER_TO("TRANSFER", "Transfer to another card"),
 
     INTEREST("INTEREST_CALCULATION", "Calculate the interest rate"),
     PRIZE("REWARD", "Get reward from tasks"),;
