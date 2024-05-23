@@ -58,7 +58,7 @@ class AccountControllerTest {
 
     @Test
     void testInitControllerWithPiggyBank() {
-        // 设置特定账户类型
+        // set specific account type
         when(mockPage.getCurrentAccount()).thenReturn(mock(PiggyBank.class));
         controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
 
@@ -69,7 +69,7 @@ class AccountControllerTest {
 
     @Test
     void testInitControllerWithCurrentAccount() {
-        // 设置特定账户类型
+        // set specific account type
         when(mockPage.getCurrentAccount()).thenReturn(mock(CurrentAccount.class));
         controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
 
@@ -78,7 +78,7 @@ class AccountControllerTest {
 
     @Test
     void testInitControllerWithSavingAccount() {
-        // 设置特定账户类型
+        // set specific account type
         when(mockPage.getCurrentAccount()).thenReturn(mock(SavingAccount.class));
         controller = new AccountController(mockPage, mockAccountManager, mockUiStack);
 
@@ -91,21 +91,21 @@ class AccountControllerTest {
 
     @Test
     void testVisibilityToggle() {
-        // 测试界面可见性切换
+        // set specific account type
         controller.toggleVisibility();
         verify(mockPage).setVisible(anyBoolean());
     }
 
     @Test
     void testPropertyChangeUpdatesPage() {
-        // 模拟属性变更
+        // set specific account type
         controller.propertyChange(null);
         verify(mockPage).updatePage();
     }
 
     @Test
     void testDispose() {
-        // 测试资源释放
+        // test dispose
         controller.dispose();
         verify(mockPage).dispose();
     }

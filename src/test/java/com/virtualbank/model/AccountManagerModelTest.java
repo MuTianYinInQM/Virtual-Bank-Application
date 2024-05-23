@@ -15,7 +15,7 @@ class AccountManagerModelTest {
 
     @BeforeEach
     void setUp() {
-        // 初始化AccountManager对象
+        // initial setup
         accountManager = new AccountManager();
         accountManager.prize(accountManager.getPiggyUuid(), 100, "Initial money added to Piggy Bank");
         currentAccountId = accountManager.addCurrentAccount("CurrentAccount", 0.01, 24);
@@ -26,7 +26,7 @@ class AccountManagerModelTest {
 
     @Test
     void testAddMoneyToPiggyBank() {
-        // 测试增加存钱罐的金额
+        // test adding money to Piggy Bank
         double initialBalance = accountManager.getAccounts().get(accountManager.getPiggyUuid()).getBalance();
         accountManager.save(accountManager.getPiggyUuid(), 50, "Adding money to Piggy Bank");
         assertEquals(initialBalance + 50, accountManager.getAccounts().get(accountManager.getPiggyUuid()).getBalance());
@@ -34,7 +34,7 @@ class AccountManagerModelTest {
 
     @Test
     void testTransferBetweenAccounts() {
-        // 测试从存钱罐向活期账户转账
+        // test transferring money between accounts
         double piggyInitial = accountManager.getAccounts().get(accountManager.getPiggyUuid()).getBalance();
         double currentInitial = accountManager.getAccounts().get(currentAccountId).getBalance();
         accountManager.transfer(accountManager.getPiggyUuid(), currentAccountId, 50, "Transfer from Piggy to Current");
@@ -44,7 +44,7 @@ class AccountManagerModelTest {
 
     @Test
     void testAddMoneyToCurrentAccount() {
-        // 测试向活期账户存钱
+        // test adding money to Current Account
         double currentInitial = accountManager.getAccounts().get(currentAccountId).getBalance();
         accountManager.save(currentAccountId, 500, "Deposit to Current Account");
         assertEquals(currentInitial + 500, accountManager.getAccounts().get(currentAccountId).getBalance());
@@ -52,7 +52,7 @@ class AccountManagerModelTest {
 
     @Test
     void testWithdrawFromCurrentAccount() {
-        // 测试从活期账户取钱
+        // test withdrawing money from Current Account
         double currentInitial = accountManager.getAccounts().get(currentAccountId).getBalance();
         accountManager.consume(currentAccountId, 200, "Withdraw from Current Account");
         assertEquals(currentInitial - 200, accountManager.getAccounts().get(currentAccountId).getBalance());
@@ -60,7 +60,7 @@ class AccountManagerModelTest {
 
     @Test
     void testAttemptToWithdrawFromSavingAccount() {
-        // 测试从定期账户取钱，应抛出异常
+        // test attempting to withdraw from Saving Account
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             accountManager.consume(savingAccountId, 10, "Attempt to withdraw from Saving Account");
         });

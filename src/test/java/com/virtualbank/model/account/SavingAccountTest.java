@@ -32,7 +32,7 @@ class SavingAccountTest {
 
     @Test
     void testUpdateInterestPostMaturity() {
-        // 直接模拟时间流逝到存款期满之后
+        // test for the case where the account is already matured
         savingAccount.simulateTimePassage(savingAccount.getTermPeriod());
         double interestGained = savingAccount.updateInterest();
         assertTrue(savingAccount.isMatured(), "Account should be marked as matured.");
@@ -41,7 +41,7 @@ class SavingAccountTest {
 
     @Test
     void testWithdrawPostMaturity() {
-        // 同样，模拟时间流逝到期满
+        // test for the case where the account is already matured
         savingAccount.simulateTimePassage(savingAccount.getTermPeriod());
         savingAccount.updateInterest(); // 确保计算利息
         assertDoesNotThrow(() -> savingAccount.withdraw(950.0), "Should allow withdrawal after maturity.");
