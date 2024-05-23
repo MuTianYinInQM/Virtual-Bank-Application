@@ -11,7 +11,7 @@ import java.time.Period;
 import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountManagerTest {
+class AccountManagermentTest {
     private AccountManager manager;
     private History history;
 
