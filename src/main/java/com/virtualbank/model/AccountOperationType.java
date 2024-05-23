@@ -1,15 +1,15 @@
 package com.virtualbank.model;
 
 public enum AccountOperationType {
-    CONSUME("消费", "花钱，只能从存钱罐里面花钱，相当于钱凭空的消失了，从虚拟的软件转入外部的现实世界中"),
-    SAVE("存款", "存钱，只能将钱存到存钱罐中，相当于钱凭空的增加了，从外部的现实世界中转入虚拟的软件"),
-    INITIAL_SAVE("创建存款账户的初始金额", "创建存款账户的初始金额，默认是从存钱罐中取出的"),
-    TRANSFER("转账", "两个UUID的卡之间的转账，需要检测是否合规"),
-    TRANSFER_FROM("转账", "两个UUID的卡之间的转账，需要检测是否合规，from 是提供钱的那一方"),
-    TRANSFER_TO("转账", "两个UUID的卡之间的转账，需要检测是否合规,to 是接收钱的那一方"),
+    CONSUME("CONSUMPTION", "Spending money, can only be spent from the piggy bank, equivalent to money disappearing into the external real world from the virtual software"),
+    SAVE("DEPOSIT", "Depositing money, can only deposit money into the piggy bank, equivalent to money magically increasing, from the external real world into the virtual software"),
+    INITIAL_SAVE("INITIAL_DEPOSIT", "Initial deposit amount when creating a savings account, by default it is taken from the piggy bank"),
+    TRANSFER("TRANSFER", "Transfer between two UUID cards, requires compliance checks"),
+    TRANSFER_FROM("TRANSFER_FROM", "Transfer between two UUID cards, compliance check required, from is the provider of the money"),
+    TRANSFER_TO("TRANSFER_TO", "Transfer between two UUID cards, compliance check required, to is the receiver of the money"),
 
-    INTEREST("计算利率", "计算特定账户的利率，需要指明UUID"),
-    PRIZE("奖励", "特殊的存钱方式，表征奖励给用户的钱");
+    INTEREST("INTEREST_CALCULATION", "Calculate the interest rate for a specific account, need to specify UUID"),
+    PRIZE("REWARD", "A special way of depositing money, represents money awarded to the user");
 
     private final String description;
     private final String name;
@@ -27,3 +27,5 @@ public enum AccountOperationType {
         return name;
     }
 }
+
+
