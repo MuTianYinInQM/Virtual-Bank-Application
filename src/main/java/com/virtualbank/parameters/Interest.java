@@ -28,5 +28,5 @@ public class Interest {
     /**
      * The time lapse coefficient used for interest calculation.
      */
-    public static final double timeLapseCoefficient = 1;
+    public static final double timeLapseCoefficient = 536000.0;
 }
