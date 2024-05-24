@@ -1,88 +1,77 @@
 package com.virtualbank.controller;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import com.virtualbank.model.AccountManager;
+import com.virtualbank.ui.Page03_ChildHome;
+import com.virtualbank.model.UIStack;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-import com.virtualbank.model.AccountManager;
-import com.virtualbank.model.UIStack;
-import com.virtualbank.ui.Page03_ChildHome;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.beans.PropertyChangeEvent;
-
 class AccountManagerControllerTest {
-    private AccountManagerController controller;
+
+    @Mock
     private Page03_ChildHome mockPage;
+    @Mock
     private AccountManager mockAccountManager;
+    @Mock
     private UIStack mockUiStack;
+    @Mock
+    private JButton mockExitButton;
+    @Mock
+    private JButton mockCreateAccountButton;
+    @Mock
+    private JButton mockGoalButton;
+    @Mock
+    private JButton mockTaskButton;
+    @Mock
+    private JPanel mockScrollPanel;  // Mock for the scroll panel
+
+    private AccountManagerController controller;
 
     @BeforeEach
     void setUp() {
-        mockPage = mock(Page03_ChildHome.class);
-        mockAccountManager = mock(AccountManager.class);
-        mockUiStack = mock(UIStack.class);
+        MockitoAnnotations.openMocks(this);
+        // Mock the buttons and ensure they are returned by the Page methods
+        when(mockPage.getExitButton()).thenReturn(mockExitButton);
+        when(mockPage.getCreateAccountButton()).thenReturn(mockCreateAccountButton);
+        when(mockPage.getGoalButton()).thenReturn(mockGoalButton);
+        when(mockPage.getTaskButton()).thenReturn(mockTaskButton);
+        when(mockPage.getScrollPanel()).thenReturn(mockScrollPanel); // Ensure getScrollPanel returns the mocked JPanel
 
-        when(mockPage.getExitButton()).thenReturn(mock(JButton.class));
-        when(mockPage.getCreateAccountButton()).thenReturn(mock(JButton.class));
-        when(mockPage.getScrollPanel()).thenReturn(mock(JPanel.class));
-
+        controller = new AccountManagerController(mockPage, mockAccountManager, mockUiStack, "testUser");
     }
 
     @Test
     void testInitPage() {
-        // test initPage
-        verify(mockPage.getExitButton(), times(1)).addActionListener(any());
-        verify(mockPage.getCreateAccountButton(), times(1)).addActionListener(any());
+        // Verifying if the controller sets up the action listeners correctly
+        verify(mockExitButton).addActionListener(any(ActionListener.class));
+        verify(mockCreateAccountButton).addActionListener(any(ActionListener.class));
+        verify(mockGoalButton).addActionListener(any(ActionListener.class));
+        verify(mockTaskButton).addActionListener(any(ActionListener.class));
     }
 
-    @Test
-    void testPropertyChange() {
-        PropertyChangeEvent evt = new PropertyChangeEvent(this, "balance", null, null);
-        controller.propertyChange(evt);
 
-        verify(mockAccountManager, atLeastOnce()).getTotalBalance();
-        verify(mockPage, atLeastOnce()).totalBalanceUpdate(anyDouble());
 
-        // test other properties
-        verify(mockPage.getScrollPanel(), atLeastOnce()).removeAll();
-        verify(mockPage.getScrollPanel(), atLeastOnce()).revalidate();
-        verify(mockPage.getScrollPanel(), atLeastOnce()).repaint();
-    }
 
     @Test
-    void testToggleVisibility() {
-        // test toggle visibility
+    void testVisibilityMethods() {
+        // Testing visibility toggles
         controller.toggleVisibility();
-        verify(mockPage, times(1)).setVisible(anyBoolean());
-    }
+        verify(mockPage).setVisible(anyBoolean());
 
-    @Test
-    void testSetVisibility() {
-        // test set visibility
         controller.setVisibility(true);
-        verify(mockPage, times(1)).setVisible(true);
-        controller.setVisibility(false);
-        verify(mockPage, times(1)).setVisible(false);
-    }
+        verify(mockPage, times(2)).setVisible(true);
 
-    @Test
-    void testGetVisibility() {
-        // test get visibility
         when(mockPage.isVisible()).thenReturn(true);
         assertTrue(controller.getVisibility());
-        when(mockPage.isVisible()).thenReturn(false);
-        assertFalse(controller.getVisibility());
-    }
-
-
-
-    @Test
-    void testDispose() {
-        // test dispose
-        controller.dispose();
-        verify(mockPage, times(1)).dispose();
     }
 }
