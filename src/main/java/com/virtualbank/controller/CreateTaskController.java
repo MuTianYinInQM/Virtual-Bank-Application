@@ -34,7 +34,7 @@ public class CreateTaskController {
      * @param str the time string to check
      * @return true if the time string is in the correct format, false otherwise
      */
-    public boolean checkTime(String str) { // 检查输入是否符合规范
+    public boolean checkTime(String str) {
         if (str.length() == 8) {
             if (Character.isDigit(str.charAt(0))
                     && Character.isDigit(str.charAt(1))
@@ -119,7 +119,6 @@ public class CreateTaskController {
                 try {
                     taskService.createTask(taskName, content, reward, childName, startTime, dueTime);
                     JOptionPane.showMessageDialog(createTaskUI, "Task created successfully.", "Task Creation", JOptionPane.INFORMATION_MESSAGE);
-                    // 清除输入框
                     createTaskUI.getTaskName_textField().setText("");
                     createTaskUI.getContent_textField().setText("");
                     createTaskUI.getMoney_textField().setText("");

@@ -34,7 +34,6 @@ public class SavingGoalController implements Page {
      * Initializes the controller by setting up the button listeners.
      */
     private void initController() {
-        // 绑定创建按钮的动作监听器
         setupCreateButtonListener();
         setupModifyAndDeleteButtonListeners();
     }
@@ -48,8 +47,8 @@ public class SavingGoalController implements Page {
             page.getCreateButton().removeActionListener(listener);
         }
         page.getCreateButton().addActionListener(e -> {
-            double currentBalance = page.getAccountManager().getTotalBalance(); // 获取当前余额
-            openSetGoalWindow(null, currentBalance); // 传递当前余额
+            double currentBalance = page.getAccountManager().getTotalBalance();
+            openSetGoalWindow(null, currentBalance);
         });
     }
 
