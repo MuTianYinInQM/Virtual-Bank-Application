@@ -21,11 +21,11 @@ public class SavingGoal {
     /**
      * Constructor with all properties.
      *
-     * @param goalId the unique identifier for the saving goal
-     * @param childName the child's account ID
-     * @param targetAmount the target saving amount
+     * @param goalId        the unique identifier for the saving goal
+     * @param childName     the child's account ID
+     * @param targetAmount  the target saving amount
      * @param currentAmount the current saving amount
-     * @param goalName the name of the saving goal
+     * @param goalName      the name of the saving goal
      */
     public SavingGoal(String goalId, String childName, double targetAmount, double currentAmount, String goalName) {
         this.goalId = goalId;

@@ -17,13 +17,23 @@ import java.beans.PropertyChangeListener;
 import java.time.Period;
 import java.util.UUID;
 
+/**
+ * Controller class for managing the Child Home page and related actions.
+ */
 public class AccountManagerController implements PropertyChangeListener, Page {
     private Page03_ChildHome page;
     private AccountManager accountManager;
     private UIStack uiStack;
     private String username;
 
-
+    /**
+     * Constructs an AccountManagerController with the specified Child Home page, account manager, UI stack, and username.
+     *
+     * @param page           The Child Home page associated with this controller.
+     * @param accountManager The AccountManager instance managing the accounts.
+     * @param uiStack        The UIStack instance managing the UI navigation.
+     * @param username       The username associated with the account manager.
+     */
     public AccountManagerController(Page03_ChildHome page, AccountManager accountManager, UIStack uiStack, String username) {
         this.page = page;
         this.accountManager = accountManager;
@@ -33,11 +43,16 @@ public class AccountManagerController implements PropertyChangeListener, Page {
         initPage();
     }
 
+    /**
+     * Updates the page based on changes in the account manager.
+     */
     private void updatePage() {
         updateAccounts(accountManager);
     }
 
-
+    /**
+     * Initializes the page and sets up event listeners for UI components.
+     */
     private void initPage() {
         // 设置按钮监听器
         // 退回上一级目录
@@ -93,6 +108,12 @@ public class AccountManagerController implements PropertyChangeListener, Page {
     }
 
     // 动态更新账户信息的方法
+
+    /**
+     * Updates the displayed account information on the page.
+     *
+     * @param accountManager The AccountManager instance containing the accounts.
+     */
     public void updateAccounts(AccountManager accountManager) {
         page.totalBalanceUpdate(accountManager.getTotalBalance());
 
@@ -130,6 +151,11 @@ public class AccountManagerController implements PropertyChangeListener, Page {
         page.getScrollPanel().repaint();
     }
 
+    /**
+     * Opens the details page for a specific account.
+     *
+     * @param account The account for which details are to be displayed.
+     */
     private void openAccountDetails(Account account) {
         Page07_Account page07Account = new Page07_Account(account);
         AccountController accountController = new AccountController(page07Account, accountManager, uiStack);
@@ -169,7 +195,7 @@ public class AccountManagerController implements PropertyChangeListener, Page {
                 50, 0.05, 24, Period.ofYears(1));
         accountManager.save(currentAccountId, 1000, "Initial deposit to Current Account");
 
-        AccountManagerController controller = new AccountManagerController(page, accountManager, uis,"test");
+        AccountManagerController controller = new AccountManagerController(page, accountManager, uis, "test");
         uis.pushPage(controller);
         controller.updatePage();
     }

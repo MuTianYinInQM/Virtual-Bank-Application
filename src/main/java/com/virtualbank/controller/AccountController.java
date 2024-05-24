@@ -17,14 +17,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
+/**
+ * Controller class for managing account-related actions and interactions with the UI.
+ */
 public class AccountController implements PropertyChangeListener, Page {
 
     private Page07_Account page;
     // 虽然这个在这里没用，但是AccountManager要传递给下一个页面使用，这里仅仅是过了一遍手
     private AccountManager accountManager;
     private UIStack uiStack;
-
+    /**
+     * Constructs an AccountController object with the specified view, account manager, and UI stack.
+     *
+     * @param view           The Page07_Account view associated with this controller.
+     * @param accountManager The AccountManager instance managing the accounts.
+     * @param uiStack        The UIStack instance managing the UI navigation.
+     */
     public AccountController(Page07_Account view, AccountManager accountManager, UIStack uiStack) {
         this.page = view;
         this.accountManager = accountManager;
@@ -38,7 +46,9 @@ public class AccountController implements PropertyChangeListener, Page {
         page.updatePage();
     }
 
-
+    /**
+     * Initializes the controller by setting up event listeners for UI components.
+     */
     private void initController() {
         Account account = page.getCurrentAccount();
         page.getExitButton().addActionListener(new ActionListener() {
