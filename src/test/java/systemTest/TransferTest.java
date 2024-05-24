@@ -38,17 +38,24 @@ class TransferTest {
         assertEquals(initialBalance - consumeAmount, manager.getAccounts().get(manager.getPiggyUuid()).getBalance(), "Balance should be correctly updated after consumption");
     }
 
-//    @Test
-//    void testTransferOperation() {
-//
-//        UUID fromAccountId = UUID.fromString(manager.getAccounts().keySet().iterator().next().toString()); // 获取任意活期账户
-//        UUID toAccountId = manager.getPiggyUuid(); // 存钱罐账户
-//        double initialFromBalance = manager.getAccounts().get(fromAccountId).getBalance();
-//        double initialToBalance = manager.getAccounts().get(toAccountId).getBalance();
-//        double transferAmount = 200.0;
-//        manager.transfer(fromAccountId, toAccountId, transferAmount, "Transfer to Piggy Bank");
-//        assertEquals(initialFromBalance - transferAmount, manager.getAccounts().get(fromAccountId).getBalance(), "Balance should be correctly deducted from source account");
-//        assertEquals(initialToBalance + transferAmount, manager.getAccounts().get(toAccountId).getBalance(), "Balance should be correctly added to destination account");
-//    }
-    // TODO Transfer功能无法正常使用，因为无法正常把钱放到活期账户里
+    @Test
+    void testTransferOperation() {
+
+        UUID fromAccountId = UUID.fromString(manager.getAccounts().keySet().iterator().next().toString()); // 获取任意活期账户
+        UUID toAccountId = manager.getPiggyUuid(); // 存钱罐账户
+
+        double initialFromBalance = manager.getAccounts().get(fromAccountId).getBalance();
+        double initialToBalance = manager.getAccounts().get(toAccountId).getBalance();
+
+        double transferAmount = 200.0;
+        if (fromAccountId.equals(toAccountId)) {
+            System.out.println("Transfer to the same account is not allowed");
+        }
+        else{
+            manager.transfer(fromAccountId, toAccountId, transferAmount, "Transfer to Piggy Bank");
+            assertEquals(initialFromBalance - transferAmount, manager.getAccounts().get(fromAccountId).getBalance(), "Balance should be correctly deducted from source account");
+            assertEquals(initialToBalance + transferAmount, manager.getAccounts().get(toAccountId).getBalance(), "Balance should be correctly added to destination account");
+        }
+
+    }
 }
