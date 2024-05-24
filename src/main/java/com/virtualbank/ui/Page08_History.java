@@ -140,7 +140,7 @@ public class Page08_History extends JFrame{
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
         System.out.println("type:"+type);
-        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";
+        String isCredit = (type.equals("TRANSFER FROM") || type.equals("TRANSFER") || type.equals("CONSUME")) ? "-" : "+";
         System.out.println("isCredit:"+isCredit);
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");
@@ -243,8 +243,4 @@ public class Page08_History extends JFrame{
 
     }
 
-    // Main method for testing Page08_History class
-    public static void main(String[] args) {
-        Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
-    }
 }
