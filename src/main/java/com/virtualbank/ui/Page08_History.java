@@ -140,7 +140,7 @@ public class Page08_History extends JFrame{
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
         System.out.println("type:"+type);
-        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";
+        String isCredit = (type.equals("TRANSFER_FROM") || type.equals("CONSUME")) ? "-" : "+";
         System.out.println("isCredit:"+isCredit);
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");

@@ -4,15 +4,15 @@ package com.virtualbank.model;
  * Enum representing the types of account operations.
  */
 public enum AccountOperationType {
-    CONSUME("CONSUMPTION", "Spending money"),
-    SAVE("DEPOSIT", "Depositing money"),
-    INITIAL_SAVE("INITIAL DEPOSIT", "Initial deposit amount when creating a savings account"),
+    CONSUME("CONSUME", "Spending money"),
+    SAVE("SAVE", "Depositing money"),
+    INITIAL_SAVE("INITIAL_SAVE", "Initial deposit amount when creating a savings account"),
     TRANSFER("TRANSFER", "Transfer between two cards"),
-    TRANSFER_FROM("TRANSFER", "Transfer from another card"),
-    TRANSFER_TO("TRANSFER", "Transfer to another card"),
+    TRANSFER_FROM("TRANSFER_FROM", "Transfer from another card"),
+    TRANSFER_TO("TRANSFER_TO", "Transfer to another card"),
 
-    INTEREST("INTEREST CALCULATION", "Calculate the interest rate"),
-    PRIZE("REWARD", "Get reward from tasks"),
+    INTEREST("INTEREST", "Calculate the interest rate"),
+    PRIZE("PRIZE", "Get reward from tasks"),
     ;
 
     private final String description;
