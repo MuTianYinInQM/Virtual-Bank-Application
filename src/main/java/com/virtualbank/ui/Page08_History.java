@@ -17,7 +17,7 @@ import com.virtualbank.controller.HistoryController;
  * Page08_History
  * This class represents the transaction history page in the banking UI.
  */
-public class Page08_History extends JFrame{
+public class Page08_History extends JFrame {
     private JPanel historyPanel; // Container for displaying history records
     //    private JPanel titlePanel;
     private JScrollPane scrollPane; // Scroll pane for history panel
@@ -28,6 +28,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Get the exit button.
+     *
      * @return The exit button.
      */
     public JButton getExitButton() {
@@ -36,6 +37,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Get the scroll pane.
+     *
      * @return The scroll pane.
      */
     public JScrollPane getScrollPane() {
@@ -45,6 +47,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Constructor for Page08_History class.
+     *
      * @param accountID The account ID to display history for.
      */
     public Page08_History(UUID accountID) {
@@ -120,7 +123,8 @@ public class Page08_History extends JFrame{
         String filePath = "src/main/resources/historys/" + accountID + "_history.json";
         File file = new File(filePath);
         try {
-            List<Map<String, Object>> transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>(){});
+            List<Map<String, Object>> transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>() {
+            });
             for (Map<String, Object> transaction : transactions) {
                 addHistoryLabel(transaction);
             }
@@ -139,9 +143,9 @@ public class Page08_History extends JFrame{
         String time = (String) transaction.get("time");
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
-        System.out.println("type:"+type);
+        System.out.println("type:" + type);
         String isCredit = (type.equals("TRANSFER_FROM") || type.equals("CONSUME")) ? "-" : "+";
-        System.out.println("isCredit:"+isCredit);
+        System.out.println("isCredit:" + isCredit);
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("images/transactionCardIcon.png");
 
@@ -198,7 +202,7 @@ public class Page08_History extends JFrame{
             typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(typeLabel);
 
-            JLabel dateLabel = new JLabel(dateText+ " "+ timeText);
+            JLabel dateLabel = new JLabel(dateText + " " + timeText);
             dateLabel.setBounds(275, 5, 250, 40);
             dateLabel.setFont(Date_Font);
 //            dateLabel.setOpaque(true);
@@ -243,8 +247,4 @@ public class Page08_History extends JFrame{
 
     }
 
-    // Main method for testing Page08_History class
-    public static void main(String[] args) {
-        Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
-    }
 }
