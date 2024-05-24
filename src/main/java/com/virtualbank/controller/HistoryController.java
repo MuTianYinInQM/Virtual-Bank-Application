@@ -10,18 +10,35 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.AdjustmentEvent;
 import java.util.UUID;
 
+/**
+ * Controls the interactions for the history page view.
+ * This controller manages the operations related to the history page,
+ * including navigating back to the previous page and managing the visibility of the history page.
+ */
 public class HistoryController implements Page {
     private Page08_History page;
     private UIStack uiStack;
 
+
+    /**
+     * Constructs a new HistoryController.
+     *
+     * @param page    The history page view to be controlled.
+     * @param uiStack The UI stack for managing page navigation.
+     */
     public HistoryController(Page08_History page, UIStack uiStack) {
         this.page = page;
         this.uiStack = uiStack;
         initController();
     }
 
+
+
+    /**
+     * Initializes the controller by setting up the event listeners.
+     */
     private void initController() {
-        // 绑定退出按钮的事件处理器
+        // initialize the controller here
         page.getExitButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -29,47 +46,53 @@ public class HistoryController implements Page {
             }
         });
 
-//        // 绑定滚动条的调整监听器
-//        page.getScrollPane().getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-//            @Override
-//            public void adjustmentValueChanged(AdjustmentEvent e) {
-//                // 这里可以放置一些逻辑，例如动态加载更多的历史记录等
-//                if (!e.getValueIsAdjusting()) {
-//                    loadMoreHistory();
-//                }
-//            }
-//        });
     }
 
+
+    /**
+     * Toggles the visibility of the history page.
+     */
     @Override
     public void toggleVisibility() {
+        // toggle the visibility of the page here
         this.page.setVisible(!this.page.isVisible());
     }
 
+
+
+    /**
+     * Sets the visibility of the history page.
+     *
+     * @param visibility true to make the page visible; false otherwise.
+     */
     @Override
     public void setVisibility(boolean visibility) {
+        // set the visibility of the page here
         this.page.setVisible(visibility);
     }
 
+
+
+    /**
+     * Returns the visibility status of the history page.
+     *
+     * @return true if the page is visible; false otherwise.
+     */
     @Override
     public boolean getVisibility() {
+        // return the visibility of the page here
         return this.page.isVisible();
     }
 
+
+
+    /**
+     * Disposes of the history page when it is no longer needed.
+     */
     @Override
     public void dispose() {
+        // dispose the page here
         this.page.dispose();
-    }
-
-
-//    private void loadMoreHistory() {
-//        // 这里可以实现当用户滚动到底部时加载更多历史记录的功能
-//        // 目前这个方法是空的，可以根据需要实现具体功能
-//        // TODO
-//    }
-
-    public static void main(String[] args) {
-        Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
     }
 
 }

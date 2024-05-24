@@ -18,18 +18,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-// 这个是记录账户信息的组件
-// 负责持久化 历史记录 (History Logger)
+
+
+/**
+ * Manages the history of all account operations within the banking system.
+ * This class is responsible for recording and storing transaction history into JSON files.
+ */
 public class History implements Serializable {
     private static final String DIRECTORY_PATH = "src/main/resources/historys";
     ObjectMapper mapper;
 
+
+    /**
+     * Constructs a new History object with a configured Jackson ObjectMapper for JSON processing.
+     */
     public History() {
         this.mapper = new ObjectMapper();
         ensureDirectoryExists(Paths.get(DIRECTORY_PATH));
     }
 
-    // 确保存储目录存在
+    /**
+     * Ensures that the directory for storing history files exists.
+     * @param path The path to the directory where history files will be stored.
+     * @throws RuntimeException if there is an issue creating the directory.
+     */
     void ensureDirectoryExists(Path path) {
         try {
             if (!Files.exists(path)) {
@@ -40,12 +52,21 @@ public class History implements Serializable {
         }
     }
 
+
+    /**
+     * Records a transaction operation into the history of the specified account.
+     *
+     * @param accountOperationType The type of operation performed (e.g., deposit, withdrawal).
+     * @param id                   The UUID of the account the operation is associated with.
+     * @param amount               The amount involved in the operation.
+     * @param description          A description of the operation.
+     */
     public void recordOperation(AccountOperationType accountOperationType, UUID id, double amount, String description) {
         Path filePath = Paths.get(DIRECTORY_PATH, id + "_history.json");
         File file = filePath.toFile();
         List<Map<String, Object>> transactions = new ArrayList<>();
 
-        // 加载现有的交易记录，如果有的话
+        // load existing transactions if the file exists
         if (file.exists()) {
             try {
                 transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>() {
@@ -55,13 +76,13 @@ public class History implements Serializable {
             }
         }
 
-        // 创建一个格式化器，格式为小时:分钟:秒
+        // create a new UUID for the transaction
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-        // 获取当前时间，并格式化为HH:mm:ss格式的字符串
+        // get the current time
         String timeString = LocalTime.now().format(formatter);
 
-        // 创建新的交易记录
+        // create a new transaction
         Map<String, Object> transaction = new HashMap<>();
         transaction.put("type", accountOperationType.getName());
         transaction.put("amount", amount);
@@ -70,10 +91,10 @@ public class History implements Serializable {
         transaction.put("date", LocalDate.now().toString());
         transaction.put("description", description);
 
-        // 将新交易添加到交易列表
+        // add the new transaction to the list
         transactions.add(transaction);
 
-        // 写入文件
+        // write the updated list of transactions back to the file
         try {
             mapper.writeValue(file, transactions);
         } catch (IOException e) {
