@@ -178,7 +178,7 @@ public class Page07_Account extends JFrame {
         // !!! DYNAMICS
         JLabel dataIdLabel = createDataLabel(account.getUuid().toString(), 470, 332);
         this.dataBalanceLabel = createDataLabel(String.format("%.2f", account.getBalance()), 470, 400);
-        JLabel dataTypeLabel = createDataLabel("Piggy Bank", 470, 473);
+        JLabel dataTypeLabel = createDataLabel("Current Account", 470, 473);
         JLabel dataInterestLabel = createDataLabel(String.format("%.2f%%", account.getInterestRate() * 100), 470, 550);
         this.add(dataIdLabel);
         this.add(dataBalanceLabel);
