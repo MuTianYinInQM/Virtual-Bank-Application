@@ -1,6 +1,7 @@
 package com.virtualbank.model;
 
 import com.virtualbank.model.account.*; // all account
+import com.virtualbank.repository.AccountManagerSerializer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -232,7 +233,9 @@ public class AccountManager implements Serializable {
     public void updateAllInterests() {
         for (Account account : accounts.values()) {
             double interestAmount = account.updateInterest();
-            logger.recordOperation(AccountOperationType.INTEREST, account.getUuid(), interestAmount, "auto calculated");
+            if (interestAmount >= 0.01) {
+                logger.recordOperation(AccountOperationType.INTEREST, account.getUuid(), interestAmount, "auto calculated");
+            }
         }
     }
 

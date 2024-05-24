@@ -105,11 +105,11 @@ public class SavingAccount extends Account {
     @Override
     public double updateInterest() {
         // 检查账户是否已经到期并相应更新
-        if (checkMaturity() && !isMatured) {
+        if (!isMatured && checkMaturity()) {
             double currentBalance = this.balance;
             this.balance = calculateMaturityAmount(balance, interestRate, termPeriod);
             this.isMatured = true;
-            return currentBalance - this.balance;
+            return this.balance - currentBalance;
         }
         // 没有任何更新
         return 0;
