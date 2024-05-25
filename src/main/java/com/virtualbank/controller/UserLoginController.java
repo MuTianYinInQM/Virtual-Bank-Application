@@ -1,5 +1,6 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.model.AccountManager;
 import com.virtualbank.repository.AccountManagerSerializer;
 import com.virtualbank.service.UserService;
 import com.virtualbank.service.TaskService;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 /**
  * Controller for managing user login interactions.
  */
@@ -26,10 +28,10 @@ public class UserLoginController implements Page {
     /**
      * Constructs a UserLoginController with the specified login page, user service, task service, and UI stack.
      *
-     * @param loginPage the login page UI component
+     * @param loginPage   the login page UI component
      * @param userService the service for managing user data
      * @param taskService the service for managing tasks
-     * @param uiStack the UI stack for managing page transitions
+     * @param uiStack     the UI stack for managing page transitions
      */
     public UserLoginController(Page01_Login loginPage, UserService userService, TaskService taskService, UIStack uiStack) {
         this.page = loginPage;
@@ -86,7 +88,7 @@ public class UserLoginController implements Page {
     /**
      * Performs the login operation by validating user credentials and navigating to the appropriate page.
      *
-     * @throws IOException if an I/O error occurs
+     * @throws IOException            if an I/O error occurs
      * @throws ClassNotFoundException if a class cannot be found during the process
      */
     private void performLogin() throws IOException, ClassNotFoundException {
@@ -107,13 +109,15 @@ public class UserLoginController implements Page {
             case "Child Page":
                 JOptionPane.showMessageDialog(page, "Login Successful - Child Page");
                 Page03_ChildHome childPage = new Page03_ChildHome();
+                AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
                 AccountManagerController accountManagerController =
                         new AccountManagerController(
                                 childPage,
-                                AccountManagerSerializer.deserializeAccountManager(username),
+                                accountManager,
                                 uiStack,
                                 username
                         );
+                accountManagerController.updateAllInterests();
                 uiStack.pushPage(accountManagerController);
                 break;
             case "Password Incorrect":

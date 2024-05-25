@@ -1,6 +1,9 @@
 package com.virtualbank.controller;
 
+import com.virtualbank.Main;
+import com.virtualbank.model.UIStack;
 import com.virtualbank.service.TaskService;
+import com.virtualbank.service.UserService;
 import com.virtualbank.ui.Page01_Login;
 import com.virtualbank.ui.Page04_ParentHome;
 import com.virtualbank.ui.TaskLabel;
@@ -79,7 +82,8 @@ public class ParentHomeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 parentHomeUI.dispose();
-                new Page01_Login();
+                Main.main(new String[0]);
+
             }
         });
 

@@ -66,7 +66,7 @@ public class Window2_CreateSavingAccount extends JFrame {
         this.setResizable(false);
         this.setLayout(null);
         this.setTitle("JoyBank - Creating a New Saving Account");
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/CreateSavingAccount.png");
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("src/main/resources/images/CreateSavingAccount.png");
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         this.getContentPane().add(backgroundLabel);
@@ -88,7 +88,7 @@ public class Window2_CreateSavingAccount extends JFrame {
 
         confirmButton = new JButton();
         confirmButton.setBounds(290, 410, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
+        ImageIcon confirmButtonIcon = new ImageIcon("src/main/resources/images/confirm2.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);

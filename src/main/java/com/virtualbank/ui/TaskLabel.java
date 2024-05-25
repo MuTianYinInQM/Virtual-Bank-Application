@@ -100,7 +100,7 @@ public class TaskLabel extends JLabel {
 
         deleteButton = new JButton();
         deleteButton.setBounds(390, 90, 120, 40);
-        ImageIcon deleteButtonImage = new ImageIcon("images/DeleteButtonImage.png");
+        ImageIcon deleteButtonImage = new ImageIcon("src/main/resources/images/DeleteButtonImage.png");
         deleteButton.setIcon(deleteButtonImage);
         deleteButton.setBorder(null);
         deleteButton .setContentAreaFilled(false);
@@ -127,7 +127,7 @@ public class TaskLabel extends JLabel {
          */
         public TerminatedTaskLabel(String taskId, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(taskId, taskName, description, reward, childName, startDate, dueDate);
-            ImageIcon taskIcon = new ImageIcon("images/TerminatedTask.png");
+            ImageIcon taskIcon = new ImageIcon("src/main/resources/images/TerminatedTask.png");
             this.setIcon(taskIcon);
         }
     }
@@ -151,7 +151,7 @@ public class TaskLabel extends JLabel {
          */
         public FinishedTaskLabel(String taskId, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(taskId, taskName, description, reward, childName, startDate, dueDate);
-            ImageIcon taskIcon = new ImageIcon("images/FinishedTask.png");
+            ImageIcon taskIcon = new ImageIcon("src/main/resources/images/FinishedTask.png");
             this.setIcon(taskIcon);
         }
     }
@@ -175,7 +175,7 @@ public class TaskLabel extends JLabel {
          */
         public OngoingTaskLabel(String taskId, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(taskId, taskName, description, reward, childName, startDate, dueDate);
-            ImageIcon taskIcon = new ImageIcon("images/OngoingTask.png");
+            ImageIcon taskIcon = new ImageIcon("src/main/resources/images/OngoingTask.png");
             this.setIcon(taskIcon);
         }
     }
@@ -199,7 +199,7 @@ public class TaskLabel extends JLabel {
          */
         public NotAcceptedTaskLabel(String taskId, String taskName, String description, Double reward, String childName, String startDate, String dueDate) {
             super(taskId, taskName, description, reward, childName, startDate, dueDate);
-            ImageIcon taskIcon = new ImageIcon("images/NotAcceptedTask.png");
+            ImageIcon taskIcon = new ImageIcon("src/main/resources/images/NotAcceptedTask.png");
             this.setIcon(taskIcon);
         }
     }

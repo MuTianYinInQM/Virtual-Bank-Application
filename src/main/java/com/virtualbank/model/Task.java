@@ -25,14 +25,14 @@ public class Task {
     /**
      * Constructor with arguments to initialize the task properties.
      *
-     * @param id the unique identifier for the task
-     * @param taskName the name of the task
+     * @param id          the unique identifier for the task
+     * @param taskName    the name of the task
      * @param description the description of the task
-     * @param reward the reward amount for the task
-     * @param childName the name of the child who is the target of the task
-     * @param startDate the start date of the task
-     * @param endDate the end date of the task
-     * @param status the status of the task
+     * @param reward      the reward amount for the task
+     * @param childName   the name of the child who is the target of the task
+     * @param startDate   the start date of the task
+     * @param endDate     the end date of the task
+     * @param status      the status of the task
      */
     public Task(String id, String taskName, String description, double reward, String childName,
                 String startDate, String endDate, String status) {

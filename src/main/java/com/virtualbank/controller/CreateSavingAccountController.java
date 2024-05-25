@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Period;
 
+/**
+ * Controller class for creating a saving account.
+ */
 public class CreateSavingAccountController implements Page {
     private Window2_CreateSavingAccount page;
     // 虽然这个在这里没用，但是AccountManager要传递给下一个页面使用，这里仅仅是过了一遍手
@@ -19,6 +22,13 @@ public class CreateSavingAccountController implements Page {
     private UIStack uiStack;
 
 
+    /**
+     * Constructs a CreateSavingAccountController with the specified view, account manager, and UI stack.
+     *
+     * @param view           The Window2_CreateSavingAccount view associated with this controller.
+     * @param accountManager The AccountManager instance managing the accounts.
+     * @param uiStack        The UIStack instance managing the UI navigation.
+     */
     public CreateSavingAccountController(Window2_CreateSavingAccount view, AccountManager accountManager, UIStack uiStack) {
         this.page = view;
         this.accountManager = accountManager;
@@ -27,6 +37,9 @@ public class CreateSavingAccountController implements Page {
 
     }
 
+    /**
+     * Initializes the controller by setting up event listeners for UI components.
+     */
     private void initController() {
         page.getConfirmButton().addActionListener(new ActionListener() {
             @Override

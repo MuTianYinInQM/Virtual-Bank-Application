@@ -17,7 +17,7 @@ import com.virtualbank.controller.HistoryController;
  * Page08_History
  * This class represents the transaction history page in the banking UI.
  */
-public class Page08_History extends JFrame{
+public class Page08_History extends JFrame {
     private JPanel historyPanel; // Container for displaying history records
     //    private JPanel titlePanel;
     private JScrollPane scrollPane; // Scroll pane for history panel
@@ -28,6 +28,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Get the exit button.
+     *
      * @return The exit button.
      */
     public JButton getExitButton() {
@@ -36,6 +37,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Get the scroll pane.
+     *
      * @return The scroll pane.
      */
     public JScrollPane getScrollPane() {
@@ -45,6 +47,7 @@ public class Page08_History extends JFrame{
 
     /**
      * Constructor for Page08_History class.
+     *
      * @param accountID The account ID to display history for.
      */
     public Page08_History(UUID accountID) {
@@ -120,7 +123,8 @@ public class Page08_History extends JFrame{
         String filePath = "src/main/resources/historys/" + accountID + "_history.json";
         File file = new File(filePath);
         try {
-            List<Map<String, Object>> transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>(){});
+            List<Map<String, Object>> transactions = mapper.readValue(file, new TypeReference<List<Map<String, Object>>>() {
+            });
             for (Map<String, Object> transaction : transactions) {
                 addHistoryLabel(transaction);
             }
@@ -139,9 +143,7 @@ public class Page08_History extends JFrame{
         String time = (String) transaction.get("time");
         String date = (String) transaction.get("date");
         String type = (String) transaction.get("type");
-        System.out.println("type:"+type);
-        String isCredit = (type.equals("转账") || type.equals("消费")) ? "-" : "+";
-        System.out.println("isCredit:"+isCredit);
+        String isCredit = (type.equals("TRANSFER_FROM") || type.equals("CONSUME")) ? "-" : "+";
         String description = (String) transaction.get("description");
         ImageIcon cardIcon = new ImageIcon("src/main/resources/images/transactionCardIcon.png");
 
@@ -157,8 +159,8 @@ public class Page08_History extends JFrame{
         private static final int ARC_HEIGHT = 10;
         private static final Color Background_Color = new Color(0xF6F6F6);
         private static final Color Border_Color = new Color(0x5C5C5C);
-        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 28);
-        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 18);
+        private static final Font Amount_Font = new Font("Arial", Font.BOLD, 24);
+        private static final Font Type_Font = new Font("Arial", Font.PLAIN, 16);
         private static final Font Date_Font = new Font("Arial", Font.PLAIN, 18);
         private static final Font Description_Font = new Font("Arial", Font.PLAIN, 16);
 
@@ -185,21 +187,21 @@ public class Page08_History extends JFrame{
             topRowPanel.setOpaque(false);
 
             JLabel amountLabel = new JLabel(amountText);
-            amountLabel.setBounds(5, 5, 100, 40);
+            amountLabel.setBounds(5, 5, 120, 40);
             amountLabel.setFont(Amount_Font);
 //            amountLabel.setOpaque(true);
             amountLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(amountLabel);
 
             JLabel typeLabel = new JLabel(typeText);
-            typeLabel.setBounds(110, 5, 150, 40);
+            typeLabel.setBounds(110, 5, 250, 40);
             typeLabel.setFont(Type_Font);
 //            typeLabel.setOpaque(true);
             typeLabel.setHorizontalAlignment(SwingConstants.CENTER);
             topRowPanel.add(typeLabel);
 
-            JLabel dateLabel = new JLabel(dateText+ " "+ timeText);
-            dateLabel.setBounds(275, 5, 250, 40);
+            JLabel dateLabel = new JLabel(dateText + " " + timeText);
+            dateLabel.setBounds(350, 5, 250, 40);
             dateLabel.setFont(Date_Font);
 //            dateLabel.setOpaque(true);
             dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -243,8 +245,4 @@ public class Page08_History extends JFrame{
 
     }
 
-    // Main method for testing Page08_History class
-    public static void main(String[] args) {
-        Page08_History historyPage = new Page08_History(UUID.fromString("0b805b57-819f-4c65-88ec-357d89009f5c"));  // 假设账户ID已给出
-    }
 }

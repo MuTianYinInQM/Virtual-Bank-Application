@@ -11,6 +11,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller class for handling account type selection.
+ */
 public class AccountTypeChooseController implements Page {
 
     private Window1_ChooseAccountType page;
@@ -18,6 +21,13 @@ public class AccountTypeChooseController implements Page {
     private AccountManager accountManager;
     private UIStack uiStack;
 
+    /**
+     * Constructs an AccountTypeChooseController with the specified view, account manager, and UI stack.
+     *
+     * @param view           The Window1_ChooseAccountType view associated with this controller.
+     * @param accountManager The AccountManager instance managing the accounts.
+     * @param uiStack        The UIStack instance managing the UI navigation.
+     */
     public AccountTypeChooseController(Window1_ChooseAccountType view, AccountManager accountManager, UIStack uiStack) {
         this.page = view;
         this.accountManager = accountManager;
@@ -25,6 +35,9 @@ public class AccountTypeChooseController implements Page {
         initController();
     }
 
+    /**
+     * Initializes the controller by setting up event listeners for UI components.
+     */
     private void initController() {
         page.getConfirmButton().addActionListener(new ActionListener() {
             @Override

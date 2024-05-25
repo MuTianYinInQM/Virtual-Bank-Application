@@ -57,7 +57,7 @@ public class Window1_ChooseAccountType extends JFrame {
         this.setLayout(null);
         this.setTitle("JoyBank - Choose Your Account Type");
 
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/ChooseAccountType.png");
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("src/main/resources/images/ChooseAccountType.png");
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         this.getContentPane().add(backgroundLabel);
@@ -75,7 +75,7 @@ public class Window1_ChooseAccountType extends JFrame {
         backgroundLabel.add(savingAccountButton);
 
         confirmButton.setBounds(320, 400, 140, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
+        ImageIcon confirmButtonIcon = new ImageIcon("src/main/resources/images/confirm2.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
