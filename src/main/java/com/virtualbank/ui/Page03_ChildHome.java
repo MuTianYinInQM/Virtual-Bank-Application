@@ -87,7 +87,7 @@ public class Page03_ChildHome extends JFrame {
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Child Home Page");
-        ImageIcon background = new ImageIcon("images/ChildHomePage.png");
+        ImageIcon background = new ImageIcon(getClass().getResource("/images/ChildHomePage.png"));
         JLabel backgroundPanel = new JLabel(background);
         backgroundPanel.setBounds(0, 0, window_width, window_height);
         getContentPane().add(backgroundPanel);
@@ -99,7 +99,7 @@ public class Page03_ChildHome extends JFrame {
 
         // Exit button to return to LoginPage
         exitButton.setBounds(20, 20, 134, 50);
-        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        ImageIcon exitButtonIcon = new ImageIcon(getClass().getResource("/images/ExitButtonImage.png"));
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         exitButton.setContentAreaFilled(false);
@@ -107,7 +107,7 @@ public class Page03_ChildHome extends JFrame {
 
         // Goal button to enter child's goal page
         goalButton.setBounds(34, 150, 238, 113);
-        ImageIcon goalButtonIcon = new ImageIcon("images/GoalButton.png");
+        ImageIcon goalButtonIcon = new ImageIcon(getClass().getResource("/images/GoalButton.png"));
         goalButton.setIcon(goalButtonIcon);
 
         // Goal and its completion progress
@@ -126,14 +126,14 @@ public class Page03_ChildHome extends JFrame {
 
         // Task button to enter child's task page
         taskButton.setBounds(320, 150, 238, 113);
-        ImageIcon taskButtonIcon = new ImageIcon("images/TaskButton.png");
+        ImageIcon taskButtonIcon = new ImageIcon(getClass().getResource("/images/TaskButton.png"));
         taskButton.setIcon(taskButtonIcon);
         taskButton.setBorder(null);
         backgroundPanel.add(taskButton);
 
         // Button to create a new account
         createAccountButton.setBounds(34, 300, 525, 100);
-        ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateAccountButton.png");
+        ImageIcon createAccountButtonIcon = new ImageIcon(getClass().getResource("/images/CreateAccountButton.png"));
         createAccountButton.setIcon(createAccountButtonIcon);
         createAccountButton.setBorder(null);
         backgroundPanel.add(createAccountButton);
@@ -178,7 +178,7 @@ public class Page03_ChildHome extends JFrame {
         public CurrentAccountLabel(String ID, Double money) {
             super(ID, money, "Current Account");
             // 图标
-            ImageIcon savingAccountIcon = new ImageIcon("images/CurrentAccountFrame.png");
+            ImageIcon savingAccountIcon = new ImageIcon(getClass().getResource("/images/CurrentAccountFrame.png"));
             this.setIcon(savingAccountIcon);
         }
     }
@@ -190,7 +190,7 @@ public class Page03_ChildHome extends JFrame {
         public SavingAccountLabel(String ID, Double money) {
             super(ID, money, "Saving Account");
             // 图标
-            ImageIcon currentAccountIcon = new ImageIcon("images/SavingAccountFrame.png");
+            ImageIcon currentAccountIcon = new ImageIcon(getClass().getResource("/images/SavingAccountFrame.png"));
             this.setIcon(currentAccountIcon);
         }
     }
@@ -202,7 +202,7 @@ public class Page03_ChildHome extends JFrame {
         public PiggyBankLabel(String ID, Double money) {
             super(ID, money, "Piggy Bank");
             // 图标
-            ImageIcon currentAccountIcon = new ImageIcon("images/PiggybankFrame.png");
+            ImageIcon currentAccountIcon = new ImageIcon(getClass().getResource("/images/PiggybankFrame.png"));
             this.setIcon(currentAccountIcon);
         }
     }
@@ -257,7 +257,7 @@ public class Page03_ChildHome extends JFrame {
             // TODO 这个应该怎么回调？
             enterButton = new JButton();
             enterButton.setBounds(415, 40, 95, 60);
-            ImageIcon enterButtonIcon = new ImageIcon("images/EnterButtonImage.png");
+            ImageIcon enterButtonIcon = new ImageIcon(getClass().getResource("/images/EnterButtonImage.png"));
             enterButton.setIcon(enterButtonIcon);
             enterButton.setContentAreaFilled(false);
             enterButton.setBorderPainted(false);

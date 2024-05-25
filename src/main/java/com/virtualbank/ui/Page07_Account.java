@@ -106,7 +106,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for PiggyBank account
     private void setupPiggyBankUI(PiggyBank account) {
 
-        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("images/Piggy_Bank.png"));
+        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/images/Piggy_Bank.png"));
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -138,7 +138,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for SavingAccount account
     private void setupSavingAccountUI(SavingAccount account) {
 
-        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("images/Saving_Account.png"));
+        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/images/Saving_Account.png"));
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -168,7 +168,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for CurrentAccount account
     private void setupCurrentAccountUI(CurrentAccount account) {
 
-        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("images/Current_Account.png"));
+        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/images/Current_Account.png"));
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -209,7 +209,7 @@ public class Page07_Account extends JFrame {
         button.setBorderPainted(false);
 
         if (textOrIconPath.endsWith(".png") || textOrIconPath.endsWith(".jpg")) {
-            button.setIcon(new ImageIcon(getClass().getResource(textOrIconPath)));
+            button.setIcon(new ImageIcon(textOrIconPath));
         }
         else if(textOrIconPath.isEmpty()){
             button.setOpaque(false);

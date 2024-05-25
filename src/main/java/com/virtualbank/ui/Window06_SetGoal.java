@@ -44,7 +44,7 @@ public class Window06_SetGoal {
 
 	private void initializeComponents(){
 		// Background image
-		ImageIcon windowBackground = new ImageIcon("images/Window_Background.png");
+		ImageIcon windowBackground = new ImageIcon(getClass().getResource("/images/Window_Background.png"));
 		this.backgroundLabel = new JLabel(windowBackground);
 		backgroundLabel.setBounds(0, 0, 600, 378);
 		window.setContentPane(backgroundLabel);
@@ -86,7 +86,7 @@ public class Window06_SetGoal {
 		backgroundLabel.add(targetAmountField);
 
 		// Confirm Button
-		this.confirmButton = new JButton(new ImageIcon("images/confirm2.png"));
+		this.confirmButton = new JButton(new ImageIcon(getClass().getResource("/images/confirm2.png")));
 		this.confirmButton.setBounds(230, 240, 140, 50);
 //		this.confirmButton.setFont(new Font("Arial", Font.BOLD, 20));
 		this.confirmButton.setOpaque(false);

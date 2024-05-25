@@ -98,7 +98,7 @@ public class Page02_Register extends JFrame{
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Register Page");
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/RegisterPage.png");
+        ImageIcon loginBackgroundImageIcon = new ImageIcon(getClass().getResource("/images/RegisterPage.png"));
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         getContentPane().add(backgroundLabel);
@@ -132,7 +132,7 @@ public class Page02_Register extends JFrame{
 
         // confirm button
         confirmButton.setBounds(530, 510, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/ConfirmButton.png");
+        ImageIcon confirmButtonIcon = new ImageIcon(getClass().getResource("/images/ConfirmButton.png"));
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
@@ -142,7 +142,7 @@ public class Page02_Register extends JFrame{
         // exit button
         exitButton.setBounds(20, 20, 114, 50);
         exitButton.setFont(font);
-        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        ImageIcon exitButtonIcon = new ImageIcon(getClass().getResource("/images/ExitButtonImage.png"));
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         exitButton.setContentAreaFilled(false);

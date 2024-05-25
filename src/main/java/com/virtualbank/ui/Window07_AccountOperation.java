@@ -58,7 +58,7 @@ public class Window07_AccountOperation extends JFrame {
         this.setTitle(title);
 
 
-        ImageIcon thisBackground = new ImageIcon("images/this_Background.png");
+        ImageIcon thisBackground = new ImageIcon(getClass().getResource("/images/this_Background.png"));
         JLabel thisBackgroundLabel = new JLabel(thisBackground);
         thisBackgroundLabel.setBounds(0, 0, this_width, this_height);
         this.setContentPane(thisBackgroundLabel);
@@ -103,7 +103,7 @@ public class Window07_AccountOperation extends JFrame {
         // confirmButton
         this.add(this.confirmButton);
         this.confirmButton.setBounds(330, 300, 140, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
+        ImageIcon confirmButtonIcon = new ImageIcon(getClass().getResource("/images/confirm2.png"));
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
