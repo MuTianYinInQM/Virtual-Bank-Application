@@ -75,7 +75,7 @@ public class Page01_Login extends JFrame {
         setTitle("JoyBank - Login Page");
         setResizable(false);
         setLayout(null);
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("src/main/resources/images/LoginBackground.png");
+        ImageIcon loginBackgroundImageIcon = new ImageIcon(getClass().getResource("src/main/resources/images/LoginBackground.png"));
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         getContentPane().add(backgroundLabel);
@@ -109,7 +109,7 @@ public class Page01_Login extends JFrame {
         // confirm button
         confirmButton = new JButton();
         confirmButton.setBounds(440, 505, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("src/main/resources/images/ConfirmButton.png");
+        ImageIcon confirmButtonIcon = new ImageIcon(getClass().getResource("src/main/resources/images/ConfirmButton.png"));
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
@@ -118,7 +118,7 @@ public class Page01_Login extends JFrame {
         // register button
         registerButton = new JButton();
         registerButton.setBounds(630, 505, 200, 55);
-        ImageIcon registerButtonIcon = new ImageIcon("src/main/resources/images/RegisterButton.png");
+        ImageIcon registerButtonIcon = new ImageIcon(getClass().getResource("src/main/resources/images/RegisterButton.png"));
         registerButton.setIcon(registerButtonIcon);
         registerButton.setBorder(null);
         registerButton.setContentAreaFilled(false);
