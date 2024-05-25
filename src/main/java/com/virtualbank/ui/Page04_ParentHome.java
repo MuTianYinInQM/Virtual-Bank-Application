@@ -65,14 +65,14 @@ public class Page04_ParentHome extends JFrame {
         exitButton.setBounds(20, 20, 134, 50);
         Font font = new Font(exitButton.getFont().getName(), Font.PLAIN, 20);
         exitButton.setFont(font);
-        ImageIcon exitButtonIcon = new ImageIcon("images/ExitButtonImage.png");
+        ImageIcon exitButtonIcon = new ImageIcon("src/main/resources/images/ExitButtonImage.png");
         exitButton.setIcon(exitButtonIcon);
         exitButton.setBorder(null);
         exitButton.setContentAreaFilled(false);
         backgroundPanel.add(exitButton);
 
         createTaskButton.setBounds(30, 135, 516, 98);
-        ImageIcon createAccountButtonIcon = new ImageIcon("images/CreateTaskButton.png");
+        ImageIcon createAccountButtonIcon = new ImageIcon("src/main/resources/images/CreateTaskButton.png");
         createTaskButton.setIcon(createAccountButtonIcon);
         createTaskButton.setBorder(null);
         backgroundPanel.add(createTaskButton);
@@ -141,7 +141,7 @@ public class Page04_ParentHome extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ImageIcon background = new ImageIcon("images/ParentHomePage.png");
+        ImageIcon background = new ImageIcon("src/main/resources/images/ParentHomePage.png");
         JLabel backgroundLabel = new JLabel(background);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         backgroundPanel.add(backgroundLabel);
@@ -185,7 +185,7 @@ public class Page04_ParentHome extends JFrame {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             confirmButton = new JButton();
             confirmButton.setBounds(290, 90, 100, 40);
-            ImageIcon confirmButtonImage = new ImageIcon("images/confirm3.png");
+            ImageIcon confirmButtonImage = new ImageIcon("src/main/resources/images/confirm3.png");
             confirmButton.setIcon(confirmButtonImage);
             confirmButton.setBorder(null);
             confirmButton.setContentAreaFilled(false);
@@ -226,7 +226,7 @@ public class Page04_ParentHome extends JFrame {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton();
             terminateButton.setBounds(290, 90, 100, 40);
-            ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
+            ImageIcon terminateButtonImage = new ImageIcon("src/main/resources/images/TerminateButtonImage.png");
             terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
             terminateButton.setContentAreaFilled(false);
@@ -266,7 +266,7 @@ public class Page04_ParentHome extends JFrame {
             super(id, taskName, description, reward, childName, startDate, dueDate);
             terminateButton = new JButton();
             terminateButton.setBounds(290, 90, 100, 40);
-            ImageIcon terminateButtonImage = new ImageIcon("images/TerminateButtonImage.png");
+            ImageIcon terminateButtonImage = new ImageIcon("src/main/resources/images/TerminateButtonImage.png");
             terminateButton.setIcon(terminateButtonImage);
             terminateButton.setBorder(null);
             terminateButton.setContentAreaFilled(false);

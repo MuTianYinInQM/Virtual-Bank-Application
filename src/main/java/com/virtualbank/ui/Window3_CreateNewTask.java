@@ -104,7 +104,7 @@ public class Window3_CreateNewTask extends JFrame {
         setResizable(false);
         setLayout(null);
         setTitle("JoyBank - Creating a New Task");
-        ImageIcon loginBackgroundImageIcon = new ImageIcon("images/CreateTaskBackground.png");
+        ImageIcon loginBackgroundImageIcon = new ImageIcon("src/main/resources/images/CreateTaskBackground.png");
         JLabel backgroundLabel = new JLabel(loginBackgroundImageIcon);
         backgroundLabel.setBounds(0, 0, window_width, window_height);
         getContentPane().add(backgroundLabel);
@@ -150,7 +150,7 @@ public class Window3_CreateNewTask extends JFrame {
 
         confirmButton = new JButton();
         confirmButton.setBounds(310, 600, 200, 55);
-        ImageIcon confirmButtonIcon = new ImageIcon("images/confirm2.png");
+        ImageIcon confirmButtonIcon = new ImageIcon("src/main/resources/images/confirm2.png");
         confirmButton.setIcon(confirmButtonIcon);
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
