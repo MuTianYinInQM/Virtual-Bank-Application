@@ -1,0 +1,1637 @@
+[33mcommit 09f12eec4d96771eaab2f522a670f689d3cd81c8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 19:23:46 2024 +0800
+
+    fix some bug in ParentHomeController
+
+[33mcommit 156060da0fdada905d2d5b8071939d76b3e0e453[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 19:13:35 2024 +0800
+
+    fix some bug in Interest
+
+[33mcommit e6a5e1db48d7b73783a846183dc034c8733a7dda[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 19:07:28 2024 +0800
+
+    fix some bug in account UI
+
+[33mcommit 0d994df91416b63b355c6a4a3146881b34b9383c[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 17:30:43 2024 +0800
+
+    fix some bug in history UI
+
+[33mcommit 10f6dec6a45b477b4187cbd91b8745cc9803a7c0[m
+Merge: 6f87531 c54a128
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Fri May 24 17:17:10 2024 +0800
+
+    resolve conflict
+
+[33mcommit 6f87531e33a9a2e3c21f47661cac7645a089e1c1[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Fri May 24 17:14:55 2024 +0800
+
+    fix bug
+
+[33mcommit c54a1286707528e6a95b27c1f3f08b5792869106[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 17:11:50 2024 +0800
+
+    fix some bug
+
+[33mcommit af816f7d8ad411d555062365860d46c57f0a9965[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 17:10:58 2024 +0800
+
+    fix some bug
+
+[33mcommit 81a7a7b071a51419f890074aa343c4e62185ddf1[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Fri May 24 16:34:02 2024 +0800
+
+    add javadoc
+
+[33mcommit 9a90e3af58e0b394b2b2b8911b3726e0a46fe75d[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 11:21:53 2024 +0800
+
+    finish README.md
+
+[33mcommit b216e9eacdb75fb51af24daf219421cf123aebc3[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 10:55:16 2024 +0800
+
+    update TransferTest
+
+[33mcommit dede42be34d44b3a3a20f23a3a4b33161eda795d[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 10:41:02 2024 +0800
+
+    update AccountManagerControllerTest
+
+[33mcommit da8e3d522acc7f896a8d54eb391025d2355f1d12[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Fri May 24 10:22:08 2024 +0800
+
+    add javadoc
+
+[33mcommit 847e97068fb71245fd59499a2083a968b4679b9c[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Thu May 23 23:42:13 2024 +0800
+
+    Added Javadoc comments to UserLoginController, UserRegisterController, UserRepository, and UserService classes
+
+[33mcommit b8535aed9bdcead06d74d342b4608efc783d1e4b[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Thu May 23 21:29:32 2024 +0800
+
+    Slight modification
+
+[33mcommit 79b754dac77b9009c875a3da6349c55569eebe68[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Thu May 23 21:22:39 2024 +0800
+
+    Delete some comments
+
+[33mcommit 585d1dcedf770b0abfd75f065c8178a00f440dfb[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Thu May 23 21:11:12 2024 +0800
+
+    Implement Back Function in Page04_ParentHome
+
+[33mcommit 2a9c05c63cdf2089f26fa29f5390c482942dc56d[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Thu May 23 18:36:30 2024 +0800
+
+    add transfer from piggy bank to current account
+
+[33mcommit ae60931a2a5a34696a3686ad004c36659fd0c7fb[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 14:44:42 2024 +0800
+
+    System test for account management and transfer scenario.
+
+[33mcommit cc940d23ef3c8dc981642fb227d576138b05f6d0[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 14:44:17 2024 +0800
+
+    System test for account management and transfer scenario.
+
+[33mcommit c1e6cc1799abc53ccdb4b28245f8640ad1fbc4c7[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 14:43:48 2024 +0800
+
+    System test for account management and transfer scenario.
+
+[33mcommit 96c2e969236c4a22f0276911d4b7b3cb85ecaa8d[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 14:43:24 2024 +0800
+
+    System test for account management and transfer scenario.
+
+[33mcommit 11982488995a0be89a40f8d56aad325ce8dabe8e[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 14:07:50 2024 +0800
+
+    System test for login and register scenario.
+
+[33mcommit b4ab4ece8322d5d82e0c5aaf923cbba9e8d59a2e[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 13:05:37 2024 +0800
+
+    change the operation type to English and fix the time format
+
+[33mcommit 734e470ab1569c6ce877c407f6ee574b7379da7c[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 12:59:16 2024 +0800
+
+    change the operation type to English
+
+[33mcommit d0f48a39b45338fc50c433388968b23e9d9c9d1d[m
+Merge: 1cc36b5 872ddee
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 12:57:18 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 1cc36b57431ca1ac55d10440978cc82765ef2521[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 12:56:00 2024 +0800
+
+    change the operation type to English
+
+[33mcommit 872ddee7abec1518e7fd62431a7c3a5ad6bd4121[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Thu May 23 12:05:57 2024 +0800
+
+    modify the UI of history page
+
+[33mcommit 6d7ddd88489a9d79f64cdd3a9a9df79813453a1e[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 11:28:14 2024 +0800
+
+    change the operation type to English
+
+[33mcommit b90743b5f01709050c84c7b13d944b7b70ecd60f[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Thu May 23 10:28:36 2024 +0800
+
+    add project report
+
+[33mcommit c1be4941a7607a101b567007bd28e9fbaf9b0731[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 22 23:41:52 2024 +0800
+
+    fix account manager serialization bug
+
+[33mcommit bc7b7b8139c2142e4d1083a0067182ddc17e7ee9[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Wed May 22 20:59:32 2024 +0800
+
+    1
+
+[33mcommit b9fccb1122a0f452518c0bad8da8a4c74ddd0f44[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 21 22:33:01 2024 +0800
+
+    add Task to Account Manager
+
+[33mcommit 4d4b3297291c335add7b7ffa739387c5a5e6c5ac[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 21 22:25:15 2024 +0800
+
+    fix goal page jump bug
+
+[33mcommit 96017658d629b8ca24d9489bb40c373423af6df4[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 21 22:18:46 2024 +0800
+
+    add Goal to Account Manager
+
+[33mcommit 64d9f08bb53120f2839edbbae4c769cf391a6d58[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 21 21:35:16 2024 +0800
+
+    small edit
+
+[33mcommit 0a448cc0b612b63c525e1351cf72f3e1fb721665[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 20:29:43 2024 +0800
+
+    update Page08_History
+
+[33mcommit e635671dd0fad386c6571bbd17cca4c791e45364[m
+Merge: 243187d 4a0badd
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 20:21:08 2024 +0800
+
+    Merge branch 'main' of https://github.com/MuTianYinInQM/Virtual-Bank-Application
+
+[33mcommit 4a0badd766a940aff12ce2d1c710231f8eaaf311[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Tue May 21 20:19:45 2024 +0800
+
+    unit test
+
+[33mcommit 243187d92b71dbad09707c821da3b868e649bbf1[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 20:14:32 2024 +0800
+
+    add javadocs
+
+[33mcommit c5ed8105d82e8bcddf23b10fb4099b1c112daeb2[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 19:57:19 2024 +0800
+
+    update Page06_Goal
+
+[33mcommit d27fd5eeaf6af11bff740f6c9ab2e9bf30d446fd[m
+Merge: 594e3c1 4c792b3
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 19:56:25 2024 +0800
+
+    Merge branch 'main' of https://github.com/MuTianYinInQM/Virtual-Bank-Application
+
+[33mcommit 594e3c17d4c79b09f4ff86571d51f3569975d5d6[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 21 19:56:03 2024 +0800
+
+    update Page06_Goal
+
+[33mcommit 4c792b3cfd756bba6d14f6c0e14c5d64d6ac75aa[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 19:48:33 2024 +0800
+
+    Window3_CreateNewTask.java javadoc
+
+[33mcommit abcb0cd06f94a8d0796f3cf3bed48bebcf1e1f5e[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 19:39:19 2024 +0800
+
+    Window2_CreateSavingAccount.java javadoc
+
+[33mcommit 6d54aaae5e7df3df5a9f8152a99b82edfa5cc470[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 19:32:52 2024 +0800
+
+    Window1_ChooseAccountType.java javadoc
+
+[33mcommit 84663aadbd821d837b10a9d56e761911a76e1140[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 19:26:02 2024 +0800
+
+    TaskLabel.java javadoc
+
+[33mcommit 52f04ccfd559c60bce15e33505e31ddd094670f4[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 18:01:41 2024 +0800
+
+    Page05_ChildTask.java javadoc
+
+[33mcommit 6dec6d5e1f10853de9a4505f3bfecd7b20fc8424[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:53:29 2024 +0800
+
+    Page04_ParentHome.java javadoc
+
+[33mcommit 4bb24a91d6729d1536aad9c75ad756b06ee6a45c[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:42:54 2024 +0800
+
+    Page03_ChildHome.java javadoc
+
+[33mcommit 3c61d625f866d9a1348a83ba50d9166d5ad0ee44[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:27:16 2024 +0800
+
+    Page02_Register.java javadoc
+
+[33mcommit abba865bc6c2d7311a02cfefa3251fc008c674e3[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:08:39 2024 +0800
+
+    Page01_Login.java javadoc
+
+[33mcommit 99ad0c6a13975b5c73d5841394023835cca9448b[m
+Merge: 5d0add8 ddd5de0
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:05:46 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 5d0add865907f6bf9079ce3da96f48ca0c3802b6[m
+Author: rainbow <2@qq.com>
+Date:   Tue May 21 17:05:28 2024 +0800
+
+    Page01_Login.java javadoc
+
+[33mcommit ddd5de0341548a0f61d0e9a60a977ecf29cf29b6[m
+Merge: e5e6983 4776b4d
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Tue May 21 16:48:14 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/com/virtualbank/controller/ChildTaskController.java
+
+[33mcommit e5e69830d0b77122e3a39dadca443df601da9f28[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Tue May 21 16:47:41 2024 +0800
+
+    unit test
+
+[33mcommit 4776b4da70aa17edb4dc711576d6a768e51d4e48[m
+Merge: 0febe82 d0b7455
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Tue May 21 16:01:49 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 0febe82cf80caf0462e161ad35a097cd57d3f75a[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Tue May 21 16:01:17 2024 +0800
+
+    Add javadoc comment
+
+[33mcommit d0b74555017aed1fb16294b57325d4df3a5e6f51[m
+Author: tianmu <yinmutian@bupt.edu.cn>
+Date:   Tue May 21 11:43:23 2024 +0800
+
+    AccountController and AccountManagerController whiteboard test (unit test)
+
+[33mcommit 082061b66beac8d36526f9ee27d89b6f102e1042[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Mon May 20 22:23:09 2024 +0800
+
+    debug for login page
+
+[33mcommit b7616f64e503dd2e5dd7beadd9fae3d3fdd7cbcc[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Mon May 20 22:10:52 2024 +0800
+
+    1
+
+[33mcommit f0e580a391e92631d5874fd399db9a1ee1f87920[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Mon May 20 19:57:04 2024 +0800
+
+    Correct SavingGoal getCurrentAmount() related logic
+
+[33mcommit 6bbf12b94f817a792d5b898698c1b3cf427a267d[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Mon May 20 17:07:49 2024 +0800
+
+    modify Page06_Goal UI
+
+[33mcommit 77a4589844812cff6ace7acc9c1ee92c35780697[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Mon May 20 14:28:14 2024 +0800
+
+    Correct SavingGoal View Bug
+
+[33mcommit 7516558bc20b8c0b1a358e7149501fcdf261aab5[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Sat May 18 22:11:06 2024 +0800
+
+    modify Class Page07_Account
+
+[33mcommit 90d98e4a9dccd42bc596417b00e3802b341e7b48[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Sat May 18 22:03:14 2024 +0800
+
+    modify Class Page07_Account
+
+[33mcommit 64a6ed93b3dd9b61099d2540bde27c5305c93b90[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Sat May 18 16:21:00 2024 +0800
+
+    rewrite the Class Page06_Goal, but still has some bugs
+
+[33mcommit 6e9087551c56952f0dcc14e53d92275369f39710[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Wed May 15 16:39:08 2024 +0800
+
+    repair the abnormal display of amount in Page08_History
+
+[33mcommit fd180bc9abedeba382cad58f07d0cf70b1fb11dd[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Wed May 15 16:22:09 2024 +0800
+
+    modify the class Page08_History
+
+[33mcommit 65b1cfc82505406d74cf6a0563b4754c58943f7e[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Wed May 15 15:42:44 2024 +0800
+
+    improve the UI of 'Page08_History'
+
+[33mcommit 0373bb9d4110cd14788d881f9833c04a4db6ca51[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 15 14:49:22 2024 +0800
+
+    Finish all page jump in AccountManager
+
+[33mcommit a29d5d81a0beda99d9056e95efe06fb92bb42b21[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 14 23:42:09 2024 +0800
+
+    finish Windows 07 Account Operation
+
+[33mcommit ff584fef5bc9e9a301d206441506557a20a13c3d[m
+Merge: a905fcd 6884c0d
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 14 22:42:53 2024 +0800
+
+    resolve conflicts
+
+[33mcommit a905fcda25077ac500c252257a8328ea8c83fd6e[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 14 22:40:16 2024 +0800
+
+    unify Windows 07 Account Operation
+
+[33mcommit 6884c0d0a41f4b315ed4dceef182d37adb03f330[m
+Merge: 3239131 fcb9b0f
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 14 22:37:58 2024 +0800
+
+    Merge branch 'main' of https://github.com/MuTianYinInQM/Virtual-Bank-Application
+
+[33mcommit 3239131840828b2440e67ad216d95b2f160e0208[m
+Author: lwtQM <jp2021213100@qmul.ac.uk>
+Date:   Tue May 14 22:36:31 2024 +0800
+
+    Update the appearance of HistoryPage Class
+
+[33mcommit fcb9b0f5bcb41afdcff6b0bd7599397a626fac4f[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 14 21:30:23 2024 +0800
+
+    changes in Main
+
+[33mcommit 9cc63b1ffcbf19078a2f193c5ec85e1e19277f86[m
+Merge: d10e486 410e6ee
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Fri May 10 11:31:10 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit d10e48691c9222fbbab91934fe980317a89838c0[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Fri May 10 11:30:48 2024 +0800
+
+    Add confirmation function
+
+[33mcommit c25bc9880742f3cf1f966b521529493ab0deccea[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Fri May 10 11:29:28 2024 +0800
+
+    Add confirmation function
+
+[33mcommit 410e6eefa80dd975e159a12de70c9182dd170d29[m
+Author: rainbow <2@qq.com>
+Date:   Fri May 10 10:48:22 2024 +0800
+
+    confirm3 icon
+
+[33mcommit de0a2f6b74eb0ff0cab964c4b6d19ccc5e057692[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Fri May 10 10:16:58 2024 +0800
+
+    Modify Prize function
+
+[33mcommit bab374b54d4f6e64bfe6c135f5e894e149ffdf68[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 18:03:09 2024 +0800
+
+    页面5修改
+
+[33mcommit 82e67fea00b665987827f7899f8fc3d405caf57f[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 17:46:00 2024 +0800
+
+    页面5修改
+
+[33mcommit 05a05b0de5316bfa7235b15793263c4b349ff19d[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 17:41:53 2024 +0800
+
+    页面4修改
+
+[33mcommit 17b6f2bb8f7e570a26df9f0b9525fbb7aa32a7fa[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 17:39:40 2024 +0800
+
+    页面3修改
+
+[33mcommit 6979ea55cb89c2cb9b95d7b05153100263a7fbbd[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:24:48 2024 +0800
+
+    window3 button
+
+[33mcommit ad15fff99ce888bae4b335af4287466f0b37e59d[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:23:46 2024 +0800
+
+    window2 button
+
+[33mcommit 895c7f6b27bc2c939a7414da8d56081c2d909d63[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:21:50 2024 +0800
+
+    window1 button
+
+[33mcommit f0be1437d8cfe72ace374cb88ca95f53485510ec[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:18:11 2024 +0800
+
+    page0405 button
+
+[33mcommit 405534c403d9bf961f183d3b4ab4bf26c8853669[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:06:47 2024 +0800
+
+    page03 button
+
+[33mcommit ba255dc0b1cfc862742800d4984c7deb95bdf58e[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 17:00:17 2024 +0800
+
+    page02 button
+
+[33mcommit 5519902b1baba698a4a763562427df59eb852aed[m
+Author: 颅内狂潮 <112875637+DramaticRainbow@users.noreply.github.com>
+Date:   Thu May 9 16:53:20 2024 +0800
+
+    page01 button
+
+[33mcommit 3c35b8040b92142bc3eeba8d3733e598a3a17028[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Thu May 9 16:26:21 2024 +0800
+
+    Change Terminate button
+
+[33mcommit 5f92ebc899cb593496f20b8bb33975bcfe2808f6[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 16:22:00 2024 +0800
+
+    页面5修改
+
+[33mcommit e65b99437e594743da868f9afd1b0bcbe680da0e[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 16:21:30 2024 +0800
+
+    页面5修改
+
+[33mcommit 1bd237288cb517fa0dc83495283a33b7b2e54ca2[m
+Author: Leoevergarden <jp2021213098@qmul.ac.uk>
+Date:   Thu May 9 15:55:04 2024 +0800
+
+    Refactor Interface address
+
+[33mcommit 79479fe658c335af6b147321c4aa328e506fb717[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 15:38:16 2024 +0800
+
+    页面4修改
+
+[33mcommit 9c277e70ccd84143cc1bafca4499152a691b1d1a[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 14:52:19 2024 +0800
+
+    页面4布局修改
+
+[33mcommit d344be14da24954bf8d03ec298883554f39d6688[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 14:52:00 2024 +0800
+
+    页面4布局修改
+
+[33mcommit bc2cfb8284e2ce8aab9b30425579520519db9db2[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 13:43:17 2024 +0800
+
+    页面3修改
+
+[33mcommit fe07cdf097847c5821ff45b484cc75d58b861237[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 12:35:26 2024 +0800
+
+    页面3修改完成
+
+[33mcommit 1a79366a436fb3e7220da855cb72149d233a4d04[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 12:34:51 2024 +0800
+
+    页面3修改完成
+
+[33mcommit 4136d691b0d983bc3258b6f85a16dbe36c10419e[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 12:09:10 2024 +0800
+
+    Page3删除贴纸
+
+[33mcommit 21dddc024a679a829128e70803d6871c12af53c2[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 10:20:45 2024 +0800
+
+    更改window3
+
+[33mcommit cacc37a935a2ce98ab31f9da14272166c363a908[m
+Author: rainbow <2@qq.com>
+Date:   Thu May 9 09:45:24 2024 +0800
+
+    增加测试页面3、4的类
+
+[33mcommit 43b5c3fb60b0c1a7691af066b045010dfcd35739[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 23:59:45 2024 +0800
+
+    correct ERROR in page 03
+
+[33mcommit ce34d3845fa3f184910b330b4e019daf3c09da70[m
+Merge: 0d1778b ccc2ae1
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 23:51:28 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 0d1778b323545c0435a88a77bfa8030190a96506[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 23:50:57 2024 +0800
+
+    add Tutorial to UI Stack
+
+[33mcommit ccc2ae16777085c0fc618bc109027abf4fa7a849[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 22:49:04 2024 +0800
+
+    更改页面3组件
+
+[33mcommit d508d0154b391ff84708665a0d79b0ee91982ee7[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 22:48:29 2024 +0800
+
+    更改页面3组件
+
+[33mcommit 80657fb13a45f40d6b1dd9f2b640f054fc116ad4[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 20:40:52 2024 +0800
+
+    更改页面2——注册页面
+
+[33mcommit d0ef99f8b484708c60dd8c350d64f04613c6ee82[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 20:38:23 2024 +0800
+
+    更改页面2——注册页面
+
+[33mcommit 695cc5b4d94e2ce339880b7c8bdb422b9059ea8a[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 19:36:27 2024 +0800
+
+    更改页面1——登陆页面
+
+[33mcommit 17dac1056f282f5fce51759af90cc471fe14fe10[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 17:22:16 2024 +0800
+
+    修改确认按钮图标
+
+[33mcommit 713fe24b44e8dfc673ac70bb7632cccc50371a8b[m
+Author: rainbow <2@qq.com>
+Date:   Wed May 8 17:14:49 2024 +0800
+
+    清除按钮边框
+
+[33mcommit 63e37051d14f7725ad7c6f0892f1e51e83bf758b[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 16:52:59 2024 +0800
+
+    correct an error
+
+[33mcommit 1c6cf2e4af5a5e6475d743972789e4a66debeb3b[m
+Merge: 2c472ab c1e223c
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 16:50:46 2024 +0800
+
+    Merge branch 'main' of github-school.com:MuTianYinInQM/Virtual-Bank-Application
+
+[33mcommit c1e223c661d3da33be233a3253254c42feba5fd1[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed May 8 16:48:49 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit 2c472abf82eb711b70e3364624091432795af930[m
+Merge: 75f14db 0da5ff6
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 16:48:27 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 75f14db10920e3e9f440b36a73b6a6d3fe55f9b9[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 16:46:51 2024 +0800
+
+    connect Account Manager with Account Page
+
+[33mcommit 0da5ff698e8525b66846be8fdeeb95cf11640c30[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed May 8 16:45:15 2024 +0800
+
+    Update Window2_CreateSavingAccount.java
+
+[33mcommit 7d652dca092ace023e27031b324782155f26b39e[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed May 8 16:44:00 2024 +0800
+
+    Update Page02_Register.java
+
+[33mcommit 722e479c28e2cd66cf1fc3eea5e70e6166ffbadd[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed May 8 16:41:42 2024 +0800
+
+    Update Page01_Login.java
+
+[33mcommit 190d19875a5b4c3e7b5a8a138b6487a1b1ef6681[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Wed May 8 12:59:16 2024 +0800
+
+    1
+
+[33mcommit aea0005a4074b2a5ddd5d85237ac6750e43cbf1a[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 13:06:44 2024 +0800
+
+    07 page
+
+[33mcommit c2abbdb72979f546142ee025747dcddc3aa5e4ea[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 12:55:03 2024 +0800
+
+    rewrite page 07
+
+[33mcommit e2bd82a35d0fef9259474cd4ae007a44b9e6e5eb[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 12:30:25 2024 +0800
+
+    delete useless history
+
+[33mcommit f8ba5b42ee53501fb710017fd7bf521d96e58cdb[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 12:27:19 2024 +0800
+
+    add new Operation Type
+
+[33mcommit e510ee8a21b01a044de1c00d93a1fc7dee0ec57f[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 12:19:54 2024 +0800
+
+    finish all Create Account
+
+[33mcommit 86cff3c6af510ee8435589e494d09c7b842f5df8[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed May 8 12:02:15 2024 +0800
+
+    correct Windows 2 to JFrame and add render
+
+[33mcommit 7fb256f620e36cca93c649aa8f1d18ba93d98efb[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 23:52:31 2024 +0800
+
+    change windows 01 to JFrame
+
+[33mcommit afa01b2d36a4e6c16b7452fc3b4857fa24e3967b[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Tue May 7 23:49:41 2024 +0800
+
+    1
+
+[33mcommit 85291c242316f2294b1d60473f2dd4ee1871d015[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Tue May 7 23:17:14 2024 +0800
+
+    1
+
+[33mcommit fcf06f27ec6b0e0bb7daa55f754c6f328c8f9286[m
+Author: leon <leonxu2003y@outlook.com>
+Date:   Tue May 7 22:50:35 2024 +0800
+
+    1
+
+[33mcommit 41ccb5a4a560f5392799acf42e500b4be7b6b9fd[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 22:15:00 2024 +0800
+
+    add static parameters and controllers
+
+[33mcommit c323d1d8985c449793c9b354631f50417a8f8ca9[m
+Merge: d85d9a3 9ae3494
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Tue May 7 21:40:14 2024 +0800
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/resources/tasks.json
+
+[33mcommit d85d9a3ccd626ae4c780d8068e343f7ffb4783fc[m
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Tue May 7 21:39:42 2024 +0800
+
+    history design and UI fix
+
+[33mcommit 9ae3494374ba428faab7f2b53db2a7302bf58477[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 20:39:08 2024 +0800
+
+    add UI Stack and toggleVisibility Interface
+
+[33mcommit d5d4ee0e277cb22302c839be867fab8b53d90d01[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 20:02:28 2024 +0800
+
+    add Account Manager Controller
+
+[33mcommit a49c58a7dc25d981d832a7ce833fd31234d69144[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 14:16:20 2024 +0800
+
+    add basic test for Account Manager
+
+[33mcommit 0cb82a8623384da30f7c29fd5eb6ee1ba55c84a7[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 14:07:41 2024 +0800
+
+    edit .gitignore
+
+[33mcommit 3b28e8652f93b4fa6988e2ae78fa020d5cbd1758[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue May 7 13:54:45 2024 +0800
+
+    add test for account manager serializer
+
+[33mcommit 31725d3f69500b4c5654f1cda3e02e83c9859b2f[m
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Tue May 7 11:12:15 2024 +0800
+
+    history design and UI fix
+
+[33mcommit 7beaf8a4e31a5cdb24604b4185d4ad69d2a972b7[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 21:59:26 2024 +0800
+
+    Update Main.java
+
+[33mcommit 95e9772002bffe5adc3daa861567f319d9db6046[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 21:55:08 2024 +0800
+
+    Update TaskRepository.java
+
+[33mcommit b57212e752c8f072cb15c0009ae9cf205daf363f[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 21:54:32 2024 +0800
+
+    Update TaskRepository.java
+
+[33mcommit 066d95db4ee295908e27bd269ff09f33c9012182[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 21:54:18 2024 +0800
+
+    Update TaskRepository.java
+
+[33mcommit 4aef9b00a5736f9c968371c23b8df89d29e68513[m
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Mon May 6 21:36:30 2024 +0800
+
+    history design and UI fix
+
+[33mcommit 98734a41f1d27d6e004670cd1013b626f6a6fd27[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 21:14:25 2024 +0800
+
+    Update TaskService.java
+
+[33mcommit c332f8c82e8b4802fc1684debfb4460ae15a3412[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 21:13:36 2024 +0800
+
+    Update Page05_ChildTask.java
+
+[33mcommit 68173b5ad1a89af51bc8b7b0b48bc56ffc89bed5[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Mon May 6 21:07:08 2024 +0800
+
+    finish HistoryLogger
+
+[33mcommit b77cf5f431b570c9d683fe8ae831fe3c3f878fa5[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 21:00:19 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit af53e3092b4a66f8eeb78947085c819a20f11ded[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:57:38 2024 +0800
+
+    Update TaskLabel.java
+
+[33mcommit cdb8c0b03bd81375ae7d1f0351b4141e52ce2e26[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:50:57 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit accae22a286ea9f7c37ef2d0a13b2b867267411c[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:48:56 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit 2962b583a5e3ce53d26f327ea7473b2c46d1b333[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Mon May 6 20:43:15 2024 +0800
+
+    finish AccountManager
+
+[33mcommit fcedb4b277b8e1ad98c94dd2762140ac2c0d91bd[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:21:58 2024 +0800
+
+    Update Window07a_Save.java
+
+[33mcommit 48988e5516548087cbe1679218d10ee56ff991a4[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:21:37 2024 +0800
+
+    Update Window07_Transfer.java
+
+[33mcommit 0165a3b13da61f3e5c8ba4cfec7627ca1b88b871[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:19:16 2024 +0800
+
+    Update Page07b_PiggyBank.java
+
+[33mcommit 39b48e6715fbe7da9f59c9d1fe13d01512ccf1c6[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:18:53 2024 +0800
+
+    Update Page07a_SavingAccount.java
+
+[33mcommit d1d1bfd8fe3c51e91a9b35f89510f00811f0140d[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:18:29 2024 +0800
+
+    Update Page07_CurrentAccount.java
+
+[33mcommit 95ae1c12991dfec2c9b898db0b5d6bf056da36b3[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:15:03 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit 66e3e662874a3faf791dd995f22f546aa91ae760[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:12:34 2024 +0800
+
+    Update ParentHomeController.java
+
+[33mcommit 18d7a0716a7b969e664fb5220912f78296335e61[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:10:07 2024 +0800
+
+    Update CreateTaskController.java
+
+[33mcommit ec732d1784ae41b7184b164c8aa4f63957b0cfef[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:07:35 2024 +0800
+
+    Update Page02_Register.java
+
+[33mcommit 49a8e0c534eae2af82a24499c8549c6da0bcd3ec[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Mon May 6 20:06:40 2024 +0800
+
+    Update Page01_Login.java
+
+[33mcommit d17b0205600dd22e23c031877230b1ed4f5450df[m
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Mon May 6 19:52:08 2024 +0800
+
+    history design and UI fix
+
+[33mcommit e9b133263b27540b70558be6b4a15862ed219036[m
+Author: Mutian Yin <yinmutian@bupt.edu.cn>
+Date:   Mon May 6 12:24:46 2024 +0800
+
+    history design
+
+[33mcommit ddc7bbb7849e1e727251f118058368c780a721e5[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:14:35 2024 +0800
+
+    Add files via upload
+
+[33mcommit 6c42277ce8122a02022a2c0343b8bf92343c8418[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:14:22 2024 +0800
+
+    Update tasks.json
+
+[33mcommit 68155a7072d63c375d20b92d43ebaa74e4f69b79[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:13:42 2024 +0800
+
+    Add files via upload
+
+[33mcommit ddc21d1dafe8e107c020596e4c1eca4d632a7d0e[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:13:21 2024 +0800
+
+    Update Window06_SetGoal.java
+
+[33mcommit 1f31b0888a388e686502f4b7cd50930037058afe[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:12:47 2024 +0800
+
+    Update Page06_Goal.java
+
+[33mcommit a02f420506f3de537d73f214c0d7471e1059e5c3[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:12:10 2024 +0800
+
+    Update SavingGoalService.java
+
+[33mcommit f6950f73486e00a09d51684206ce8255ff9407d0[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:11:41 2024 +0800
+
+    Update SavingGoalRepository.java
+
+[33mcommit 47120e4b4df59948a5e66982ea2136cbd3a80e51[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:11:17 2024 +0800
+
+    Update SavingGoal.java
+
+[33mcommit 851ae87630f7dba08ca919bbd1120ffabf1c03b2[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:10:31 2024 +0800
+
+    Add files via upload
+
+[33mcommit 086410402e3bd2f01c687d55d239275ab72df714[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:09:53 2024 +0800
+
+    Update ParentHomeController.java
+
+[33mcommit 11f9371036307ece06fd17e35471d2b2a8d09747[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:08:28 2024 +0800
+
+    Delete src/main/java/com/virtualbank/controller/TaskController.java
+
+[33mcommit ce88d5e8d07a296cbcd6f711a8e488d8c251e195[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Mon May 6 09:07:56 2024 +0800
+
+    Update SavingGoalController.java
+
+[33mcommit b1c4d143acc4c602f9da323b0fe2fe6fa9306985[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:19:11 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit 3bd3c0d50fa8a1712bb1ac1a429289eee530eb51[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:18:30 2024 +0800
+
+    Update ParentHomeController.java
+
+[33mcommit 52c64c7e85153dcb74188bff1066736f78acc638[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:17:49 2024 +0800
+
+    Update CreateTaskController.java
+
+[33mcommit 5a265115118b71ba7ff1d21316aef0a837124b7e[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:16:52 2024 +0800
+
+    Update tasks.json
+
+[33mcommit 9697f2f16639bcfebbc0fabe19139cd493e3b4a2[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:16:22 2024 +0800
+
+    Update Main.java
+
+[33mcommit f079c98dc6f75889a74deb790d5de4177734c113[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:15:27 2024 +0800
+
+    Update Task.java
+
+[33mcommit 5ba0c893291f4e437fb0e05401fa93fd5abbcda5[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:14:16 2024 +0800
+
+    Update TaskLabel.java
+
+[33mcommit 55e005f951a157c88a69cd8496b65d4875c356a8[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:13:52 2024 +0800
+
+    Update Page05_ChildTask.java
+
+[33mcommit 26aa806484dc95a5198867f4a6929b71845aaef3[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 26 22:13:14 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit c1976b2c074513569323d7b9a9981446d5d05b7a[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Fri Apr 26 21:10:38 2024 +0800
+
+    Add files via upload
+
+[33mcommit 936f43b2bc73578691ece67671f1d1d723ca2ad8[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Fri Apr 26 21:10:18 2024 +0800
+
+    Delete images/CreateTaskBackground.png
+
+[33mcommit f55ffbedfd74b8b0d00d90921a8e51365d1b11f1[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed Apr 24 22:30:31 2024 +0800
+
+    finish all Account
+
+[33mcommit 83506486c0c7fbc2c657953a802e62fd07674953[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue Apr 23 22:12:33 2024 +0800
+
+    correct main.java (add package declaration in TaskLabel)
+
+[33mcommit 91b9638daa4b71d44b323ac49456cbb96cc3d20d[m
+Merge: d6ad43a afdd91b
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue Apr 23 22:02:23 2024 +0800
+
+    Merge branch 'main' of github-school.com:MuTianYinInQM/Virtual-Bank-Application
+
+[33mcommit d6ad43a44f60819b07a3eb15011f0dac4c16a108[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue Apr 23 22:01:47 2024 +0800
+
+    add basic account
+
+[33mcommit afdd91b96910ce39747ab2b23dea939c0fb46a36[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:47:20 2024 +0800
+
+    Add files via upload
+
+[33mcommit ab1bbd8cc71407285dc3d8f1b941cf9d43761eec[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:46:54 2024 +0800
+
+    Add files via upload
+
+[33mcommit 678fde77eb0358d81847215cb6315841838bd624[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:45:55 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit dc02fc794da88bd7780acf347c50d2f84799b23b[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:34:35 2024 +0800
+
+    Update Page05_ChildTask.java
+
+[33mcommit 51468cb81e73d3acb1223bcdbaca288c6beb65cb[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:33:41 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit 1fdea9420418408bbc767bcdb1513ee90bff698f[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:33:14 2024 +0800
+
+    Update Page03_ChildHome.java
+
+[33mcommit 90591519abb27085beff402a2cb241add9e86c59[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:32:46 2024 +0800
+
+    Update Page02_Register.java
+
+[33mcommit 38dcbd911af5ebb2c27bac1d8f58550ccd49da1a[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Tue Apr 23 21:31:34 2024 +0800
+
+    Update Page01_Login.java
+
+[33mcommit eeb139af518caf980f5d9d9c32c62b9a25f7e808[m
+Author: lwtQM <164885641+lwtQM@users.noreply.github.com>
+Date:   Mon Apr 22 13:20:15 2024 +0800
+
+    Add files via upload
+
+[33mcommit 894461b20e5aa4a288e62668c50841932a8dd6d1[m
+Author: lwtQM <164885641+lwtQM@users.noreply.github.com>
+Date:   Mon Apr 22 13:19:36 2024 +0800
+
+    Add files via upload
+
+[33mcommit f2fffbb4028430ad339540ed788691d3124978fd[m
+Author: lwtQM <164885641+lwtQM@users.noreply.github.com>
+Date:   Sun Apr 21 13:56:49 2024 +0800
+
+    Add files via upload
+
+[33mcommit a5c83e6729f5fb6cb9d3a1bccc7ef6e111a07537[m
+Author: lwtQM <164885641+lwtQM@users.noreply.github.com>
+Date:   Sun Apr 21 13:54:15 2024 +0800
+
+    Add files via upload
+
+[33mcommit c31a65db62bf56379124ca50d5a7e0446f16d774[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Sun Apr 21 11:10:52 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit 304bedabf73933c60dbb4fb23ac989c18b9a5c70[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Sun Apr 21 11:09:37 2024 +0800
+
+    Add files via upload
+
+[33mcommit c5abc747a355c3e745928e6f87d1689f2f4216f3[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Sun Apr 21 11:05:09 2024 +0800
+
+    Update Page04_ParentHome.java
+
+[33mcommit 38c5aa061f898e64d47ea7fe0fcdcd8dcf09cfa9[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 19 14:18:06 2024 +0800
+
+    Add files via upload
+
+[33mcommit 976bfcdb87ce4e78b98e1e9105caf7eabab59f2c[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 19 14:16:42 2024 +0800
+
+    Delete src/test/java/com/virtualbank/task directory
+
+[33mcommit ddf5c351e0789c4fd832c83854078691377064d9[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Fri Apr 19 14:11:09 2024 +0800
+
+    Update TaskService.java
+
+[33mcommit adce6aaae4460319a1d368a70234a787aa6ebb2e[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 22:34:45 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit 9f3ec8581046cf4b70a234b7cec48a72da89cd95[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 22:28:02 2024 +0800
+
+    Add files via upload
+
+[33mcommit 90a69030d644adab5d2b62900f48e2d926d03e1f[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 22:27:26 2024 +0800
+
+    Delete images/1.txt
+
+[33mcommit 44bca1e59daae81de0940689b2cc3dd875c7bdb1[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 22:27:14 2024 +0800
+
+    Delete images/CreateTaskBackground.png
+
+[33mcommit a37d2005d6c7ae95d486dab4791367a6a1716129[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 22:26:01 2024 +0800
+
+    Update Window3_CreateNewTask.java
+
+[33mcommit ba3a2e0d452a7e574a90ccca2d90e904d03e8137[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Thu Apr 18 21:45:40 2024 +0800
+
+    Add files via upload
+
+[33mcommit ecfaeebbff78a5a9ae430d71518a63762c581c1d[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Thu Apr 18 21:44:05 2024 +0800
+
+    Delete src/main/java/com/virtualbank/images directory
+
+[33mcommit 023daff75b8cd8cc7121bfcc5f134ccf2586b9d9[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:11:06 2024 +0800
+
+    Add files via upload
+
+[33mcommit 8da384becd8b1db54567f85cdc6a1d3913d9706a[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:09:58 2024 +0800
+
+    Delete src/main/java/com/virtualbank/ui/Page02_Register.java
+
+[33mcommit 2634241ba387bacd6a4f4cfb442f10a562a1d0fe[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:09:48 2024 +0800
+
+    Delete src/main/java/com/virtualbank/ui/Page01_Login.java
+
+[33mcommit 6496537734c81d8d79413f50f6036f1cffcc3605[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:09:04 2024 +0800
+
+    Add files via upload
+
+[33mcommit 0ca7dd9f2452808b5206cc599502b800b7e5a7e6[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:07:59 2024 +0800
+
+    Create 1.txt
+
+[33mcommit 02267d8be5bb7626327e483bd325ab6d94626827[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:07:38 2024 +0800
+
+    Delete src/main/images directory
+
+[33mcommit 09930b8eafcfdaa7648c8dd7281b77f48be3f0b8[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:06:16 2024 +0800
+
+    Add files via upload
+
+[33mcommit 12e903790eb8a7649268e35cd8f29d3640eadd02[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:05:05 2024 +0800
+
+    Create 1.txt
+
+[33mcommit 8b4b5a4d302094124db865a0f4f0d1c5f4573d80[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Thu Apr 18 17:04:31 2024 +0800
+
+    Delete resources directory
+
+[33mcommit dd1528e067158e893e36015bffa8ab0770a5df45[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:44:25 2024 +0800
+
+    Update Page02_Register.java
+
+[33mcommit bcfb8536f847893029db28b50922e4d063d45d65[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:43:30 2024 +0800
+
+    Update Page01_Login.java
+
+[33mcommit c6d96ceda33246553c0b67034873c6e74cba51d8[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:41:49 2024 +0800
+
+    Delete resources/1.txt
+
+[33mcommit b174dab943f20e7d284cca2eec2f1134e4469cf6[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:40:48 2024 +0800
+
+    Add files via upload
+
+[33mcommit 7cd8789c139cbf94e1b91bf34a6c8be84ef6a2ac[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:40:11 2024 +0800
+
+    Create 1.txt
+
+[33mcommit 23abfc0666ccd11bd1ba53841e69f780446e5ea4[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:39:48 2024 +0800
+
+    Delete Resources directory
+
+[33mcommit d5b8ec434efe0b78042c267fb69e6643ac3d4e81[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed Apr 17 20:22:54 2024 +0800
+
+    correct
+
+[33mcommit a9ad75359fe0abd033530ab6289350afa462bc86[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:09:23 2024 +0800
+
+    Delete Resources/1.txt
+
+[33mcommit 22a4c191e9690a440a941f3d6524e995727efe0d[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:06:25 2024 +0800
+
+    Add files via upload
+
+[33mcommit 9a33a408acfcd9bf35ea0a95acb06e4d925f2921[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:05:30 2024 +0800
+
+    Add files via upload
+
+[33mcommit d5294f76845cfc01c2531d95e7c02ec2f9859f0e[m
+Author: ConcordeFree <164885276+ConcordeFree@users.noreply.github.com>
+Date:   Wed Apr 17 20:04:22 2024 +0800
+
+    Create 1.txt
+
+[33mcommit 6d55e389eca96117b4fa7e551173095939dc0c14[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed Apr 17 20:02:50 2024 +0800
+
+    add pom.xml
+
+[33mcommit ad914673a28cb67b9edf5335ed6f352cff20667d[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed Apr 17 18:10:37 2024 +0800
+
+    restructure
+
+[33mcommit a3d8466fe167bc7d47daf6629fbe5f3edf439899[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Wed Apr 17 17:10:07 2024 +0800
+
+    add doc
+
+[33mcommit 2b64cb878fdf803576426fc1829723af03eecc2a[m
+Merge: 89bc6bb 2a69bdd
+Author: stellauro <164901903+stellauro@users.noreply.github.com>
+Date:   Tue Apr 16 14:03:13 2024 +0800
+
+    Merge pull request #1 from MuTianYinInQM/MuTianYinInQM-patch-1
+    
+    balance traking
+
+[33mcommit 2a69bdd68f0330726d232014ecbd724a5ebeb3d1[m[33m ([m[1;31morigin/MuTianYinInQM-patch-1[m[33m)[m
+Author: Mutian Yin <115518152+MuTianYinInQM@users.noreply.github.com>
+Date:   Tue Apr 16 13:38:01 2024 +0800
+
+    Add files via upload
+
+[33mcommit 5e04064390ee13acd7c53990aac919974569aa03[m
+Author: Mutian Yin <115518152+MuTianYinInQM@users.noreply.github.com>
+Date:   Tue Apr 16 13:30:49 2024 +0800
+
+    Add files via upload
+
+[33mcommit 89bc6bb34cf80aa37b160e91c9f039c2f8b00812[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Sun Apr 14 20:50:55 2024 +0800
+
+    add .gitignorek, delete test file
+
+[33mcommit 58ac30f44263febb184ada41cb82c0d60e8f688a[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 20:43:14 2024 +0800
+
+    Update Main.java
+
+[33mcommit b2665a2f3af7d5855eb38f18f201b91130e6ede6[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 20:42:24 2024 +0800
+
+    Add files via upload
+
+[33mcommit 72a634ce4968ef159725883ea4b4607245b4a1dd[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 20:41:11 2024 +0800
+
+    Update SavingGoalController.java
+
+[33mcommit ef4dbf74733a15e6e0a613aa6b28faa6a2b61ae5[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 15:54:18 2024 +0800
+
+    Create SavingGoalServiceTest
+
+[33mcommit 1dadea651c823043bc33e891b77444abf0fb298c[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 15:53:17 2024 +0800
+
+    Update SavingGoalService.java
+
+[33mcommit d61fb39d0ba395b87a80bef9e25df85cf63be229[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 15:52:41 2024 +0800
+
+    Update SavingGoalRepository.java
+
+[33mcommit b8fa52a3fff7a796029ce31bc13668f691f9ad3e[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 15:52:17 2024 +0800
+
+    Update SavingGoal.java
+
+[33mcommit 71c3a810a19914fa914b3971fa458b336c37c8b1[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 15:00:04 2024 +0800
+
+    Delete VirtualBank/src/main/java/com/virtualbank/task directory
+
+[33mcommit ab7c6b775b8455cee83e3d20ee9f68725ad7c578[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:58:23 2024 +0800
+
+    Add files via upload
+
+[33mcommit 93769eb2b46e6c069cb43f3e2ca46e2406cf4b75[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:57:03 2024 +0800
+
+    Delete VirtualBank/java/com/virtualbank directory
+
+[33mcommit 4535ad5b33423b6fed6ec7d8af405a77ad84dfca[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:53:30 2024 +0800
+
+    Add files via upload
+
+[33mcommit 02f17479fdbd43a5c1336a1d3678250d332c8d96[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:35:02 2024 +0800
+
+    Update TaskServiceTest.java
+
+[33mcommit 4b6b0c03bdd8defb435e9a6539b040fc9f290be6[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:20:31 2024 +0800
+
+    Update TaskRespository.java
+
+[33mcommit 6ddf8480353434607b868210942c364ab81810a4[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 14:20:03 2024 +0800
+
+    Update TaskService.java
+
+[33mcommit 184057b6076c04ad06d3c6394d14d4125a7c354d[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 10:41:00 2024 +0800
+
+    Update TaskServiceTest.java
+
+[33mcommit 39651fa7013594d686740e68e214724d0566f475[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 10:39:42 2024 +0800
+
+    Update TaskService.java
+
+[33mcommit 2a77381fa0fb8c10135f35be01fabc3e3318e2f5[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 10:39:19 2024 +0800
+
+    Update TaskRespository.java
+
+[33mcommit 02c2fb171dd3fb13adc68b456259346850513a3f[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 10:38:47 2024 +0800
+
+    Update pom.xml
+
+[33mcommit e6b81f5ad4cfc439758b088b97ef2f1586399449[m
+Author: LeoEvergarden <95556309+LiyangQian@users.noreply.github.com>
+Date:   Sat Apr 13 10:03:16 2024 +0800
+
+    Add files via upload
+
+[33mcommit efda88b0246af0d6de2178c2179da82faec5408b[m
+Author: Yuanzhe Ma <stellaura@bupt.edu.cn>
+Date:   Tue Mar 26 14:56:16 2024 +0800
+
+    test for ssh key and test for push
+
+[33mcommit 06e698c33e86ccb60e9b88575fa3dbea54756349[m
+Author: Mutian Yin <115518152+MuTianYinInQM@users.noreply.github.com>
+Date:   Mon Mar 25 20:37:30 2024 +0800
+
+    Initial commit

@@ -1,6 +1,8 @@
 package com.virtualbank.model.account;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 import java.time.LocalDateTime;
 
@@ -76,6 +78,9 @@ public abstract class Account implements Serializable {
      */
     public double getBalance() {
         return balance;
+//        BigDecimal bd = new BigDecimal(balance);
+//        bd = bd.setScale(2, RoundingMode.HALF_UP);
+//        return bd.doubleValue();
     }
 
     /**

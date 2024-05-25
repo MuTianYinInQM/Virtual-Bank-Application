@@ -182,6 +182,11 @@ public class AccountManagerController implements PropertyChangeListener, Page {
         this.page.dispose();
     }
 
+    public void updateAllInterests() {
+        accountManager.updateAllInterests();
+        AccountManagerSerializer.serializeAccountManager(accountManager, username);
+    }
+
     public static void main(String[] args) {
         UIStack uis = new UIStack();
 

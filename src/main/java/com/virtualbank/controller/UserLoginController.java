@@ -110,7 +110,6 @@ public class UserLoginController implements Page {
                 JOptionPane.showMessageDialog(page, "Login Successful - Child Page");
                 Page03_ChildHome childPage = new Page03_ChildHome();
                 AccountManager accountManager = AccountManagerSerializer.deserializeAccountManager(username);
-                accountManager.updateAllInterests();
                 AccountManagerController accountManagerController =
                         new AccountManagerController(
                                 childPage,
@@ -118,6 +117,7 @@ public class UserLoginController implements Page {
                                 uiStack,
                                 username
                         );
+                accountManagerController.updateAllInterests();
                 uiStack.pushPage(accountManagerController);
                 break;
             case "Password Incorrect":
