@@ -10,7 +10,7 @@ import com.virtualbank.model.UIStack;
 import com.virtualbank.service.TaskService;
 public class Main {
     public static void main(String[] args) {
-        UserService userService = new UserService(); // 确保UserService适当地初始化
+        UserService userService = new UserService();
         Page01_Login page01Login = new Page01_Login();
         UIStack uiStack = new UIStack();
         TaskService taskService = new TaskService();

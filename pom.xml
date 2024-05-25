@@ -85,7 +85,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.virtualbank.Main</mainClass> <!-- 替换为你的主类 -->
+              <mainClass>com.virtualbank.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -99,7 +99,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.virtual-bank.Main</mainClass> <!-- 替换为你的主类 -->
+              <mainClass>com.virtualbank.Main</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
