@@ -106,7 +106,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for PiggyBank account
     private void setupPiggyBankUI(PiggyBank account) {
 
-        ImageIcon backgroundIcon = new ImageIcon("images/Piggy_Bank.png");
+        ImageIcon backgroundIcon = new ImageIcon("src/main/resources/images/Piggy_Bank.png");
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -138,7 +138,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for SavingAccount account
     private void setupSavingAccountUI(SavingAccount account) {
 
-        ImageIcon backgroundIcon = new ImageIcon("images/Saving_Account.png");
+        ImageIcon backgroundIcon = new ImageIcon("src/main/resources/images/Saving_Account.png");
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -168,7 +168,7 @@ public class Page07_Account extends JFrame {
     // Set up UI for CurrentAccount account
     private void setupCurrentAccountUI(CurrentAccount account) {
 
-        ImageIcon backgroundIcon = new ImageIcon("images/Current_Account.png");
+        ImageIcon backgroundIcon = new ImageIcon("src/main/resources/images/Current_Account.png");
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
