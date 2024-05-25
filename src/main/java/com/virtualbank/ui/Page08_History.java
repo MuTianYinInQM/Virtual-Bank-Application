@@ -71,7 +71,7 @@ public class Page08_History extends JFrame {
         this.setResizable(false);
 
         // 设置背景Icon
-        ImageIcon backgroundIcon = new ImageIcon("src/main/resources/images/History_Background.png");
+        ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("src/main/resources/images/History_Background.png"));
         JLabel backgroundLabel = new JLabel(backgroundIcon);
         backgroundLabel.setBounds(0, 0, 1260, 780);
         this.setContentPane(backgroundLabel);
@@ -145,7 +145,7 @@ public class Page08_History extends JFrame {
         String type = (String) transaction.get("type");
         String isCredit = (type.equals("TRANSFER_FROM") || type.equals("CONSUME")) ? "-" : "+";
         String description = (String) transaction.get("description");
-        ImageIcon cardIcon = new ImageIcon("src/main/resources/images/transactionCardIcon.png");
+        ImageIcon cardIcon = new ImageIcon(getClass().getResource("src/main/resources/images/transactionCardIcon.png"));
 
         TransactionCard transactionCard = new TransactionCard(cardIcon, isCredit + amount, type, date, time, description);
 

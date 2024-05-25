@@ -84,7 +84,7 @@ public class Page06_Goal extends JFrame implements DataUpdateListener {
         scrollPane = new JScrollPane(goalsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         createButton = new JButton();
         exitButton = new JButton();
-        goalBackground = new ImageIcon("src/main/resources/images/Goal_Background.png"); // 加载背景图片
+        goalBackground = new ImageIcon(getClass().getResource("src/main/resources/images/Goal_Background.png")); // 加载背景图片
 
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -277,7 +277,7 @@ public class Page06_Goal extends JFrame implements DataUpdateListener {
 
             modifyButton = new JButton();
             modifyButton.putClientProperty("goal", goal);
-            modifyButton.setIcon(new ImageIcon("src/main/resources/images/Modify_Button.png"));
+            modifyButton.setIcon(new ImageIcon(getClass().getResource("src/main/resources/images/Modify_Button.png")));
             modifyButton.setBorderPainted(false);
             modifyButton.setContentAreaFilled(false);
             modifyButton.setFocusPainted(false);
@@ -286,7 +286,7 @@ public class Page06_Goal extends JFrame implements DataUpdateListener {
 
             deleteButton = new JButton();
             deleteButton.putClientProperty("goal", goal);
-            deleteButton.setIcon(new ImageIcon("src/main/resources/images/Delete_Button.png"));
+            deleteButton.setIcon(new ImageIcon(getClass().getResource("src/main/resources/images/Delete_Button.png")));
             deleteButton.setBorderPainted(false);
             deleteButton.setContentAreaFilled(false);
             deleteButton.setFocusPainted(false);
