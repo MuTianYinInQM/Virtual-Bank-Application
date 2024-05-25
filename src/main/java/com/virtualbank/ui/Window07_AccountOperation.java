@@ -58,7 +58,7 @@ public class Window07_AccountOperation extends JFrame {
         this.setTitle(title);
 
 
-        ImageIcon thisBackground = new ImageIcon(getClass().getResource("/images/this_Background.png"));
+        ImageIcon thisBackground = new ImageIcon(getClass().getResource("/images/Window_Background.png"));
         JLabel thisBackgroundLabel = new JLabel(thisBackground);
         thisBackgroundLabel.setBounds(0, 0, this_width, this_height);
         this.setContentPane(thisBackgroundLabel);
